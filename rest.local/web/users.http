@@ -1,0 +1,10 @@
+GET https://two0230615-api.onrender.com/users 
+
+###
+POST https://two0230615-api.onrender.com/users
+content-type: application/json
+
+{
+    "name": "Fulano",
+    "email": "fulano@email.com"
+}
