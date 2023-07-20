@@ -3,7 +3,6 @@ import fastify from 'fastify';
 import { z } from 'zod';
 
 const app = fastify()
-
 const prisma = new PrismaClient();
 
 app.get('/users', async () => {
