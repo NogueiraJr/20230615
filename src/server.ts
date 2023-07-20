@@ -11,7 +11,7 @@ app.get('/users', async () => {
     return { users };
 })
 
-app.post('/users', async (req, rep) => {
+app.post('/users', async (req, res) => {
     const createUserShema = z.object({
         name: z.string(),
         email: z.string().email(),
@@ -24,9 +24,42 @@ app.post('/users', async (req, rep) => {
             email,
         }
     })
-
-    return rep.status(201).send();
+    
+    return res.status(201).send();
 })
+
+app.patch<{ Params: { id: string } }>('/users/:id', async (req, res) => {
+    try {
+        const updateUserSchema = z.object({
+            name: z.string().optional(),
+            email: z.string().email().optional(),
+        });
+        const { id } = req.params;
+        const { name, email } = updateUserSchema.parse(req.body);
+        
+        const existingUser = await prisma.user.findUnique({ where: { id: id } });
+        
+        if (!existingUser) {
+            return res.status(404).send({ message: 'Usuário não encontrado.' });
+        }
+        
+        const user = await prisma.user.update({
+            where: {
+                id: id,
+            },
+            data: {
+                name,
+                email,
+            },
+        });
+
+        return res.status(200).send({ user });
+
+    } catch (error) {
+        return res.status(400).send({ error });
+
+    }
+});
 
 app.listen({
     host: '0.0.0.0',
