@@ -12,20 +12,25 @@ app.get('/users', async () => {
 })
 
 app.post('/users', async (req, res) => {
-    const createUserShema = z.object({
-        name: z.string(),
-        email: z.string().email(),
-    })
-    const { name, email } = createUserShema.parse(req.body);
-
-    await prisma.user.create({
-        data: {
-            name,
-            email,
-        }
-    })
+    try {
+        const createUserShema = z.object({
+            name: z.string(),
+            email: z.string().email(),
+        })
+        const { name, email } = createUserShema.parse(req.body);
     
-    return res.status(201).send();
+        const newUser = await prisma.user.create({
+            data: {
+                name,
+                email,
+            }
+        })
+        
+        return res.status(201).send({ user: newUser });
+        
+    } catch (error) {
+        return res.status(400).send({ error });
+    }
 })
 
 app.patch<{ Params: { id: string } }>('/users/:id', async (req, res) => {
@@ -61,6 +66,24 @@ app.patch<{ Params: { id: string } }>('/users/:id', async (req, res) => {
     }
 });
 
+app.delete<{ Params: { id: string } }>('/users/:id', async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const existingUser = await prisma.user.findUnique({ where: { id: id } });
+  
+      if (!existingUser) {
+        return res.status(404).send({ message: 'Usuário não encontrado.' });
+      }
+  
+      await prisma.user.delete({ where: { id: id } });
+  
+      return res.status(200).send({ message: 'Usuário excluído com sucesso.' });
+    } catch (error) {
+      return res.status(400).send({ error });
+    }
+});
+  
 app.listen({
     host: '0.0.0.0',
     port: process.env.PORT ? Number(process.env.PORT) : 3333,
