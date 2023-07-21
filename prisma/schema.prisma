@@ -10,9 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Users {
   id String @id @default(cuid())
   name String
-  email String
+  emails UsersEmails[]
   createAt DateTime @default(now())
+}
+
+model UsersEmails {
+  id String @id @default(cuid())
+  address String
+  userId String
+  user Users @relation(fields: [userId], references: [id])
 }
