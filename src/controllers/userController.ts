@@ -32,7 +32,7 @@ export const createUserHandler = async (req: FastifyRequest, res: FastifyReply) 
         },
         // Inclua o campo 'userType' referenciando o 'userTypeId' fornecido
         userType: {
-          connect: { id: userTypeId },
+          connect: { type: userTypeId },
         },
       },
       include: {
@@ -71,7 +71,7 @@ export const updateUserHandler = async (req: FastifyRequest<{ Params: Params }>,
         },
         // Atualiza o campo 'userType' para o tipo especificado pelo userTypeId
         userType: {
-          connect: { id: userTypeId },
+          connect: { type: userTypeId },
         },
       },
       include: {

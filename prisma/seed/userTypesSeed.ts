@@ -5,60 +5,23 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const userTypesData = [
-  
   //Sistema  
-  {
-    type: 'admin',
-    name: 'Administrador',
-    description: 'Administrador do Sistema',
-  },
-  {
-    type: 'support',
-    name: 'Suporte',
-    description: 'Suporte do Sistema',
-  },
+  {    type: 'admin',    name: 'Administrador',  description: 'Administrador do Sistema',  },
+  {    type: 'support',  name: 'Suporte',        description: 'Suporte do Sistema',  },
   
   //Interno à Empresa paga para usar o Sistema
-  {
-    type: 'owner',
-    name: 'Proprietário',
-    description: 'Proprietário da Empresa',
-  },
-  {
-    type: 'manager',
-    name: 'Gerente',
-    description: 'Gerente de Pessoal',
-  },
-  {
-    type: 'employee',
-    name: 'Funcionário',
-    description: 'Funcionário da Empresa',
-  },
+  {    type: 'owner',    name: 'Proprietário',   description: 'Proprietário da Empresa',  },
+  {    type: 'manager',  name: 'Gerente',        description: 'Gerente de Pessoal',  },
+  {    type: 'employee', name: 'Funcionário',    description: 'Funcionário da Empresa',  },
 
   //Externo à Empresa
-  {
-    type: 'client',
-    name: 'Cliente',
-    description: 'Cliente da Empresa',
-  },
-  {
-    type: 'supplier',
-    name: 'Fornecedor',
-    description: 'Fornecedor da Empresa',
-  },
-  {
-    type: 'partner',
-    name: 'Parceiro',
-    description: 'Parceiro da Empresa',
-  },
+  {    type: 'client',   name: 'Cliente',        description: 'Cliente da Empresa',  },
+  {    type: 'supplier', name: 'Fornecedor',     description: 'Fornecedor da Empresa',  },
+  {    type: 'partner',  name: 'Parceiro',       description: 'Parceiro da Empresa',  },
 
   //Cadastrado inicialmente e ainda não idetificado
-  {
-    type: 'user',
-    name: 'Usuário',
-    description: 'Usuário cadastrado',
-  },
-  // Adicione mais registros, se necessário
+  {    type: 'user',     name: 'Usuário',        description: 'Usuário cadastrado',  },
+  
 ];
 
 async function main() {
