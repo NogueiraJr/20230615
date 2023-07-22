@@ -12,7 +12,9 @@ interface Params {
 export const getUsersHandler = async () => {
   const users = await prisma.users.findMany({
     include: {
-      emails: true, // Inclui os e-mails associados a cada usuário na resposta
+      emails: true,
+      // Inclui o campo 'userType' e todas as suas informações associadas
+      userType: true,
     },
   });
   return { users };
@@ -20,17 +22,23 @@ export const getUsersHandler = async () => {
 
 export const createUserHandler = async (req: FastifyRequest, res: FastifyReply) => {
   try {
-    const { name, emails } = createUserSchema.parse(req.body);
+    const { name, emails, userTypeId } = createUserSchema.parse(req.body);
 
     const newUser = await prisma.users.create({
       data: {
         name,
         emails: {
-          create: emails, // Utiliza o array de e-mails diretamente para criar os e-mails associados ao usuário
+          create: emails,
+        },
+        // Inclua o campo 'userType' referenciando o 'userTypeId' fornecido
+        userType: {
+          connect: { id: userTypeId },
         },
       },
       include: {
-        emails: true, // Inclui os e-mails associados ao usuário na resposta
+        emails: true,
+        // Inclui o campo 'userType' e todas as suas informações associadas
+        userType: true,
       },
     });
 
@@ -43,7 +51,7 @@ export const createUserHandler = async (req: FastifyRequest, res: FastifyReply) 
 export const updateUserHandler = async (req: FastifyRequest<{ Params: Params }>, res: FastifyReply) => {
   try {
     const { id } = req.params;
-    const { name, emails } = updateUserSchema.parse(req.body);
+    const { name, emails, userTypeId } = updateUserSchema.parse(req.body);
 
     const existingUser = await prisma.users.findUnique({ where: { id } });
 
@@ -61,9 +69,14 @@ export const updateUserHandler = async (req: FastifyRequest<{ Params: Params }>,
           deleteMany: {}, // Deleta todos os e-mails associados ao usuário
           create: emails, // Utiliza o array de e-mails diretamente para criar os novos e-mails associados ao usuário
         },
+        // Atualiza o campo 'userType' para o tipo especificado pelo userTypeId
+        userType: {
+          connect: { id: userTypeId },
+        },
       },
       include: {
         emails: true, // Inclui os e-mails associados ao usuário na resposta
+        userType: true, // Inclui o tipo de usuário associado ao usuário na resposta
       },
     });
 
@@ -72,7 +85,6 @@ export const updateUserHandler = async (req: FastifyRequest<{ Params: Params }>,
     return res.status(400).send({ error });
   }
 };
-
 
 export const deleteUserHandler = async (req: FastifyRequest<{ Params: Params }>, res: FastifyReply) => {
   const { id } = req.params;
@@ -85,7 +97,7 @@ export const deleteUserHandler = async (req: FastifyRequest<{ Params: Params }>,
     }
 
     // Exclui todos os e-mails associados ao usuário antes de excluí-lo
-    await prisma.usersEmails.deleteMany({ where: { userId: id } });
+    await prisma.userEmails.deleteMany({ where: { userId: id } });
 
     // Exclui o usuário após excluir os e-mails associados
     await prisma.users.delete({ where: { id } });

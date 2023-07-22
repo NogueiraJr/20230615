@@ -13,13 +13,24 @@ datasource db {
 model Users {
   id String @id @default(cuid())
   name String
-  emails UsersEmails[]
+  emails UserEmails[]
   createAt DateTime @default(now())
+  userType UserTypes @relation(fields: [userTypeId], references: [id])
+  userTypeId String
 }
 
-model UsersEmails {
+model UserEmails {
   id String @id @default(cuid())
   address String
   userId String
+  createAt DateTime @default(now())
   user Users @relation(fields: [userId], references: [id])
+}
+
+model UserTypes {
+  id String @id @default(cuid())
+  type String @unique
+  name String
+  description String?
+  users Users[] // Campo oposto referenciando a tabela Users
 }

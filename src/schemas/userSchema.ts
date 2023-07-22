@@ -12,11 +12,13 @@ const emailsSchema = z.array(emailSchema);
 export const createUserSchema = z.object({
   name: z.string(),
   emails: emailsSchema,
+  userTypeId: z.string(), // Adicione o userTypeId ao esquema
 });
 
 // Define o esquema para atualizar um usuário
 export const updateUserSchema = z.object({
-  name: z.string().optional(),
-  emails: emailsSchema.optional(),
+  name: z.string(),
+  emails: emailsSchema,
+  userTypeId: z.string(), // Adicione o userTypeId ao esquema
 });
 
