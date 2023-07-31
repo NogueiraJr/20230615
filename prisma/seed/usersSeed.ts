@@ -5,22 +5,46 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const usersData_client = [
-  { name: 'John Doe', emails: { create: [{ address: 'john.doe@example.com' }] } }, 
-  { name: 'Jane Smith', emails: { create: [{ address: 'jane.smith@example.com' }] } }, 
+  {
+    name: 'John Doe',
+    emails: { create: [{ email: 'john.doe@example.com' }] },
+    phones: { create: [{ phoneNumber: '+1234567890' }, { phoneNumber: '+9876543210' }] },
+  },
+  {
+    name: 'Jane Smith',
+    emails: { create: [{ email: 'jane.smith@example.com' }] },
+    phones: { create: [{ phoneNumber: '+1111111111' }] },
+  },
 ];
 
 const usersData_user = [
-  { name: 'John Doe', emails: { create: [{ address: 'john.doe@example.com' }] } }, 
-  { name: 'Jane Smith', emails: { create: [{ address: 'jane.smith@example.com' }] } }, 
+  {
+    name: 'John Doe',
+    emails: { create: [{ email: 'john.doe@example.com' }] },
+    phones: { create: [{ phoneNumber: '+5555555555' }] },
+  },
+  {
+    name: 'Jane Smith',
+    emails: { create: [{ email: 'jane.smith@example.com' }] },
+    phones: { create: [{ phoneNumber: '+9999999999' }, { phoneNumber: '+8888888888' }] },
+  },
 ];
 
 async function main() {
   for (const item of usersData_client) {
-    await prisma.users.create({ data: { ...item, userType: { connect: { type: 'client' }, }, },
+    await prisma.users.create({
+      data: {
+        ...item,
+        userType: { connect: { type: 'client' } },
+      },
     });
   }
   for (const item of usersData_user) {
-    await prisma.users.create({ data: { ...item, userType: { connect: { type: 'user' }, }, },
+    await prisma.users.create({
+      data: {
+        ...item,
+        userType: { connect: { type: 'user' } },
+      },
     });
   }
 }

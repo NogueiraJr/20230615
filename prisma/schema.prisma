@@ -14,6 +14,7 @@ model Users {
   id          String      @id @default(cuid())
   name        String
   emails      UserEmails[]
+  phones      UserPhones[]
   createAt    DateTime    @default(now())
   type        String
   userType    UserTypes   @relation(fields: [type], references: [type])
@@ -21,7 +22,15 @@ model Users {
 
 model UserEmails {
   id          String      @id @default(cuid())
-  address     String
+  email       String
+  userId      String
+  createAt    DateTime    @default(now())
+  user        Users       @relation(fields: [userId], references: [id])
+}
+
+model UserPhones {
+  id          String      @id @default(cuid())
+  phoneNumber String
   userId      String
   createAt    DateTime    @default(now())
   user        Users       @relation(fields: [userId], references: [id])
@@ -31,5 +40,6 @@ model UserTypes {
   type        String      @id @unique
   name        String
   description String?
+  createAt    DateTime    @default(now())
   users       Users[]
 }
