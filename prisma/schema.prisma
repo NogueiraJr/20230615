@@ -12,20 +12,24 @@ datasource db {
 
 model Users {
   id          String      @id @default(cuid())
+  userTypeId  String
   name        String
   emails      UserEmails[]
   phones      UserPhones[]
   createAt    DateTime    @default(now())
-  type        String
-  userType    UserTypes   @relation(fields: [type], references: [type])
+
+  userType    UserTypes   @relation(fields: [userTypeId], references: [id])
 }
 
 model UserEmails {
-  id          String      @id @default(cuid())
-  email       String
-  userId      String
-  createAt    DateTime    @default(now())
-  user        Users       @relation(fields: [userId], references: [id])
+  id              String         @id @default(cuid())
+  email           String
+  userId          String
+  userEmailTypeId String
+  createAt        DateTime       @default(now())
+  
+  user            Users          @relation(fields: [userId], references: [id])
+  UserEmailType   UserEmailTypes @relation(fields: [userEmailTypeId], references: [id])
 }
 
 model UserPhones {
@@ -37,9 +41,17 @@ model UserPhones {
 }
 
 model UserTypes {
-  type        String      @id @unique
+  id          String      @id @unique
   name        String
   description String?
   createAt    DateTime    @default(now())
   users       Users[]
+}
+
+model UserEmailTypes {
+  id          String       @id @unique
+  name        String
+  description String?
+  createAt    DateTime     @default(now())
+  userEmails  UserEmails[]
 }

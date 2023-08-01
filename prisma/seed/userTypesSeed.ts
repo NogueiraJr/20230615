@@ -6,21 +6,21 @@ const prisma = new PrismaClient();
 
 const userTypesData = [
   //Sistema  
-  {    type: 'admin',    name: 'Administrador',  description: 'Administrador do Sistema',  },
-  {    type: 'support',  name: 'Suporte',        description: 'Suporte do Sistema',  },
+  {    id: 'admin',    name: 'Administrador',  description: 'Administrador do Sistema',  },
+  {    id: 'support',  name: 'Suporte',        description: 'Suporte do Sistema',  },
   
   //Interno à Empresa paga para usar o Sistema
-  {    type: 'owner',    name: 'Proprietário',   description: 'Proprietário da Empresa',  },
-  {    type: 'manager',  name: 'Gerente',        description: 'Gerente de Pessoal',  },
-  {    type: 'employee', name: 'Funcionário',    description: 'Funcionário da Empresa',  },
+  {    id: 'owner',    name: 'Proprietário',   description: 'Proprietário da Empresa',  },
+  {    id: 'manager',  name: 'Gerente',        description: 'Gerente de Pessoal',  },
+  {    id: 'employee', name: 'Funcionário',    description: 'Funcionário da Empresa',  },
 
   //Externo à Empresa
-  {    type: 'client',   name: 'Cliente',        description: 'Cliente da Empresa',  },
-  {    type: 'supplier', name: 'Fornecedor',     description: 'Fornecedor da Empresa',  },
-  {    type: 'partner',  name: 'Parceiro',       description: 'Parceiro da Empresa',  },
+  {    id: 'client',   name: 'Cliente',        description: 'Cliente da Empresa',  },
+  {    id: 'supplier', name: 'Fornecedor',     description: 'Fornecedor da Empresa',  },
+  {    id: 'partner',  name: 'Parceiro',       description: 'Parceiro da Empresa',  },
 
   //Cadastrado inicialmente e ainda não idetificado
-  {    type: 'user',     name: 'Usuário',        description: 'Usuário cadastrado',  },
+  {    id: 'user',     name: 'Usuário',        description: 'Usuário cadastrado',  },
   
 ];
 
