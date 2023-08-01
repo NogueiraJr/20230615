@@ -7,26 +7,34 @@ const prisma = new PrismaClient();
 const usersData_client = [
   {
     name: 'John Doe',
-    emails: { create: [{ email: 'john.doe@example.com' }] },
-    phones: { create: [{ phoneNumber: '+1234567890' }, { phoneNumber: '+9876543210' }] },
+    emails: {
+      create: [{ email: 'john.doe@example.com', userEmailTypeId: 'personal' }]
+    },
+    phones: { create: [{ phoneNumber: '+1234567890' }, { phoneNumber: '+9876543210' }] }
   },
   {
     name: 'Jane Smith',
-    emails: { create: [{ email: 'jane.smith@example.com' }] },
-    phones: { create: [{ phoneNumber: '+1111111111' }] },
+    emails: {
+      create: [{ email: 'jane.smith@example.com', userEmailTypeId: 'others' }]
+    },
+    phones: { create: [{ phoneNumber: '+1111111111' }] }
   },
 ];
 
 const usersData_user = [
   {
     name: 'John Doe',
-    emails: { create: [{ email: 'john.doe@example.com' }] },
-    phones: { create: [{ phoneNumber: '+5555555555' }] },
+    emails: {
+      create: [{ email: 'john.doe@example.com', userEmailTypeId: 'work' }]
+    },
+    phones: { create: [{ phoneNumber: '+5555555555' }] }
   },
   {
     name: 'Jane Smith',
-    emails: { create: [{ email: 'jane.smith@example.com' }] },
-    phones: { create: [{ phoneNumber: '+9999999999' }, { phoneNumber: '+8888888888' }] },
+    emails: {
+      create: [{ email: 'jane.smith@example.com', userEmailTypeId: 'personal' }]
+    },
+    phones: { create: [{ phoneNumber: '+9999999999' }, { phoneNumber: '+8888888888' }] }
   },
 ];
 
@@ -35,7 +43,7 @@ async function main() {
     await prisma.users.create({
       data: {
         ...item,
-        userType: { connect: { type: 'client' } },
+        userType: { connect: { id: 'client' } },
       },
     });
   }
@@ -43,7 +51,7 @@ async function main() {
     await prisma.users.create({
       data: {
         ...item,
-        userType: { connect: { type: 'user' } },
+        userType: { connect: { id: 'user' } },
       },
     });
   }
