@@ -4,64 +4,73 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const usersData_client = [
+const usersData_admin = [
   {
-    name: 'John Doe',
-    emails: {
-      create: [{ email: 'john.doe@example.com', userEmailTypeId: 'personal' }]
-    },
-    phones: { create: [{ phoneNumber: '+1234567890', userPhoneTypeId: 'personal' }, { phoneNumber: '+9876543210', userPhoneTypeId: 'personal' }] }
+    name: 'Administrador',
+    emails: { create: [{ email: 'admin@emailwork.com', userEmailTypeId: 'work' }, { email: 'admin@emailpersonal.com', userEmailTypeId: 'personal' }] },
+    phones: { create: [{ phoneNumber: '+1234567890', userPhoneTypeId: 'personal' }, { phoneNumber: '+9876543210', userPhoneTypeId: 'work' }] }
+  }
+];
+
+const usersData_support = [
+  {
+    name: 'Suporte 01',
+    emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'work' }] },
+    phones: { create: [{ phoneNumber: '+5555555555', userPhoneTypeId: 'personal' }] }
   },
   {
-    name: 'Jane Smith',
-    emails: {
-      create: [{ email: 'jane.smith@example.com', userEmailTypeId: 'others' }]
-    },
+    name: 'Suporte 02',
+    emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'personal' }] },
+    phones: { create: [{ phoneNumber: '+9999999999', userPhoneTypeId: 'personal' }, { phoneNumber: '+8888888888', userPhoneTypeId: 'personal' }] }
+  },
+  {
+    name: 'Suporte 03',
+    emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'others' }] },
     phones: { create: [{ phoneNumber: '+1111111111', userPhoneTypeId: 'personal' }] }
   },
 ];
 
-const usersData_user = [
+const usersData_owner = [
   {
-    name: 'John Doe',
-    emails: {
-      create: [{ email: 'john.doe@example.com', userEmailTypeId: 'work' }]
-    },
+    name: 'Proprietário 01',
+    emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'work' }] },
     phones: { create: [{ phoneNumber: '+5555555555', userPhoneTypeId: 'personal' }] }
   },
   {
-    name: 'Jane Smith',
-    emails: {
-      create: [{ email: 'jane.smith@example.com', userEmailTypeId: 'personal' }]
-    },
+    name: 'Proprietário 02',
+    emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'personal' }] },
     phones: { create: [{ phoneNumber: '+9999999999', userPhoneTypeId: 'personal' }, { phoneNumber: '+8888888888', userPhoneTypeId: 'personal' }] }
+  },
+  {
+    name: 'Proprietário 03',
+    emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'others' }] },
+    phones: { create: [{ phoneNumber: '+1111111111', userPhoneTypeId: 'personal' }] }
+  },
+];
+
+const usersData_manager = [
+  {
+    name: 'Gerente 01',
+    emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'work' }] },
+    phones: { create: [{ phoneNumber: '+5555555555', userPhoneTypeId: 'personal' }] }
+  },
+  {
+    name: 'Gerente 02',
+    emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'personal' }] },
+    phones: { create: [{ phoneNumber: '+9999999999', userPhoneTypeId: 'personal' }, { phoneNumber: '+8888888888', userPhoneTypeId: 'personal' }] }
+  },
+  {
+    name: 'Gerente 03',
+    emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'others' }] },
+    phones: { create: [{ phoneNumber: '+1111111111', userPhoneTypeId: 'personal' }] }
   },
 ];
 
 async function main() {
-  for (const item of usersData_client) {
-    await prisma.users.create({
-      data: {
-        ...item,
-        userType: { connect: { id: 'client' } },
-      },
-    });
-  }
-  for (const item of usersData_user) {
-    await prisma.users.create({
-      data: {
-        ...item,
-        userType: { connect: { id: 'user' } },
-      },
-    });
-  }
+  for (const item of usersData_admin)   { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'admin' } }, }, }); }
+  for (const item of usersData_support) { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'support'  } }, }, }); }
+  for (const item of usersData_owner)   { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'owner'  } }, }, }); }
+  for (const item of usersData_manager) { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'manager'  } }, }, }); }
 }
 
-main()
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+main().catch((error) => { console.error(error); process.exit(1); }).finally(async () => { await prisma.$disconnect(); });
