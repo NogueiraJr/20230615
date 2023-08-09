@@ -8,7 +8,7 @@ const usersData_admin = [
   {
     name: 'Administrador',
     emails: { create: [{ email: 'admin@emailwork.com', userEmailTypeId: 'work' }, { email: 'admin@emailpersonal.com', userEmailTypeId: 'personal' }] },
-    phones: { create: [{ phoneNumber: '+1234567890', userPhoneTypeId: 'personal' }, { phoneNumber: '+9876543210', userPhoneTypeId: 'work' }] }
+    phones: { create: [{ phone: '+1234567890', userPhoneTypeId: 'personal' }, { phone: '+9876543210', userPhoneTypeId: 'work' }] }
   }
 ];
 
@@ -16,17 +16,17 @@ const usersData_support = [
   {
     name: 'Suporte 01',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'work' }] },
-    phones: { create: [{ phoneNumber: '+5555555555', userPhoneTypeId: 'personal' }] }
+    phones: { create: [{ phone: '+5555555555', userPhoneTypeId: 'personal' }] }
   },
   {
     name: 'Suporte 02',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'personal' }] },
-    phones: { create: [{ phoneNumber: '+9999999999', userPhoneTypeId: 'personal' }, { phoneNumber: '+8888888888', userPhoneTypeId: 'personal' }] }
+    phones: { create: [{ phone: '+9999999999', userPhoneTypeId: 'personal' }, { phone: '+8888888888', userPhoneTypeId: 'personal' }] }
   },
   {
     name: 'Suporte 03',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'others' }] },
-    phones: { create: [{ phoneNumber: '+1111111111', userPhoneTypeId: 'personal' }] }
+    phones: { create: [{ phone: '+1111111111', userPhoneTypeId: 'personal' }] }
   },
 ];
 
@@ -34,17 +34,17 @@ const usersData_owner = [
   {
     name: 'Proprietário 01',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'work' }] },
-    phones: { create: [{ phoneNumber: '+5555555555', userPhoneTypeId: 'personal' }] }
+    phones: { create: [{ phone: '+5555555555', userPhoneTypeId: 'personal' }] }
   },
   {
     name: 'Proprietário 02',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'personal' }] },
-    phones: { create: [{ phoneNumber: '+9999999999', userPhoneTypeId: 'personal' }, { phoneNumber: '+8888888888', userPhoneTypeId: 'personal' }] }
+    phones: { create: [{ phone: '+9999999999', userPhoneTypeId: 'personal' }, { phone: '+8888888888', userPhoneTypeId: 'personal' }] }
   },
   {
     name: 'Proprietário 03',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'others' }] },
-    phones: { create: [{ phoneNumber: '+1111111111', userPhoneTypeId: 'personal' }] }
+    phones: { create: [{ phone: '+1111111111', userPhoneTypeId: 'personal' }] }
   },
 ];
 
@@ -52,17 +52,17 @@ const usersData_manager = [
   {
     name: 'Gerente 01',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'work' }] },
-    phones: { create: [{ phoneNumber: '+5555555555', userPhoneTypeId: 'personal' }] }
+    phones: { create: [{ phone: '+5555555555', userPhoneTypeId: 'personal' }] }
   },
   {
     name: 'Gerente 02',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'personal' }] },
-    phones: { create: [{ phoneNumber: '+9999999999', userPhoneTypeId: 'personal' }, { phoneNumber: '+8888888888', userPhoneTypeId: 'personal' }] }
+    phones: { create: [{ phone: '+9999999999', userPhoneTypeId: 'personal' }, { phone: '+8888888888', userPhoneTypeId: 'personal' }] }
   },
   {
     name: 'Gerente 03',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'others' }] },
-    phones: { create: [{ phoneNumber: '+1111111111', userPhoneTypeId: 'personal' }] }
+    phones: { create: [{ phone: '+1111111111', userPhoneTypeId: 'personal' }] }
   },
 ];
 

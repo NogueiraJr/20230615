@@ -34,7 +34,7 @@ model UserEmails {
 
 model UserPhones {
   id              String         @id @default(cuid())
-  phoneNumber     String
+  phone           String
   userId          String
   userPhoneTypeId String 
   createAt        DateTime       @default(now())

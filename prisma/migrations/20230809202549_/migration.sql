@@ -22,7 +22,7 @@ CREATE TABLE "UserEmails" (
 -- CreateTable
 CREATE TABLE "UserPhones" (
     "id" TEXT NOT NULL,
-    "phoneNumber" TEXT NOT NULL,
+    "phone" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "userPhoneTypeId" TEXT NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
