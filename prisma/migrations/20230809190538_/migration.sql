@@ -24,6 +24,7 @@ CREATE TABLE "UserPhones" (
     "id" TEXT NOT NULL,
     "phoneNumber" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
+    "userPhoneTypeId" TEXT NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "UserPhones_pkey" PRIMARY KEY ("id")
@@ -49,11 +50,24 @@ CREATE TABLE "UserEmailTypes" (
     CONSTRAINT "UserEmailTypes_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "UserPhoneTypes" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "UserPhoneTypes_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "UserTypes_id_key" ON "UserTypes"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "UserEmailTypes_id_key" ON "UserEmailTypes"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserPhoneTypes_id_key" ON "UserPhoneTypes"("id");
 
 -- AddForeignKey
 ALTER TABLE "Users" ADD CONSTRAINT "Users_userTypeId_fkey" FOREIGN KEY ("userTypeId") REFERENCES "UserTypes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -66,3 +80,6 @@ ALTER TABLE "UserEmails" ADD CONSTRAINT "UserEmails_userEmailTypeId_fkey" FOREIG
 
 -- AddForeignKey
 ALTER TABLE "UserPhones" ADD CONSTRAINT "UserPhones_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserPhones" ADD CONSTRAINT "UserPhones_userPhoneTypeId_fkey" FOREIGN KEY ("userPhoneTypeId") REFERENCES "UserPhoneTypes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

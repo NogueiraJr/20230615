@@ -33,11 +33,14 @@ model UserEmails {
 }
 
 model UserPhones {
-  id          String      @id @default(cuid())
-  phoneNumber String
-  userId      String
-  createAt    DateTime    @default(now())
-  user        Users       @relation(fields: [userId], references: [id])
+  id              String         @id @default(cuid())
+  phoneNumber     String
+  userId          String
+  userPhoneTypeId String 
+  createAt        DateTime       @default(now())
+  
+  user            Users          @relation(fields: [userId], references: [id])
+  userPhoneType   UserPhoneTypes @relation(fields: [userPhoneTypeId], references: [id])
 }
 
 model UserTypes {
@@ -54,4 +57,12 @@ model UserEmailTypes {
   description String?
   createAt    DateTime     @default(now())
   userEmails  UserEmails[]
+}
+
+model UserPhoneTypes {
+  id          String       @id @unique
+  name        String
+  description String?
+  createAt    DateTime     @default(now())
+  phones      UserPhones[]
 }

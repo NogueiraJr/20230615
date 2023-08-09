@@ -10,14 +10,14 @@ const usersData_client = [
     emails: {
       create: [{ email: 'john.doe@example.com', userEmailTypeId: 'personal' }]
     },
-    phones: { create: [{ phoneNumber: '+1234567890' }, { phoneNumber: '+9876543210' }] }
+    phones: { create: [{ phoneNumber: '+1234567890', userPhoneTypeId: 'personal' }, { phoneNumber: '+9876543210', userPhoneTypeId: 'personal' }] }
   },
   {
     name: 'Jane Smith',
     emails: {
       create: [{ email: 'jane.smith@example.com', userEmailTypeId: 'others' }]
     },
-    phones: { create: [{ phoneNumber: '+1111111111' }] }
+    phones: { create: [{ phoneNumber: '+1111111111', userPhoneTypeId: 'personal' }] }
   },
 ];
 
@@ -27,14 +27,14 @@ const usersData_user = [
     emails: {
       create: [{ email: 'john.doe@example.com', userEmailTypeId: 'work' }]
     },
-    phones: { create: [{ phoneNumber: '+5555555555' }] }
+    phones: { create: [{ phoneNumber: '+5555555555', userPhoneTypeId: 'personal' }] }
   },
   {
     name: 'Jane Smith',
     emails: {
       create: [{ email: 'jane.smith@example.com', userEmailTypeId: 'personal' }]
     },
-    phones: { create: [{ phoneNumber: '+9999999999' }, { phoneNumber: '+8888888888' }] }
+    phones: { create: [{ phoneNumber: '+9999999999', userPhoneTypeId: 'personal' }, { phoneNumber: '+8888888888', userPhoneTypeId: 'personal' }] }
   },
 ];
 
