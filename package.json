@@ -8,7 +8,7 @@
     "build": "tsup src",
     "start": "node dist/server.js",
 
-    "prisma:seed": "ts-node prisma/seed/userTypesSeed.ts"
+    "prisma:seed": "npx ts-node prisma/seed/userEmailTypesSeed.ts && npx ts-node prisma/seed/userPhoneTypesSeed.ts && npx ts-node prisma/seed/userTypesSeed.ts && npx ts-node prisma/seed/usersSeed.ts"
     
   },
   "keywords": [],

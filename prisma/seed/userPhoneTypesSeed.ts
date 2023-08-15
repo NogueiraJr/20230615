@@ -15,7 +15,7 @@ async function seedPhoneTypes() {
       ],
     });
 
-    console.log('Seed de tipos de telefones concluído com sucesso.');
+    console.log('userPhoneTypesSeed - OK');
   } catch (error) {
     console.error('Erro ao executar o seed de tipos de telefones:', error);
   } finally {

@@ -15,7 +15,7 @@ async function seedEmailTypes() {
       ],
     });
 
-    console.log('Seed de tipos de e-mails concluído com sucesso.');
+    console.log('userEmailTypesSeed - OK');
   } catch (error) {
     console.error('Erro ao executar o seed de tipos de e-mails:', error);
   } finally {

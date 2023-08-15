@@ -30,6 +30,7 @@ async function main() {
       data: userTypeData,
     });
   }
+  console.log('userTypesSeed - OK');
 }
 
 main()

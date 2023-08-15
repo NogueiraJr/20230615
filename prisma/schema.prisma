@@ -19,6 +19,17 @@ model Users {
   createAt    DateTime    @default(now())
 
   userType    UserTypes   @relation(fields: [userTypeId], references: [id])
+  reference   Users?      @relation("reference", fields: [referenceId], references: [id])
+  referenceId String?
+  references  Users[]     @relation("reference")
+}
+
+model UserTypes {
+  id          String      @id @unique
+  name        String
+  description String?
+  createAt    DateTime    @default(now())
+  users       Users[]
 }
 
 model UserEmails {
@@ -32,6 +43,14 @@ model UserEmails {
   UserEmailType   UserEmailTypes @relation(fields: [userEmailTypeId], references: [id])
 }
 
+model UserEmailTypes {
+  id          String       @id @unique
+  name        String
+  description String?
+  createAt    DateTime     @default(now())
+  userEmails  UserEmails[]
+}
+
 model UserPhones {
   id              String         @id @default(cuid())
   phone           String
@@ -41,22 +60,6 @@ model UserPhones {
   
   user            Users          @relation(fields: [userId], references: [id])
   userPhoneType   UserPhoneTypes @relation(fields: [userPhoneTypeId], references: [id])
-}
-
-model UserTypes {
-  id          String      @id @unique
-  name        String
-  description String?
-  createAt    DateTime    @default(now())
-  users       Users[]
-}
-
-model UserEmailTypes {
-  id          String       @id @unique
-  name        String
-  description String?
-  createAt    DateTime     @default(now())
-  userEmails  UserEmails[]
 }
 
 model UserPhoneTypes {

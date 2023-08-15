@@ -4,8 +4,19 @@ CREATE TABLE "Users" (
     "userTypeId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "referenceId" TEXT,
 
     CONSTRAINT "Users_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UserTypes" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "UserTypes_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -20,6 +31,16 @@ CREATE TABLE "UserEmails" (
 );
 
 -- CreateTable
+CREATE TABLE "UserEmailTypes" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "UserEmailTypes_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "UserPhones" (
     "id" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
@@ -28,26 +49,6 @@ CREATE TABLE "UserPhones" (
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "UserPhones_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "UserTypes" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "description" TEXT,
-    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "UserTypes_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "UserEmailTypes" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "description" TEXT,
-    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "UserEmailTypes_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -71,6 +72,9 @@ CREATE UNIQUE INDEX "UserPhoneTypes_id_key" ON "UserPhoneTypes"("id");
 
 -- AddForeignKey
 ALTER TABLE "Users" ADD CONSTRAINT "Users_userTypeId_fkey" FOREIGN KEY ("userTypeId") REFERENCES "UserTypes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Users" ADD CONSTRAINT "Users_referenceId_fkey" FOREIGN KEY ("referenceId") REFERENCES "Users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "UserEmails" ADD CONSTRAINT "UserEmails_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
