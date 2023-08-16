@@ -10,62 +10,77 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
-  id          String      @id @default(cuid())
-  userTypeId  String
-  name        String
-  emails      UserEmails[]
-  phones      UserPhones[]
-  createAt    DateTime    @default(now())
+// M E N U S
+  model Menus {
+    id          String      @id @unique
+    seq         String
+    name        String
+    description String?
+    active      Boolean     @default(true)
+    createAt    DateTime    @default(now())
+  }
 
-  userType    UserTypes   @relation(fields: [userTypeId], references: [id])
-  reference   Users?      @relation("reference", fields: [referenceId], references: [id])
-  referenceId String?
-  references  Users[]     @relation("reference")
-}
+// U S E R S
 
-model UserTypes {
-  id          String      @id @unique
-  name        String
-  description String?
-  createAt    DateTime    @default(now())
-  users       Users[]
-}
+  model Users {
+    id          String      @id @default(cuid())
+    userTypeId  String
+    name        String
+    emails      UserEmails[]
+    phones      UserPhones[]
+    active      Boolean     @default(true)
+    createAt    DateTime    @default(now())
 
-model UserEmails {
-  id              String         @id @default(cuid())
-  email           String
-  userId          String
-  userEmailTypeId String
-  createAt        DateTime       @default(now())
-  
-  user            Users          @relation(fields: [userId], references: [id])
-  UserEmailType   UserEmailTypes @relation(fields: [userEmailTypeId], references: [id])
-}
+    userType    UserTypes   @relation(fields: [userTypeId], references: [id])
+    reference   Users?      @relation("reference", fields: [referenceId], references: [id])
+    referenceId String?
+    references  Users[]     @relation("reference")
+  }
 
-model UserEmailTypes {
-  id          String       @id @unique
-  name        String
-  description String?
-  createAt    DateTime     @default(now())
-  userEmails  UserEmails[]
-}
+  model UserTypes {
+    id          String      @id @unique
+    name        String
+    description String?
+    createAt    DateTime    @default(now())
+    users       Users[]
+  }
 
-model UserPhones {
-  id              String         @id @default(cuid())
-  phone           String
-  userId          String
-  userPhoneTypeId String 
-  createAt        DateTime       @default(now())
-  
-  user            Users          @relation(fields: [userId], references: [id])
-  userPhoneType   UserPhoneTypes @relation(fields: [userPhoneTypeId], references: [id])
-}
+  model UserEmails {
+    id              String         @id @default(cuid())
+    email           String
+    userId          String
+    userEmailTypeId String
+    active          Boolean        @default(true)
+    createAt        DateTime       @default(now())
+    
+    user            Users          @relation(fields: [userId], references: [id])
+    UserEmailType   UserEmailTypes @relation(fields: [userEmailTypeId], references: [id])
+  }
 
-model UserPhoneTypes {
-  id          String       @id @unique
-  name        String
-  description String?
-  createAt    DateTime     @default(now())
-  phones      UserPhones[]
-}
+  model UserEmailTypes {
+    id          String       @id @unique
+    name        String
+    description String?
+    createAt    DateTime     @default(now())
+    userEmails  UserEmails[]
+  }
+
+  model UserPhones {
+    id              String         @id @default(cuid())
+    phone           String
+    userId          String
+    userPhoneTypeId String 
+    active          Boolean        @default(true)
+    createAt        DateTime       @default(now())
+    
+    user            Users          @relation(fields: [userId], references: [id])
+    userPhoneType   UserPhoneTypes @relation(fields: [userPhoneTypeId], references: [id])
+  }
+
+  model UserPhoneTypes {
+    id          String       @id @unique
+    name        String
+    description String?
+    createAt    DateTime     @default(now())
+    phones      UserPhones[]
+  }

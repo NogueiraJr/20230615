@@ -1,8 +1,21 @@
 -- CreateTable
+CREATE TABLE "Menus" (
+    "id" TEXT NOT NULL,
+    "seq" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Menus_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Users" (
     "id" TEXT NOT NULL,
     "userTypeId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "referenceId" TEXT,
 
@@ -25,6 +38,7 @@ CREATE TABLE "UserEmails" (
     "email" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "userEmailTypeId" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "UserEmails_pkey" PRIMARY KEY ("id")
@@ -46,6 +60,7 @@ CREATE TABLE "UserPhones" (
     "phone" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "userPhoneTypeId" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "UserPhones_pkey" PRIMARY KEY ("id")
@@ -60,6 +75,9 @@ CREATE TABLE "UserPhoneTypes" (
 
     CONSTRAINT "UserPhoneTypes_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Menus_id_key" ON "Menus"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "UserTypes_id_key" ON "UserTypes"("id");
