@@ -18,7 +18,45 @@ datasource db {
     description String?
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
+    sysModMen   ModuleSystemMenu[]
   }
+
+// S I S T E M A S
+  model Systems {
+    id          String      @id @unique
+    seq         String
+    name        String
+    description String?
+    active      Boolean     @default(true)
+    createAt    DateTime    @default(now())
+    sysModMen   ModuleSystemMenu[]
+  }
+
+// M Ó D U L O S
+  model Modules {
+    id          String      @id @unique
+    seq         String
+    name        String
+    description String?
+    active      Boolean     @default(true)
+    createAt    DateTime    @default(now())
+    sysModMen   ModuleSystemMenu[]
+} 
+
+// S I S T E M A   X   M E N U   X   M Ó D U L O
+  model ModuleSystemMenu {
+    id          String      @id @unique
+    active      Boolean     @default(true)
+
+    system_id   String?
+    system      Systems?    @relation(fields: [system_id], references: [id])
+
+    menu_id     String?
+    menu        Menus?      @relation(fields: [menu_id], references: [id])
+
+    module_id   String?
+    module      Modules?    @relation(fields: [module_id], references: [id])
+} 
 
 // U S E R S
 
