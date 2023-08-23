@@ -56,7 +56,20 @@ datasource db {
 
     module_id   String?
     module      Modules?    @relation(fields: [module_id], references: [id])
+
+    userModuleSystemMenu  UserModuleSystemMenu[]
 } 
+
+model UserModuleSystemMenu {
+    id          String      @id @default(cuid())
+    active      Boolean     @default(true)
+
+    user_id             String
+    user                Users @relation(fields: [user_id], references: [id])
+
+    moduleSystemMenu_id String
+    moduleSystemMenu    ModuleSystemMenu @relation(fields: [moduleSystemMenu_id], references: [id])
+}
 
 // U S E R S
 
@@ -73,6 +86,8 @@ datasource db {
     reference   Users?      @relation("reference", fields: [referenceId], references: [id])
     referenceId String?
     references  Users[]     @relation("reference")
+
+    userModuleSystemMenu UserModuleSystemMenu[]
   }
 
   model UserTypes {

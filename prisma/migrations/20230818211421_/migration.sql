@@ -46,6 +46,16 @@ CREATE TABLE "ModuleSystemMenu" (
 );
 
 -- CreateTable
+CREATE TABLE "UserModuleSystemMenu" (
+    "id" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "user_id" TEXT NOT NULL,
+    "moduleSystemMenu_id" TEXT NOT NULL,
+
+    CONSTRAINT "UserModuleSystemMenu_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Users" (
     "id" TEXT NOT NULL,
     "userTypeId" TEXT NOT NULL,
@@ -140,6 +150,12 @@ ALTER TABLE "ModuleSystemMenu" ADD CONSTRAINT "ModuleSystemMenu_menu_id_fkey" FO
 
 -- AddForeignKey
 ALTER TABLE "ModuleSystemMenu" ADD CONSTRAINT "ModuleSystemMenu_module_id_fkey" FOREIGN KEY ("module_id") REFERENCES "Modules"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserModuleSystemMenu" ADD CONSTRAINT "UserModuleSystemMenu_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserModuleSystemMenu" ADD CONSTRAINT "UserModuleSystemMenu_moduleSystemMenu_id_fkey" FOREIGN KEY ("moduleSystemMenu_id") REFERENCES "ModuleSystemMenu"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Users" ADD CONSTRAINT "Users_userTypeId_fkey" FOREIGN KEY ("userTypeId") REFERENCES "UserTypes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
