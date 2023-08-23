@@ -30,16 +30,16 @@ const sysOficinaCarrosData = [
 
 async function main() {
   for (const item of sysLocacaoRoupasData) {
-    await prisma.moduleSystemMenu.create({
+    await prisma.systemMenuModule.create({
       data: item,
     });
   }
   for (const item of sysOficinaCarrosData) {
-    await prisma.moduleSystemMenu.create({
+    await prisma.systemMenuModule.create({
       data: item,
     });
   }
-  console.log('modulesSystemsMenusSeed - OK');
+  console.log('systemsMenusModulesSeed - OK');
 }
 
 main()

@@ -2,12 +2,12 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-interface UserModuleSystemMenuMapping {
+interface UserSystemMenuModuleMapping {
   user_id: string;
-  moduleSystemMenu_id: string;
+  SystemMenuModule_id: string;
 }
 
-const userAdminMappings: UserModuleSystemMenuMapping[] = [
+const userAdminMappings: UserSystemMenuModuleMapping[] = [
   // ... your existing mappings here
 ];
 
@@ -16,10 +16,10 @@ async function main() {
 
   for (const user of users) {
     for (const mapping of userAdminMappings) {
-      await prisma.userModuleSystemMenu.create({
+      await prisma.userSystemMenuModule.create({
         data: {
           user: { connect: { id: user.id } },
-          moduleSystemMenu: { connect: { id: mapping.moduleSystemMenu_id } }
+          SystemMenuModule: { connect: { id: mapping.SystemMenuModule_id } }
         }
       });
     }

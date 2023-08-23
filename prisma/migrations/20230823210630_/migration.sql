@@ -35,24 +35,24 @@ CREATE TABLE "Modules" (
 );
 
 -- CreateTable
-CREATE TABLE "ModuleSystemMenu" (
+CREATE TABLE "SystemMenuModule" (
     "id" TEXT NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "system_id" TEXT,
     "menu_id" TEXT,
     "module_id" TEXT,
 
-    CONSTRAINT "ModuleSystemMenu_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "SystemMenuModule_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "UserModuleSystemMenu" (
+CREATE TABLE "UserSystemMenuModule" (
     "id" TEXT NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "user_id" TEXT NOT NULL,
-    "moduleSystemMenu_id" TEXT NOT NULL,
+    "SystemMenuModule_id" TEXT NOT NULL,
 
-    CONSTRAINT "UserModuleSystemMenu_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "UserSystemMenuModule_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -131,7 +131,7 @@ CREATE UNIQUE INDEX "Systems_id_key" ON "Systems"("id");
 CREATE UNIQUE INDEX "Modules_id_key" ON "Modules"("id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ModuleSystemMenu_id_key" ON "ModuleSystemMenu"("id");
+CREATE UNIQUE INDEX "SystemMenuModule_id_key" ON "SystemMenuModule"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "UserTypes_id_key" ON "UserTypes"("id");
@@ -143,19 +143,19 @@ CREATE UNIQUE INDEX "UserEmailTypes_id_key" ON "UserEmailTypes"("id");
 CREATE UNIQUE INDEX "UserPhoneTypes_id_key" ON "UserPhoneTypes"("id");
 
 -- AddForeignKey
-ALTER TABLE "ModuleSystemMenu" ADD CONSTRAINT "ModuleSystemMenu_system_id_fkey" FOREIGN KEY ("system_id") REFERENCES "Systems"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "SystemMenuModule" ADD CONSTRAINT "SystemMenuModule_system_id_fkey" FOREIGN KEY ("system_id") REFERENCES "Systems"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ModuleSystemMenu" ADD CONSTRAINT "ModuleSystemMenu_menu_id_fkey" FOREIGN KEY ("menu_id") REFERENCES "Menus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "SystemMenuModule" ADD CONSTRAINT "SystemMenuModule_menu_id_fkey" FOREIGN KEY ("menu_id") REFERENCES "Menus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ModuleSystemMenu" ADD CONSTRAINT "ModuleSystemMenu_module_id_fkey" FOREIGN KEY ("module_id") REFERENCES "Modules"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "SystemMenuModule" ADD CONSTRAINT "SystemMenuModule_module_id_fkey" FOREIGN KEY ("module_id") REFERENCES "Modules"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserModuleSystemMenu" ADD CONSTRAINT "UserModuleSystemMenu_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserSystemMenuModule" ADD CONSTRAINT "UserSystemMenuModule_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserModuleSystemMenu" ADD CONSTRAINT "UserModuleSystemMenu_moduleSystemMenu_id_fkey" FOREIGN KEY ("moduleSystemMenu_id") REFERENCES "ModuleSystemMenu"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserSystemMenuModule" ADD CONSTRAINT "UserSystemMenuModule_SystemMenuModule_id_fkey" FOREIGN KEY ("SystemMenuModule_id") REFERENCES "SystemMenuModule"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Users" ADD CONSTRAINT "Users_userTypeId_fkey" FOREIGN KEY ("userTypeId") REFERENCES "UserTypes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

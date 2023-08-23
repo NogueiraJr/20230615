@@ -18,7 +18,7 @@ datasource db {
     description String?
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
-    sysModMen   ModuleSystemMenu[]
+    sysModMen   SystemMenuModule[]
   }
 
 // S I S T E M A S
@@ -29,7 +29,7 @@ datasource db {
     description String?
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
-    sysModMen   ModuleSystemMenu[]
+    sysModMen   SystemMenuModule[]
   }
 
 // M Ó D U L O S
@@ -40,11 +40,11 @@ datasource db {
     description String?
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
-    sysModMen   ModuleSystemMenu[]
+    sysModMen   SystemMenuModule[]
 } 
 
 // S I S T E M A   X   M E N U   X   M Ó D U L O
-  model ModuleSystemMenu {
+  model SystemMenuModule {
     id          String      @id @unique
     active      Boolean     @default(true)
 
@@ -57,18 +57,18 @@ datasource db {
     module_id   String?
     module      Modules?    @relation(fields: [module_id], references: [id])
 
-    userModuleSystemMenu  UserModuleSystemMenu[]
+    userSystemMenuModule  UserSystemMenuModule[]
 } 
 
-model UserModuleSystemMenu {
+model UserSystemMenuModule {
     id          String      @id @default(cuid())
     active      Boolean     @default(true)
 
     user_id             String
     user                Users @relation(fields: [user_id], references: [id])
 
-    moduleSystemMenu_id String
-    moduleSystemMenu    ModuleSystemMenu @relation(fields: [moduleSystemMenu_id], references: [id])
+    SystemMenuModule_id String
+    SystemMenuModule    SystemMenuModule @relation(fields: [SystemMenuModule_id], references: [id])
 }
 
 // U S E R S
@@ -87,7 +87,7 @@ model UserModuleSystemMenu {
     referenceId String?
     references  Users[]     @relation("reference")
 
-    userModuleSystemMenu UserModuleSystemMenu[]
+    userSystemMenuModule UserSystemMenuModule[]
   }
 
   model UserTypes {
