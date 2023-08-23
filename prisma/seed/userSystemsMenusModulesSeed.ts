@@ -22,7 +22,7 @@ async function main() {
       data: item,
     });
   }
-  console.log('userModulesSystemsMenusSeed - OK');
+  console.log('userSystemsMenusModulesSeed - OK');
 }
 
 main()
