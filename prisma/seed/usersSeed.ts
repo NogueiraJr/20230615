@@ -13,18 +13,21 @@ const usersData_admin = [
 
 const usersData_support = [
   {
+    id: "idSupport001",
     name: 'Suporte 01',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'work' }] },
     phones: { create: [{ phone: '+5555555555', userPhoneTypeId: 'personal' }] },
     reference: { connect: { id: usersData_admin[0].id } }
   },
   {
+    id: "idSupport002",
     name: 'Suporte 02',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'personal' }] },
     phones: { create: [{ phone: '+9999999999', userPhoneTypeId: 'personal' }, { phone: '+8888888888', userPhoneTypeId: 'personal' }] },
     reference: { connect: { id: usersData_admin[0].id } }
   },
   {
+    id: "idSupport003",
     name: 'Suporte 03',
     emails: { create: [{ email: 'endereco@email.com', userEmailTypeId: 'others' }] },
     phones: { create: [{ phone: '+1111111111', userPhoneTypeId: 'personal' }] },
