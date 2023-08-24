@@ -9,7 +9,8 @@ const seedCommands = [
   'systemsSeed.ts',
   'modulesSeed.ts',
   'systemsMenusModulesSeed.ts',
-  'userSystemsMenusModulesSeed-auto.ts'
+  'userSystemsMenusModulesSeed-auto.ts',
+  'userSystemsMenusModulesSeed-specific.ts'
 ];
 
 const runSeeds = async () => {
