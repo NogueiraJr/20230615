@@ -1,13 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-const userIdToInclude = ['idAdmin000', 'idSupport001', 'idSupport002', 'idSupport003'];
+const userTypeIdToInclude = ['admin', 'support'];
 
 async function main() {
   const users = await prisma.users.findMany({
     where: {
-      id: {
-        in: userIdToInclude,
+      userTypeId: {
+        in: userTypeIdToInclude,
       },
     },
   });
