@@ -18,6 +18,7 @@ const sysLocacaoRoupasData = [
 const sysOficinaCarrosData = [
   // O P E R A C I O N A L
   { systemId: 'sysOficinaCarros', menuId: "opr", moduleId: 'agendamentoRevisao', id: "sysOficinaCarros-opr-agendamentoRevisao", },
+  { systemId: 'sysOficinaCarros', menuId: "opr", moduleId: 'atendimentoCarro',   id: "sysOficinaCarros-opr-atendimentoCarro", },
 
   // D A D O S
   { systemId: 'sysOficinaCarros', menuId: "dds", moduleId: 'cadastroCliente',    id: "sysOficinaCarros-dds-cadastroCliente", },
