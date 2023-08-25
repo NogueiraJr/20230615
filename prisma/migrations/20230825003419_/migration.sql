@@ -2,6 +2,7 @@
 CREATE TABLE "Menus" (
     "id" TEXT NOT NULL,
     "seq" TEXT NOT NULL,
+    "ref" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
@@ -26,6 +27,7 @@ CREATE TABLE "Systems" (
 CREATE TABLE "Modules" (
     "id" TEXT NOT NULL,
     "seq" TEXT NOT NULL,
+    "ref" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
