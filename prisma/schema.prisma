@@ -12,35 +12,35 @@ datasource db {
 
 // M E N U S
   model Menus {
-    id          String      @id @unique
-    seq         String
-    name        String
-    description String?
-    active      Boolean     @default(true)
-    createAt    DateTime    @default(now())
-    sysModMen   SystemMenuModule[]
+    id                 String      @id @unique
+    seq                String
+    name               String
+    description        String?
+    active             Boolean     @default(true)
+    createAt           DateTime    @default(now())
+    systemMenuModule   SystemMenuModule[]
   }
 
 // S I S T E M A S
   model Systems {
-    id          String      @id @unique
-    seq         String
-    name        String
-    description String?
-    active      Boolean     @default(true)
-    createAt    DateTime    @default(now())
-    sysModMen   SystemMenuModule[]
+    id                 String      @id @unique
+    seq                String
+    name               String
+    description        String?
+    active             Boolean     @default(true)
+    createAt           DateTime    @default(now())
+    systemMenuModule   SystemMenuModule[]
   }
 
 // M Ó D U L O S
   model Modules {
-    id          String      @id @unique
-    seq         String
-    name        String
-    description String?
-    active      Boolean     @default(true)
-    createAt    DateTime    @default(now())
-    sysModMen   SystemMenuModule[]
+    id                 String      @id @unique
+    seq                String
+    name               String
+    description        String?
+    active             Boolean     @default(true)
+    createAt           DateTime    @default(now())
+    systemMenuModule   SystemMenuModule[]
 } 
 
 // S I S T E M A   X   M E N U   X   M Ó D U L O
@@ -48,14 +48,14 @@ datasource db {
     id          String      @id @unique
     active      Boolean     @default(true)
 
-    system_id   String?
-    system      Systems?    @relation(fields: [system_id], references: [id])
+    systemId   String? 
+    system      Systems?    @relation(fields: [systemId], references: [id])
 
-    menu_id     String?
-    menu        Menus?      @relation(fields: [menu_id], references: [id])
+    menuId     String? 
+    menu        Menus?      @relation(fields: [menuId], references: [id])
 
-    module_id   String?
-    module      Modules?    @relation(fields: [module_id], references: [id])
+    moduleId   String? 
+    module      Modules?    @relation(fields: [moduleId], references: [id])
 
     userSystemMenuModule  UserSystemMenuModule[]
 } 
@@ -64,11 +64,11 @@ model UserSystemMenuModule {
     id          String      @id @default(cuid())
     active      Boolean     @default(true)
 
-    user_id             String
-    user                Users @relation(fields: [user_id], references: [id])
+    userId             String 
+    user                Users @relation(fields: [userId], references: [id])
 
-    SystemMenuModule_id String
-    SystemMenuModule    SystemMenuModule @relation(fields: [SystemMenuModule_id], references: [id])
+    systemMenuModuleId String 
+    systemMenuModule    SystemMenuModule @relation(fields: [systemMenuModuleId], references: [id])
 }
 
 // U S E R S

@@ -18,8 +18,8 @@ async function main() {
   for (const user of users) {
     for (const module of systemMenuModules) {
       userSystemsMenusModules.push({
-        user_id: user.id,
-        SystemMenuModule_id: module.id,
+        userId: user.id,
+        systemMenuModuleId: module.id,
       });
     }
   }

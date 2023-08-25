@@ -3,20 +3,20 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const userProprietarioSysLocacaoRoupa = [
-  { user_id: 'idProprietario01', SystemMenuModule_id: "sysLocacaoRoupa-opr-reservaRoupa", },
-  { user_id: 'idProprietario01', SystemMenuModule_id: "sysLocacaoRoupa-opr-retiradaRoupa", },
-  { user_id: 'idProprietario01', SystemMenuModule_id: "sysLocacaoRoupa-opr-devolucaoRoupa", },
-  { user_id: 'idProprietario01', SystemMenuModule_id: "sysLocacaoRoupa-dds-cadastroCliente", },
-  { user_id: 'idProprietario01', SystemMenuModule_id: "sysLocacaoRoupa-dds-cadastroProduto", },
-  { user_id: 'idProprietario01', SystemMenuModule_id: "sysLocacaoRoupa-dds-cadastroFornecedor", },
+  { userId: 'idProprietario01', systemMenuModuleId: "sysLocacaoRoupa-opr-reservaRoupa", },
+  { userId: 'idProprietario01', systemMenuModuleId: "sysLocacaoRoupa-opr-retiradaRoupa", },
+  { userId: 'idProprietario01', systemMenuModuleId: "sysLocacaoRoupa-opr-devolucaoRoupa", },
+  { userId: 'idProprietario01', systemMenuModuleId: "sysLocacaoRoupa-dds-cadastroCliente", },
+  { userId: 'idProprietario01', systemMenuModuleId: "sysLocacaoRoupa-dds-cadastroProduto", },
+  { userId: 'idProprietario01', systemMenuModuleId: "sysLocacaoRoupa-dds-cadastroFornecedor", },
 
 ];
 
 const userProprietarioSysOficinaCarros = [
-  { user_id: 'idProprietario02', SystemMenuModule_id: "sysOficinaCarros-opr-agendamentoRevisao", },
-  { user_id: 'idProprietario02', SystemMenuModule_id: "sysOficinaCarros-dds-cadastroCliente", },
-  { user_id: 'idProprietario02', SystemMenuModule_id: "sysOficinaCarros-dds-cadastroProduto", },
-  { user_id: 'idProprietario02', SystemMenuModule_id: "sysOficinaCarros-dds-cadastroFornecedor", },
+  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarros-opr-agendamentoRevisao", },
+  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarros-dds-cadastroCliente", },
+  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarros-dds-cadastroProduto", },
+  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarros-dds-cadastroFornecedor", },
 
 ];
 
