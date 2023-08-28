@@ -85,9 +85,9 @@ model UserSystemMenuModule {
     createAt    DateTime    @default(now())
 
     userType    UserTypes   @relation(fields: [userTypeId], references: [id])
-    reference   Users?      @relation("reference", fields: [referenceId], references: [id])
-    referenceId String?
-    references  Users[]     @relation("reference")
+    user        Users?      @relation("user", fields: [userId], references: [id])
+    userId      String?
+    users       Users[]     @relation("user")
 
     userSystemMenuModule UserSystemMenuModule[]
   }
