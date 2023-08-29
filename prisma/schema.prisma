@@ -10,11 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// M E N U S
-  model Menus {
+// S I S T E M A S
+  model Systems {
     id                 String      @id @unique
     seq                String
-    ref                String
     name               String
     description        String?
     active             Boolean     @default(true)
@@ -22,10 +21,11 @@ datasource db {
     systemMenuModule   SystemMenuModule[]
   }
 
-// S I S T E M A S
-  model Systems {
+// M E N U S
+  model Menus {
     id                 String      @id @unique
     seq                String
+    ref                String
     name               String
     description        String?
     active             Boolean     @default(true)
@@ -43,7 +43,7 @@ datasource db {
     active             Boolean     @default(true)
     createAt           DateTime    @default(now())
     systemMenuModule   SystemMenuModule[]
-} 
+  } 
 
 // S I S T E M A   X   M E N U   X   M Ó D U L O
   model SystemMenuModule {
@@ -60,18 +60,18 @@ datasource db {
     module      Modules?    @relation(fields: [moduleId], references: [id])
 
     userSystemMenuModule  UserSystemMenuModule[]
-} 
+  } 
 
-model UserSystemMenuModule {
-    id          String      @id @default(cuid())
-    active      Boolean     @default(true)
+  model UserSystemMenuModule {
+      id          String      @id @default(cuid())
+      active      Boolean     @default(true)
 
-    userId             String 
-    user                Users @relation(fields: [userId], references: [id])
+      userId             String 
+      user                Users @relation(fields: [userId], references: [id])
 
-    systemMenuModuleId String 
-    systemMenuModule    SystemMenuModule @relation(fields: [systemMenuModuleId], references: [id])
-}
+      systemMenuModuleId String 
+      systemMenuModule    SystemMenuModule @relation(fields: [systemMenuModuleId], references: [id])
+  }
 
 // U S E R S
 
