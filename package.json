@@ -2,14 +2,14 @@
   "name": "20230615",
   "version": "1.0.0",
   "main": "index.js",
-  "engines": {"node": "18"},
+  "engines": {
+    "node": "18"
+  },
   "scripts": {
     "dev": "tsx src/server.ts",
     "build": "tsup src",
     "start": "node dist/server.js",
-
     "prisma:seed": "npx ts-node prisma/seed/run-seeds.ts"
-    
   },
   "keywords": [],
   "author": "",
@@ -106,6 +106,7 @@
     "tr46": "^1.0.1",
     "tree-kill": "^1.2.2",
     "ts-interface-checker": "^0.1.13",
+    "uuid": "^9.0.0",
     "webidl-conversions": "^4.0.2",
     "whatwg-url": "^7.1.0",
     "which": "^2.0.2",
