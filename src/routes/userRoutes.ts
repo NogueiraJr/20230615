@@ -1,5 +1,5 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
-import { createUserHandler, getUsersHandler, updateUserHandler, deleteUserHandler } from '../controllers/userController';
+import { getUsersHandler, createUserHandler, updateUserHandler, deleteUserHandler } from '../controllers/userController';
 
 const userRoutes = (router: FastifyInstance) => {
   router.get('/users', getUsersHandler);

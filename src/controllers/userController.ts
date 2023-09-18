@@ -1,109 +1,117 @@
-import { PrismaClient } from '@prisma/client';
-import { createUserSchema, updateUserSchema } from '../schemas/userSchema';
-import { UserNotFoundError } from '../errors/userErrors';
+// userController.ts
 import { FastifyRequest, FastifyReply } from 'fastify';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-interface Params {
-    id: string;
+interface UserPayload {
+  userTypeId: string;
+  name: string;
 }
 
-export const getUsersHandler = async () => {
-  const users = await prisma.users.findMany({
-    include: {
-      emails: true,
-      // Inclui o campo 'userType' e todas as suas informações associadas
-      userType: true,
-    },
-  });
-  return { users };
-};
-
-export const createUserHandler = async (req: FastifyRequest, res: FastifyReply) => {
+// Função para criar um usuário
+export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    const { name, emails, userTypeId } = createUserSchema.parse(req.body);
-
-    const newUser = await prisma.users.create({
+    const { userTypeId, name } = request.body as UserPayload; // Aqui, estamos usando a interface UserPayload
+    const user = await prisma.users.create({
       data: {
+        userTypeId,
         name,
-        emails: {
-          create: emails,
-        },
-        // Inclua o campo 'userType' referenciando o 'userTypeId' fornecido
-        userType: {
-          connect: { type: userTypeId },
-        },
       },
       include: {
         emails: true,
-        // Inclui o campo 'userType' e todas as suas informações associadas
+        phones: true,
+        userSystemMenuModule: true,
         userType: true,
       },
     });
-
-    return res.status(201).send({ users: newUser });
+    reply.send(user);
   } catch (error) {
-    return res.status(400).send({ error });
+    console.error(error);
+    reply.status(500).send({ error: 'Erro ao criar usuário.' });
   }
 };
 
-export const updateUserHandler = async (req: FastifyRequest<{ Params: Params }>, res: FastifyReply) => {
+// Função para listar todos os usuários
+export const getUsersHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    const { id } = req.params;
-    const { name, emails, userTypeId } = updateUserSchema.parse(req.body);
-
-    const existingUser = await prisma.users.findUnique({ where: { id } });
-
-    if (!existingUser) {
-      throw new UserNotFoundError('Usuário não encontrado.');
-    }
-
-    const updatedUser = await prisma.users.update({
-      where: {
-        id,
-      },
-      data: {
-        name,
-        emails: {
-          deleteMany: {}, // Deleta todos os e-mails associados ao usuário
-          create: emails, // Utiliza o array de e-mails diretamente para criar os novos e-mails associados ao usuário
-        },
-        // Atualiza o campo 'userType' para o tipo especificado pelo userTypeId
-        userType: {
-          connect: { type: userTypeId },
-        },
-      },
+    const users = await prisma.users.findMany({
       include: {
-        emails: true, // Inclui os e-mails associados ao usuário na resposta
-        userType: true, // Inclui o tipo de usuário associado ao usuário na resposta
+        emails: true,
+        phones: true,
+        userSystemMenuModule: true,
+        userType: true,
       },
     });
-
-    return res.status(200).send({ users: updatedUser });
+    reply.send(users);
   } catch (error) {
-    return res.status(400).send({ error });
+    console.error(error);
+    reply.status(500).send({ error: 'Erro ao listar usuários.'});
   }
 };
 
-export const deleteUserHandler = async (req: FastifyRequest<{ Params: Params }>, res: FastifyReply) => {
-  const { id } = req.params;
-
+// Função para obter um usuário por ID
+export const getUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+  const { id } = request.params;
   try {
-    const existingUser = await prisma.users.findUnique({ where: { id } });
-
-    if (!existingUser) {
-      throw new UserNotFoundError('Usuário não encontrado.');
+    const user = await prisma.users.findUnique({
+      where: { id },
+      include: {
+        emails: true,
+        phones: true,
+        userSystemMenuModule: true,
+        userType: true,
+      },
+    });
+    if (!user) {
+      reply.status(404).send({ error: 'Usuário não encontrado.' });
+      return;
     }
-
-    // Exclui todos os e-mails associados ao usuário antes de excluí-lo
-    await prisma.userEmails.deleteMany({ where: { userId: id } });
-
-    // Exclui o usuário após excluir os e-mails associados
-    await prisma.users.delete({ where: { id } });
-
-    return res.status(200).send({ message: 'Usuário excluído com sucesso.' });
+    reply.send(user);
   } catch (error) {
-    return res.status(400).send({ error });
+    console.error(error);
+    reply.status(500).send({ error: 'Erro ao buscar usuário.' });
+  }
+};
+
+// Função para atualizar um usuário por ID
+export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+  const { id } = request.params;
+  const { userTypeId, name } = request.body as UserPayload;
+  try {
+    const user = await prisma.users.update({
+      where: { id },
+      data: { userTypeId, name },
+      include: {
+        emails: true,
+        phones: true,
+        userSystemMenuModule: true,
+        userType: true,
+      },
+    });
+    reply.send(user);
+  } catch (error) {
+    console.error(error);
+    reply.status(500).send({ error: 'Erro ao atualizar usuário.' });
+  }
+};
+
+// Função para excluir um usuário por ID
+export const deleteUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+  const { id } = request.params;
+  try {
+    const user = await prisma.users.delete({
+      where: { id },
+      include: {
+        emails: true,
+        phones: true,
+        userSystemMenuModule: true,
+        userType: true,
+      },
+    });
+    reply.send(user);
+  } catch (error) {
+    console.error(error);
+    reply.status(500).send({ error: 'Erro ao excluir usuário.' });
   }
 };
