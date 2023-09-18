@@ -1,6 +1,6 @@
 // userController.ts
-import { FastifyRequest, FastifyReply } from 'fastify';
 import { PrismaClient } from '@prisma/client';
+import { FastifyRequest, FastifyReply } from 'fastify';
 
 const prisma = new PrismaClient();
 
@@ -8,6 +8,8 @@ interface UserPayload {
   userTypeId: string;
   name: string;
 }
+
+import { Users } from '@prisma/client';
 
 // Função para criar um usuário
 export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {
@@ -96,20 +98,48 @@ export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: 
   }
 };
 
-// Função para excluir um usuário por ID
-export const deleteUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+// Função para excluir um usuário e seus registros relacionados
+export const deleteUserHandler = async (
+  request: FastifyRequest<{ Params: { id: string } }>,
+  reply: FastifyReply
+) => {
   const { id } = request.params;
+  let user: Users | null = null;
+
   try {
-    const user = await prisma.users.delete({
-      where: { id },
-      include: {
-        emails: true,
-        phones: true,
-        userSystemMenuModule: true,
-        userType: true,
-      },
+    await prisma.$transaction(async (tx) => {
+      // Primeiro, obtenha o usuário a ser excluído e seus registros relacionados
+      user = await tx.users.findUnique({
+        where: { id },
+        include: {
+          emails: true,
+          phones: true,
+          userSystemMenuModule: true,
+          userType: true,
+        },
+      });
+
+      if (!user) {
+        reply.status(404).send({ error: 'Usuário não encontrado.' });
+        return;
+      }
+
+      // Em seguida, exclua os registros relacionados (emails, phones, etc.)
+      await tx.userEmails.deleteMany({
+        where: { userId: id },
+      });
+
+      await tx.userPhones.deleteMany({
+        where: { userId: id },
+      });
+
+      // Finalmente, exclua o próprio usuário
+      await tx.users.delete({
+        where: { id },
+      });
     });
-    reply.send(user);
+
+    reply.send(user); // Responde com os dados do usuário excluído
   } catch (error) {
     console.error(error);
     reply.status(500).send({ error: 'Erro ao excluir usuário.' });
