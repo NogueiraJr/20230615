@@ -124,6 +124,11 @@ export const deleteUserHandler = async (
         return;
       }
 
+      // Exclua os registros em UserSystemMenuModule que fazem referência ao usuário
+      await tx.userSystemMenuModule.deleteMany({
+        where: { userId: id },
+      });
+
       // Em seguida, exclua os registros relacionados (emails, phones, etc.)
       await tx.userEmails.deleteMany({
         where: { userId: id },
@@ -133,7 +138,7 @@ export const deleteUserHandler = async (
         where: { userId: id },
       });
 
-      // Finalmente, exclua o próprio usuário
+      // Agora, você pode excluir o próprio usuário
       await tx.users.delete({
         where: { id },
       });

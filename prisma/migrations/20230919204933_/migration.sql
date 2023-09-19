@@ -1,4 +1,16 @@
 -- CreateTable
+CREATE TABLE "Systems" (
+    "id" TEXT NOT NULL,
+    "seq" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Systems_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Menus" (
     "id" TEXT NOT NULL,
     "seq" TEXT NOT NULL,
@@ -9,18 +21,6 @@ CREATE TABLE "Menus" (
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Menus_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Systems" (
-    "id" TEXT NOT NULL,
-    "seq" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "description" TEXT,
-    "active" BOOLEAN NOT NULL DEFAULT true,
-    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "Systems_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -124,10 +124,10 @@ CREATE TABLE "UserPhoneTypes" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Menus_id_key" ON "Menus"("id");
+CREATE UNIQUE INDEX "Systems_id_key" ON "Systems"("id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Systems_id_key" ON "Systems"("id");
+CREATE UNIQUE INDEX "Menus_id_key" ON "Menus"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Modules_id_key" ON "Modules"("id");
