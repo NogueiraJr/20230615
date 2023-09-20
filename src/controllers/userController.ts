@@ -2,7 +2,7 @@
 import { PrismaClient } from '@prisma/client';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 interface UserPayload {
   userTypeId: string;
@@ -10,23 +10,17 @@ interface UserPayload {
 }
 
 import { Users } from '@prisma/client';
+import { getUsers } from '../services/user/getUsers';
+import { getUser } from '../services/user/getUser';
+import { createUser } from '../services/user/createUser';
+import { updateUser } from '../services/user/updateUser';
+import { deleteUser } from '../services/user/deleteUser';
 
 // Função para criar um usuário
 export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
     const { userTypeId, name } = request.body as UserPayload; // Aqui, estamos usando a interface UserPayload
-    const user = await prisma.users.create({
-      data: {
-        userTypeId,
-        name,
-      },
-      include: {
-        emails: true,
-        phones: true,
-        userSystemMenuModule: true,
-        userType: true,
-      },
-    });
+    const user = await createUser(userTypeId, name);
     reply.send(user);
   } catch (error) {
     console.error(error);
@@ -37,14 +31,7 @@ export const createUserHandler = async (request: FastifyRequest, reply: FastifyR
 // Função para listar todos os usuários
 export const getUsersHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    const users = await prisma.users.findMany({
-      include: {
-        emails: true,
-        phones: true,
-        userSystemMenuModule: true,
-        userType: true,
-      },
-    });
+    const users = await getUsers();
     reply.send(users);
   } catch (error) {
     console.error(error);
@@ -56,15 +43,7 @@ export const getUsersHandler = async (request: FastifyRequest, reply: FastifyRep
 export const getUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   const { id } = request.params;
   try {
-    const user = await prisma.users.findUnique({
-      where: { id },
-      include: {
-        emails: true,
-        phones: true,
-        userSystemMenuModule: true,
-        userType: true,
-      },
-    });
+    const user = await getUser(id);
     if (!user) {
       reply.status(404).send({ error: 'Usuário não encontrado.' });
       return;
@@ -81,16 +60,7 @@ export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: 
   const { id } = request.params;
   const { userTypeId, name } = request.body as UserPayload;
   try {
-    const user = await prisma.users.update({
-      where: { id },
-      data: { userTypeId, name },
-      include: {
-        emails: true,
-        phones: true,
-        userSystemMenuModule: true,
-        userType: true,
-      },
-    });
+    const user = await updateUser(id, userTypeId, name);
     reply.send(user);
   } catch (error) {
     console.error(error);
@@ -105,45 +75,8 @@ export const deleteUserHandler = async (
 ) => {
   const { id } = request.params;
   let user: Users | null = null;
-
   try {
-    await prisma.$transaction(async (tx) => {
-      // Primeiro, obtenha o usuário a ser excluído e seus registros relacionados
-      user = await tx.users.findUnique({
-        where: { id },
-        include: {
-          emails: true,
-          phones: true,
-          userSystemMenuModule: true,
-          userType: true,
-        },
-      });
-
-      if (!user) {
-        reply.status(404).send({ error: 'Usuário não encontrado.' });
-        return;
-      }
-
-      // Exclua os registros em UserSystemMenuModule que fazem referência ao usuário
-      await tx.userSystemMenuModule.deleteMany({
-        where: { userId: id },
-      });
-
-      // Em seguida, exclua os registros relacionados (emails, phones, etc.)
-      await tx.userEmails.deleteMany({
-        where: { userId: id },
-      });
-
-      await tx.userPhones.deleteMany({
-        where: { userId: id },
-      });
-
-      // Agora, você pode excluir o próprio usuário
-      await tx.users.delete({
-        where: { id },
-      });
-    });
-
+    user = await deleteUser(user, id, reply);
     reply.send(user); // Responde com os dados do usuário excluído
   } catch (error) {
     console.error(error);
