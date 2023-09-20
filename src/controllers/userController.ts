@@ -7,6 +7,8 @@ export const prisma = new PrismaClient();
 interface UserPayload {
   userTypeId: string;
   name: string;
+  emails: any[];
+  phones: any[];
 }
 
 import { Users } from '@prisma/client';
@@ -19,8 +21,8 @@ import { deleteUser } from '../services/user/deleteUser';
 // Função para criar um usuário
 export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    const { userTypeId, name } = request.body as UserPayload; // Aqui, estamos usando a interface UserPayload
-    const user = await createUser(userTypeId, name);
+    const { userTypeId, name, emails, phones } = request.body as UserPayload; // Aqui, estamos usando a interface UserPayload
+    const user = await createUser(userTypeId, name, emails, phones);
     reply.send(user);
   } catch (error) {
     console.error(error);
