@@ -1,4 +1,6 @@
 import { prisma } from '../../controllers/userController';
+import { createUserEmail } from './createUserEmail';
+import { createUserPhone } from './createUserPhone';
 
 export async function createUser(userTypeId: string, name: string, emailData: any[], phoneData: any[]) {
   let user;
@@ -12,27 +14,11 @@ export async function createUser(userTypeId: string, name: string, emailData: an
     });
 
     if (emailData != undefined) for (const email of emailData) {
-      await prisma.userEmails.create({
-        data: {
-          email: email.email,
-          userId: user.id,  
-          userEmailTypeId: email.userEmailTypeId,
-          active: email.active,
-          createAt: email.createAt,
-        },
-      });
+      await createUserEmail(email, user);
     }
 
     if (phoneData != undefined) for (const phone of phoneData) {
-      await prisma.userPhones.create({
-        data: {
-          phone: phone.phone,
-          userId: user.id,  
-          userPhoneTypeId: phone.userPhoneTypeId,
-          active: phone.active,
-          createAt: phone.createAt,
-        },
-      });
+      await createUserPhone(phone, user);
     }
 
   } catch (error) {
