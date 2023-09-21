@@ -1,7 +1,7 @@
 import { prisma } from '../../controllers/userController';
 
 export async function createUserPhone(phone: any, user: any) {
-  await prisma.userPhones.create({
+  return await prisma.userPhones.create({
     data: {
       phone: phone.phone,
       userId: user.id,
