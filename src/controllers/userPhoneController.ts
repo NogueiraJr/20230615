@@ -1,4 +1,3 @@
-// userEmailController.ts
 import { PrismaClient } from '@prisma/client';
 import { FastifyRequest, FastifyReply } from 'fastify';
 

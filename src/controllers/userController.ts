@@ -1,4 +1,3 @@
-// userController.ts
 import { PrismaClient } from '@prisma/client';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
@@ -18,10 +17,9 @@ import { createUser } from '../services/user/createUser';
 import { updateUser } from '../services/user/updateUser';
 import { deleteUser } from '../services/user/deleteUser';
 
-// Função para criar um usuário
 export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    const { userTypeId, name, emails, phones } = request.body as UserPayload; // Aqui, estamos usando a interface UserPayload
+    const { userTypeId, name, emails, phones } = request.body as UserPayload; 
     const user = await createUser(userTypeId, name, emails, phones);
     reply.send(user);
   } catch (error) {
@@ -30,7 +28,6 @@ export const createUserHandler = async (request: FastifyRequest, reply: FastifyR
   }
 };
 
-// Função para listar todos os usuários
 export const getUsersHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
     const users = await getUsers();
@@ -41,7 +38,6 @@ export const getUsersHandler = async (request: FastifyRequest, reply: FastifyRep
   }
 };
 
-// Função para obter um usuário por ID
 export const getUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   const { id } = request.params;
   try {
@@ -57,7 +53,6 @@ export const getUserHandler = async (request: FastifyRequest<{ Params: { id: str
   }
 };
 
-// Função para atualizar um usuário por ID
 export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   const { id } = request.params;
   const { userTypeId, name } = request.body as UserPayload;
@@ -70,7 +65,6 @@ export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: 
   }
 };
 
-// Função para excluir um usuário e seus registros relacionados
 export const deleteUserHandler = async (
   request: FastifyRequest<{ Params: { id: string } }>,
   reply: FastifyReply
@@ -79,7 +73,7 @@ export const deleteUserHandler = async (
   let user: Users | null = null;
   try {
     user = await deleteUser(user, id, reply);
-    reply.send(user); // Responde com os dados do usuário excluído
+    reply.send(user); 
   } catch (error) {
     console.error(error);
     reply.status(500).send({ error: 'Erro ao excluir usuário.' });
