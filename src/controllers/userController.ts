@@ -25,7 +25,7 @@ export const createUserHandler = async (request: FastifyRequest, reply: FastifyR
     const user = await createUser(userTypeId, name, emails, phones);
     reply.status(201).send(user);
   } catch (error) {
-    errorHandler(error, reply);
+    errorHandler(error as Error, reply);
   }
 };
 
@@ -34,7 +34,7 @@ export const getUsersHandler = async (request: FastifyRequest, reply: FastifyRep
     const users = await getUsers();
     reply.send(users);
   } catch (error) {
-    errorHandler(error, reply);
+    errorHandler(error as Error, reply);
   }
 };
 
@@ -43,12 +43,12 @@ export const getUserHandler = async (request: FastifyRequest<{ Params: { id: str
   try {
     const user = await getUser(id);
     if (!user) {
-      reply.status(404).send({ error: 'Usuário não encontrado.' });
+      errorHandler('Usuário não encontrado.', reply, 404);
       return;
     }
     reply.send(user);
   } catch (error) {
-    errorHandler(error, reply);
+    errorHandler(error as Error, reply);
   }
 };
 
@@ -59,7 +59,7 @@ export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: 
     const user = await updateUser(id, userTypeId, name);
     reply.send(user);
   } catch (error) {
-    errorHandler(error, reply);
+    errorHandler(error as Error, reply);
   }
 };
 
@@ -70,9 +70,9 @@ export const deleteUserHandler = async (
   const { id } = request.params;
   let user: Users | null = null;
   try {
-    user = await deleteUser(user, id, reply); // Forneça todos os três argumentos
+    user = await deleteUser(user, id, reply);
     reply.send(user);
   } catch (error) {
-    errorHandler(error, reply);
+    errorHandler(error as Error, reply);
   }
 };

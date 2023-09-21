@@ -18,6 +18,6 @@ export const createUserPhoneHandler = async (request: FastifyRequest, reply: Fas
     const ret = await createUserPhone(phone, user);
     reply.send(ret);
   } catch (error) {
-    errorHandler(error, reply);
+    errorHandler(error as Error, reply);
   }
 };
