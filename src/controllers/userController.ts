@@ -17,14 +17,15 @@ import { createUser } from '../services/user/createUser';
 import { updateUser } from '../services/user/updateUser';
 import { deleteUser } from '../services/user/deleteUser';
 
+import { errorHandler } from '../errors/errorHandler';
+
 export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
     const { userTypeId, name, emails, phones } = request.body as UserPayload; 
     const user = await createUser(userTypeId, name, emails, phones);
-    reply.send(user);
+    reply.status(201).send(user);
   } catch (error) {
-    console.error(error);
-    reply.status(500).send({ error: 'Erro ao criar usuário.' });
+    errorHandler(error, reply);
   }
 };
 
@@ -33,8 +34,7 @@ export const getUsersHandler = async (request: FastifyRequest, reply: FastifyRep
     const users = await getUsers();
     reply.send(users);
   } catch (error) {
-    console.error(error);
-    reply.status(500).send({ error: 'Erro ao listar usuários.'});
+    errorHandler(error, reply);
   }
 };
 
@@ -48,8 +48,7 @@ export const getUserHandler = async (request: FastifyRequest<{ Params: { id: str
     }
     reply.send(user);
   } catch (error) {
-    console.error(error);
-    reply.status(500).send({ error: 'Erro ao buscar usuário.' });
+    errorHandler(error, reply);
   }
 };
 
@@ -60,8 +59,7 @@ export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: 
     const user = await updateUser(id, userTypeId, name);
     reply.send(user);
   } catch (error) {
-    console.error(error);
-    reply.status(500).send({ error: 'Erro ao atualizar usuário.' });
+    errorHandler(error, reply);
   }
 };
 
@@ -72,10 +70,9 @@ export const deleteUserHandler = async (
   const { id } = request.params;
   let user: Users | null = null;
   try {
-    user = await deleteUser(user, id, reply);
-    reply.send(user); 
+    user = await deleteUser(user, id, reply); // Forneça todos os três argumentos
+    reply.send(user);
   } catch (error) {
-    console.error(error);
-    reply.status(500).send({ error: 'Erro ao excluir usuário.' });
+    errorHandler(error, reply);
   }
 };

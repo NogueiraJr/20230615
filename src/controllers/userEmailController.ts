@@ -1,6 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
+import { errorHandler } from '../errors/errorHandler';
+
 export const prisma = new PrismaClient();
 
 interface UserPayload {
@@ -16,8 +18,6 @@ export const createUserEmailHandler = async (request: FastifyRequest, reply: Fas
     const ret = await createUserEmail(email, user);
     reply.send(ret);
   } catch (error) {
-    console.error(error);
-    reply.status(500).send({ error: 'Erro ao criar email do usuário.' });
+    errorHandler(error, reply);
   }
 };
-
