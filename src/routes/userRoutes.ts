@@ -12,11 +12,11 @@ const userRoutes = (router: FastifyInstance) => {
 
   router.post('/user/email', createUserEmailHandler);
   router.patch('/user/email/:emailId', updateUserEmailHandler);
-  router.delete('/user/email/:emailId', deleteUserEmailHandler);
+  router.delete('/user/email/:id', deleteUserEmailHandler);
 
   router.post('/user/phone', createUserPhoneHandler);
   router.patch('/user/phone/:phoneId', updateUserPhoneHandler);
-  router.delete('/user/phone/:phoneId', deleteUserPhoneHandler);
+  router.delete('/user/phone/:id', deleteUserPhoneHandler);
 };
 
 export default userRoutes;

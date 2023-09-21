@@ -2,10 +2,12 @@ import { PrismaClient } from '@prisma/client';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
 import { errorHandler } from '../errors/errorHandler';
+import { UserEmails } from '@prisma/client';
 
 export const prisma = new PrismaClient();
 
 interface UserPayload {
+  id: any;
   user: any;
   email: any;
   userId: any;
@@ -37,10 +39,11 @@ export const updateUserEmailHandler = async (request: FastifyRequest, reply: Fas
   }
 };
 
-export const deleteUserEmailHandler = async (request: FastifyRequest, reply: FastifyReply) => {
+export const deleteUserEmailHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   try {
-    const { userId, emailId } = request.body as UserPayload;
-    await deleteUserEmail(userId, emailId);
+    const { id } = request.params;
+    let userEmails: UserEmails | null = null;
+    await deleteUserEmail(userEmails, id);
     reply.send({ message: 'Email apagado com sucesso' });
   } catch (error) {
     errorHandler(error as Error, reply);

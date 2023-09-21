@@ -2,10 +2,12 @@ import { PrismaClient } from '@prisma/client';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
 import { errorHandler } from '../errors/errorHandler';
+import { UserPhones } from '@prisma/client';
 
 export const prisma = new PrismaClient();
 
 interface UserPayload {
+  id: any;
   user: any;
   phone: any;
   userId: any;
@@ -37,11 +39,22 @@ export const updateUserPhoneHandler = async (request: FastifyRequest, reply: Fas
   }
 };
 
-export const deleteUserPhoneHandler = async (request: FastifyRequest, reply: FastifyReply) => {
+// export const deleteUserPhoneHandler = async (request: FastifyRequest, reply: FastifyReply) => {
+//   try {
+//     const { userId, phoneId } = request.body as UserPayload;
+//     await deleteUserPhone(userId, phoneId);
+//     reply.send({ message: 'Telefone apagado com sucesso' });
+//   } catch (error) {
+//     errorHandler(error as Error, reply);
+//   }
+// };
+
+export const deleteUserPhoneHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   try {
-    const { userId, phoneId } = request.body as UserPayload;
-    await deleteUserPhone(userId, phoneId);
-    reply.send({ message: 'Telefone apagado com sucesso' });
+    const { id } = request.params;
+    let userPhones: UserPhones | null = null;
+    await deleteUserPhone(userPhones, id);
+    reply.send({ message: 'Phone apagado com sucesso' });
   } catch (error) {
     errorHandler(error as Error, reply);
   }
