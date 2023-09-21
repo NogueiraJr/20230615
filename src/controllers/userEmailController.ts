@@ -18,7 +18,7 @@ export const createUserEmailHandler = async (request: FastifyRequest, reply: Fas
     reply.send(ret);
   } catch (error) {
     console.error(error);
-    reply.status(500).send({ error: 'Erro ao criar email(s) do usuário.' });
+    reply.status(500).send({ error: 'Erro ao criar email do usuário.' });
   }
 };
 
