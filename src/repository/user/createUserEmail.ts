@@ -8,7 +8,7 @@ export async function createUserEmail(email: any, user: any) {
         userId: user.id,
         userEmailTypeId: email.userEmailTypeId,
         active: email.active,
-        createAt: email.createAt,
+        // createAt: email.createAt,
       },
     });
   } catch (error) {

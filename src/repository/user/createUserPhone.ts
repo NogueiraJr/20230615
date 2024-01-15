@@ -8,7 +8,7 @@ export async function createUserPhone(phone: any, user: any) {
         userId: user.id,
         userPhoneTypeId: phone.userPhoneTypeId,
         active: phone.active,
-        createAt: phone.createAt,
+        // createAt: phone.createAt,
       },
     });
   } catch (error) {

@@ -10,7 +10,7 @@ export async function deleteUser(user: Users | null, id: string, reply: any) {
         include: {
           emails: true,
           phones: true,
-          userSystemMenuModule: true,
+          // userSystemMenuModule: true,
           userType: true,
         },
       });
