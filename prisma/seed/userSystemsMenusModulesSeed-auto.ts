@@ -1,19 +1,19 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Users, SystemMenuModule } from '@prisma/client';
 
 const prisma = new PrismaClient();
-const userTypeIdToInclude = ['admin', 'support'];
+const userTypeIdToInclude: string[] = ['admin', 'support'];
 
 async function main() {
-  const users = await prisma.users.findMany({
+  const users: Users[] = await prisma.users.findMany({
     where: {
       userTypeId: {
         in: userTypeIdToInclude,
       },
     },
   });
-  const systemMenuModules = await prisma.systemMenuModule.findMany();
+  const systemMenuModules: SystemMenuModule[] = await prisma.systemMenuModule.findMany();
 
-  const userSystemsMenusModules = [];
+  const userSystemsMenusModules: { userId: string; systemMenuModuleId: string }[] = [];
 
   for (const user of users) {
     for (const module of systemMenuModules) {
