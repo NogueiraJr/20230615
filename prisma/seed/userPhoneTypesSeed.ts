@@ -7,9 +7,9 @@ async function seedPhoneTypes() {
     // Inserindo tipos de phones
     await prisma.userPhoneTypes.createMany({
       data: [
-        { id: 'personal', name: 'Pessoal', description: 'Telefone pessoal' },
-        { id: 'work', name: 'Trabalho', description: 'Telefone profissional' },
-        { id: 'others', name: 'Outro', description: 'Outro tipo de telefone' },
+        { id: 'personal', name: 'Pessoal',  description: 'Telefone pessoal' },
+        { id: 'work',     name: 'Trabalho', description: 'Telefone profissional' },
+        { id: 'others',   name: 'Outro',    description: 'Outro tipo de telefone' },
       ],
     });
 

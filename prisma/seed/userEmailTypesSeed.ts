@@ -7,9 +7,9 @@ async function seedEmailTypes() {
     // Inserindo tipos de e-mails
     await prisma.userEmailTypes.createMany({
       data: [
-        { id: 'personal', name: 'Pessoal', description: 'E-mail pessoal' },
-        { id: 'work', name: 'Trabalho', description: 'E-mail profissional' },
-        { id: 'others', name: 'Outro', description: 'Outro tipo de e-mail' },
+        { id: 'personal', name: 'Pessoal',  description: 'E-mail pessoal' },
+        { id: 'work',     name: 'Trabalho', description: 'E-mail profissional' },
+        { id: 'others',   name: 'Outro',    description: 'Outro tipo de e-mail' },
       ],
     });
 
