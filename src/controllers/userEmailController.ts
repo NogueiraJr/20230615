@@ -15,9 +15,9 @@ interface UserPayload {
   newEmail: any;
 }
 
-import { createUserEmail } from '../services/user/createUserEmail';
-import { updateUserEmail } from '../services/user/updateUserEmail';
-import { deleteUserEmail } from '../services/user/deleteUserEmail';
+import { createUserEmail } from '../repository/user/createUserEmail';
+import { updateUserEmail } from '../repository/user/updateUserEmail';
+import { deleteUserEmail } from '../repository/user/deleteUserEmail';
 
 export const createUserEmailHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {

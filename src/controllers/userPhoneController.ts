@@ -15,9 +15,9 @@ interface UserPayload {
   newPhone: any;
 }
 
-import { createUserPhone } from '../services/user/createUserPhone';
-import { updateUserPhone } from '../services/user/updateUserPhone';
-import { deleteUserPhone } from '../services/user/deleteUserPhone';
+import { createUserPhone } from '../repository/user/createUserPhone';
+import { updateUserPhone } from '../repository/user/updateUserPhone';
+import { deleteUserPhone } from '../repository/user/deleteUserPhone';
 
 export const createUserPhoneHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
