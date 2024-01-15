@@ -18,6 +18,7 @@ datasource db {
     description        String?
     active             Boolean     @default(true)
     createAt           DateTime    @default(now())
+    updatedAt          DateTime    @updatedAt
     systemMenuModule   SystemMenuModule[]
   }
 
@@ -30,6 +31,7 @@ datasource db {
     description        String?
     active             Boolean     @default(true)
     createAt           DateTime    @default(now())
+    updatedAt          DateTime    @updatedAt
     systemMenuModule   SystemMenuModule[]
   }
 
@@ -42,6 +44,7 @@ datasource db {
     description        String?
     active             Boolean     @default(true)
     createAt           DateTime    @default(now())
+    updatedAt          DateTime    @updatedAt
     systemMenuModule   SystemMenuModule[]
   } 
 
@@ -60,6 +63,9 @@ datasource db {
     module      Modules?    @relation(fields: [moduleId], references: [id])
 
     userSystemMenuModule  UserSystemMenuModule[]
+
+    createAt           DateTime    @default(now())
+    updatedAt          DateTime    @updatedAt
   } 
 
   model UserSystemMenuModule {
@@ -71,7 +77,10 @@ datasource db {
 
       systemMenuModuleId String 
       systemMenuModule    SystemMenuModule @relation(fields: [systemMenuModuleId], references: [id])
-  }
+  
+      createAt           DateTime    @default(now())
+      updatedAt          DateTime    @updatedAt
+}
 
 // U S E R S
 
@@ -83,6 +92,7 @@ datasource db {
     phones      UserPhones[]
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
 
     userType    UserTypes   @relation(fields: [userTypeId], references: [id])
     user        Users?      @relation("user", fields: [userId], references: [id])
@@ -96,7 +106,9 @@ datasource db {
     id          String      @id @unique
     name        String
     description String?
+    active      Boolean     @default(true)
     createAt    DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
     users       Users[]
   }
 
@@ -107,6 +119,7 @@ datasource db {
     userEmailTypeId String
     active          Boolean        @default(true)
     createAt        DateTime       @default(now())
+    updatedAt       DateTime       @updatedAt
     
     user            Users          @relation(fields: [userId], references: [id])
     UserEmailType   UserEmailTypes @relation(fields: [userEmailTypeId], references: [id])
@@ -116,7 +129,9 @@ datasource db {
     id          String       @id @unique
     name        String
     description String?
+    active      Boolean      @default(true)
     createAt    DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
     userEmails  UserEmails[]
   }
 
@@ -127,6 +142,7 @@ datasource db {
     userPhoneTypeId String 
     active          Boolean        @default(true)
     createAt        DateTime       @default(now())
+    updatedAt       DateTime       @updatedAt
     
     user            Users          @relation(fields: [userId], references: [id])
     userPhoneType   UserPhoneTypes @relation(fields: [userPhoneTypeId], references: [id])
@@ -136,6 +152,8 @@ datasource db {
     id          String       @id @unique
     name        String
     description String?
+    active      Boolean      @default(true)
     createAt    DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
     phones      UserPhones[]
   }

@@ -6,6 +6,7 @@ CREATE TABLE "Systems" (
     "description" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Systems_pkey" PRIMARY KEY ("id")
 );
@@ -19,6 +20,7 @@ CREATE TABLE "Menus" (
     "description" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Menus_pkey" PRIMARY KEY ("id")
 );
@@ -32,6 +34,7 @@ CREATE TABLE "Modules" (
     "description" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Modules_pkey" PRIMARY KEY ("id")
 );
@@ -43,6 +46,8 @@ CREATE TABLE "SystemMenuModule" (
     "systemId" TEXT,
     "menuId" TEXT,
     "moduleId" TEXT,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "SystemMenuModule_pkey" PRIMARY KEY ("id")
 );
@@ -53,6 +58,8 @@ CREATE TABLE "UserSystemMenuModule" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "userId" TEXT NOT NULL,
     "systemMenuModuleId" TEXT NOT NULL,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "UserSystemMenuModule_pkey" PRIMARY KEY ("id")
 );
@@ -64,6 +71,7 @@ CREATE TABLE "Users" (
     "name" TEXT NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     "userId" TEXT,
 
     CONSTRAINT "Users_pkey" PRIMARY KEY ("id")
@@ -74,7 +82,9 @@ CREATE TABLE "UserTypes" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
+    "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "UserTypes_pkey" PRIMARY KEY ("id")
 );
@@ -87,6 +97,7 @@ CREATE TABLE "UserEmails" (
     "userEmailTypeId" TEXT NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "UserEmails_pkey" PRIMARY KEY ("id")
 );
@@ -96,7 +107,9 @@ CREATE TABLE "UserEmailTypes" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
+    "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "UserEmailTypes_pkey" PRIMARY KEY ("id")
 );
@@ -109,6 +122,7 @@ CREATE TABLE "UserPhones" (
     "userPhoneTypeId" TEXT NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "UserPhones_pkey" PRIMARY KEY ("id")
 );
@@ -118,7 +132,9 @@ CREATE TABLE "UserPhoneTypes" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
+    "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "UserPhoneTypes_pkey" PRIMARY KEY ("id")
 );
