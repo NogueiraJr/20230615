@@ -1,6 +1,6 @@
-import { prisma } from '../../controllers/userController';
+import { prisma } from '../_prismaClient';
 
-export async function getUsers() {
+export async function _getUsers() {
   try {
     return await prisma.users.findMany({
       include: {

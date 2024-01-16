@@ -1,6 +1,6 @@
-import { prisma } from '../../controllers/userController';
+import { prisma } from '../_prismaClient';
 
-export async function getUser(id: string) {
+export async function _getUser(id: string) {
   try {
     return await prisma.users.findUnique({
       where: { id },

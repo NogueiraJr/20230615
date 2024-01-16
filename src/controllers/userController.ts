@@ -11,8 +11,8 @@ interface UserPayload {
 }
 
 import { Users } from '@prisma/client';
-import { getUsers } from '../repository/user/getUsers';
-import { getUser } from '../repository/user/getUser';
+import { getUsers } from '../services/user/getUsers';
+import { getUser } from '../services/user/getUser';
 import { createUser } from '../repository/user/createUser';
 import { updateUser } from '../repository/user/updateUser';
 import { deleteUser } from '../repository/user/deleteUser';
