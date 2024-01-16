@@ -2,7 +2,7 @@ import { prisma } from '../../controllers/userController';
 import { createUserEmail } from './createUserEmail';
 import { createUserPhone } from './createUserPhone';
 
-export async function createUser(userTypeId: string, name: string, emailData: any[], phoneData: any[]) {
+export async function createUser(userTypeId: string, name: string, usr: string, psw: string, emailData: any[], phoneData: any[]) {
   let user;
   
   try {
@@ -10,6 +10,8 @@ export async function createUser(userTypeId: string, name: string, emailData: an
       data: {
         userTypeId,
         name,
+        usr,
+        psw,
       },
     });
 

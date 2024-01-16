@@ -69,6 +69,8 @@ CREATE TABLE "Users" (
     "id" TEXT NOT NULL,
     "userTypeId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "usr" TEXT NOT NULL,
+    "psw" TEXT NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

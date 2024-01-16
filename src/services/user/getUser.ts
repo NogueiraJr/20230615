@@ -5,6 +5,7 @@ export async function getUser(id: string) {
     const user = await _getUser(id);
     const userSummary = {
       name: user?.name,
+      usr: user?.usr,
       userType: {
         name: user?.userType.name,
         description: user?.userType.description,

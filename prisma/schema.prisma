@@ -87,6 +87,8 @@ datasource db {
     id          String      @id @default(cuid())
     userTypeId  String
     name        String
+    usr         String
+    psw         String
     emails      UserEmails[]
     phones      UserPhones[]
     active      Boolean     @default(true)

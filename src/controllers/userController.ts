@@ -6,6 +6,8 @@ export const prisma = new PrismaClient();
 interface UserPayload {
   userTypeId: string;
   name: string;
+  usr: string;
+  psw: string;
   emails: any[];
   phones: any[];
 }
@@ -21,8 +23,8 @@ import { errorHandler } from '../errors/errorHandler';
 
 export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    const { userTypeId, name, emails, phones } = request.body as UserPayload; 
-    const user = await createUser(userTypeId, name, emails, phones);
+    const { userTypeId, name, usr, psw, emails, phones } = request.body as UserPayload; 
+    const user = await createUser(userTypeId, name, usr, psw, emails, phones);
     reply.status(201).send(user);
   } catch (error) {
     errorHandler(error as Error, reply);
@@ -54,9 +56,9 @@ export const getUserHandler = async (request: FastifyRequest<{ Params: { id: str
 
 export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   const { id } = request.params;
-  const { userTypeId, name } = request.body as UserPayload;
+  const { userTypeId, name, usr, psw } = request.body as UserPayload;
   try {
-    const user = await updateUser(id, userTypeId, name);
+    const user = await updateUser(id, userTypeId, name, usr, psw);
     reply.send(user);
   } catch (error) {
     errorHandler(error as Error, reply);

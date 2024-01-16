@@ -5,6 +5,7 @@ export async function getUsers() {
     const users = await _getUsers();
     const userSummary = users.map((user) => ({
       name: user.name,
+      usr: user.usr,
       userType: {
         name: user.userType.name,
         description: user.userType.description,
