@@ -1,8 +1,8 @@
-import { prisma } from '../../controllers/userController';
+import { prisma } from '../_prismaClient';
 import { createUserEmail } from './createUserEmail';
 import { createUserPhone } from './createUserPhone';
 
-export async function createUser(userTypeId: string, name: string, usr: string, psw: string, emailData: any[], phoneData: any[]) {
+export async function _createUser(userTypeId: string, name: string, usr: string, psw: string, emailData: any[], phoneData: any[]) {
   let user;
   
   try {
