@@ -1,5 +1,18 @@
 {
     "code-runner.executorMap": {
         "typescript": "npx ts-node",
-   }
+},
+"sqltools.connections": [
+    {
+        "previewLimit": 50,
+        "server": "localhost",
+        "port": 5432,
+        "driver": "PostgreSQL",
+        "name": "LOC Postgres",
+        "group": "OCSTsoft",
+        "username": "meu-usuario",
+        "password": "minha-senha",
+        "database": "db20230615"
+    }
+]
 }
