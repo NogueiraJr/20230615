@@ -141,6 +141,66 @@ CREATE TABLE "UserPhoneTypes" (
     CONSTRAINT "UserPhoneTypes_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Clients" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Clients_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UserClients" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "client_id" TEXT NOT NULL,
+
+    CONSTRAINT "UserClients_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Suppliers" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Suppliers_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UserSuppliers" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "supplier_id" TEXT NOT NULL,
+
+    CONSTRAINT "UserSuppliers_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Partners" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Partners_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UserPartners" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "partner_id" TEXT NOT NULL,
+
+    CONSTRAINT "UserPartners_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Systems_id_key" ON "Systems"("id");
 
@@ -161,6 +221,15 @@ CREATE UNIQUE INDEX "UserEmailTypes_id_key" ON "UserEmailTypes"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "UserPhoneTypes_id_key" ON "UserPhoneTypes"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserClients_user_id_client_id_key" ON "UserClients"("user_id", "client_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserSuppliers_user_id_supplier_id_key" ON "UserSuppliers"("user_id", "supplier_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserPartners_user_id_partner_id_key" ON "UserPartners"("user_id", "partner_id");
 
 -- AddForeignKey
 ALTER TABLE "SystemMenuModule" ADD CONSTRAINT "SystemMenuModule_systemId_fkey" FOREIGN KEY ("systemId") REFERENCES "Systems"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -194,3 +263,21 @@ ALTER TABLE "UserPhones" ADD CONSTRAINT "UserPhones_userId_fkey" FOREIGN KEY ("u
 
 -- AddForeignKey
 ALTER TABLE "UserPhones" ADD CONSTRAINT "UserPhones_userPhoneTypeId_fkey" FOREIGN KEY ("userPhoneTypeId") REFERENCES "UserPhoneTypes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserClients" ADD CONSTRAINT "UserClients_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserClients" ADD CONSTRAINT "UserClients_client_id_fkey" FOREIGN KEY ("client_id") REFERENCES "Clients"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserSuppliers" ADD CONSTRAINT "UserSuppliers_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserSuppliers" ADD CONSTRAINT "UserSuppliers_supplier_id_fkey" FOREIGN KEY ("supplier_id") REFERENCES "Suppliers"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserPartners" ADD CONSTRAINT "UserPartners_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserPartners" ADD CONSTRAINT "UserPartners_partner_id_fkey" FOREIGN KEY ("partner_id") REFERENCES "Partners"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

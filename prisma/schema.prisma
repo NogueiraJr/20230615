@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// S I S T E M A S
+// S I S T E M A S 
   model Systems {
     id                 String      @id @unique
     seq                String
@@ -22,7 +22,7 @@ datasource db {
     systemMenuModule   SystemMenuModule[]
   }
 
-// M E N U S
+// M E N U S 
   model Menus {
     id                 String      @id @unique
     seq                String
@@ -35,7 +35,7 @@ datasource db {
     systemMenuModule   SystemMenuModule[]
   }
 
-// M Ó D U L O S
+// M Ó D U L O S 
   model Modules {
     id                 String      @id @unique
     seq                String
@@ -48,7 +48,7 @@ datasource db {
     systemMenuModule   SystemMenuModule[]
   } 
 
-// S I S T E M A   X   M E N U   X   M Ó D U L O
+// S I S T E M A   X   M E N U   X   M Ó D U L O 
   model SystemMenuModule {
     id          String      @id @unique
     active      Boolean     @default(true)
@@ -82,7 +82,7 @@ datasource db {
     updatedAt           DateTime  @updatedAt
   }
 
-// U S E R S
+// U S E R S 
   model Users {
     id          String      @id @default(cuid())
     userTypeId  String
@@ -101,6 +101,11 @@ datasource db {
     users       Users[]     @relation("user")
 
     userSystemMenuModule UserSystemMenuModule[]
+
+    clients     UserClients[]
+    suppliers   UserSuppliers[]
+    partners    UserPartners[]
+
   }
 
   model UserTypes {
@@ -112,7 +117,7 @@ datasource db {
     updatedAt   DateTime    @updatedAt
     users       Users[]
   }
-
+// U S E R S  E M A I L S 
   model UserEmails {
     id              String         @id @default(cuid())
     email           String
@@ -135,7 +140,7 @@ datasource db {
     updatedAt   DateTime     @updatedAt
     userEmails  UserEmails[]
   }
-
+// U S E R S  P H O N E S 
   model UserPhones {
     id              String         @id @default(cuid())
     phone           String
@@ -157,4 +162,75 @@ datasource db {
     createAt    DateTime     @default(now())
     updatedAt   DateTime     @updatedAt
     phones      UserPhones[]
+  }
+// C L I E N T S 
+  model Clients {
+    id          String      @id @default(cuid())
+    name        String
+
+    active      Boolean     @default(true)
+    createAt    DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
+
+    users       UserClients[]
+
+  }
+
+  model UserClients {
+    id          String      @id @default(cuid())
+    user_id     String      @map("user_id")
+    client_id   String      @map("client_id")
+    
+    user        Users       @relation(fields: [user_id], references: [id])
+    client      Clients     @relation(fields: [client_id], references: [id])
+
+    @@unique([user_id, client_id])
+
+  }
+
+// S U P P L I E R S 
+  model Suppliers {
+    id          String      @id @default(cuid())
+    name        String
+
+    active      Boolean     @default(true)
+    createAt    DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
+
+    users       UserSuppliers[]
+  }
+
+  model UserSuppliers {
+    id           String      @id @default(cuid())
+    user_id      String      @map("user_id")
+    supplier_id  String      @map("supplier_id")
+    
+    user        Users        @relation(fields: [user_id], references: [id])
+    supplier    Suppliers    @relation(fields: [supplier_id], references: [id])
+
+    @@unique([user_id, supplier_id])
+
+  }
+// P A R T N E R 
+  model Partners {
+    id          String      @id @default(cuid())
+    name        String
+
+    active      Boolean     @default(true)
+    createAt    DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
+
+    users       UserPartners[]
+  }
+
+  model UserPartners {
+    id           String      @id @default(cuid())
+    user_id      String      @map("user_id")
+    partner_id  String      @map("partner_id")
+    
+    user        Users        @relation(fields: [user_id], references: [id])
+    partner    Partners    @relation(fields: [partner_id], references: [id])
+
+    @@unique([user_id, partner_id])
+
   }
