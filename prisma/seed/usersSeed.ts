@@ -75,7 +75,7 @@ const usersData_owner = [
 ];
 
 const usersData_manager = [
-  { /*id: "",*/             name: 'Gerente 01', usr: 'usuario', psw: 'senha',
+  { id: "idManager01", name: 'Gerente 01', usr: 'usuario', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'work' }
     ] },
@@ -84,7 +84,7 @@ const usersData_manager = [
     ] },
     user: { connect: { id: usersData_owner[0].id } }
   },
-  { /*id: "",*/             name: 'Gerente 02', usr: 'usuario', psw: 'senha',
+  { id: "idManager02", name: 'Gerente 02', usr: 'usuario', psw: 'senha',
 emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'personal' }
     ] },
@@ -94,7 +94,7 @@ emails: { create: [
     ] },
     user: { connect: { id: usersData_owner[1].id } }
   },
-  { /*id: "",*/             name: 'Gerente 03', usr: 'usuario', psw: 'senha',
+  { id: "idManager03", name: 'Gerente 03', usr: 'usuario', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'others' }
     ] },
@@ -105,11 +105,43 @@ emails: { create: [
   },
 ];
 
+const usersData_employee = [
+  { /*id: "",*/ name: 'Funcionário 01', usr: 'usuario', psw: 'senha',
+    emails: { create: [
+      { email: 'endereco@email.com', userEmailTypeId: 'work' }
+    ] },
+    phones: { create: [
+      { phone: '+5555555555', userPhoneTypeId: 'personal' }
+    ] },
+    user: { connect: { id: usersData_manager[0].id } }
+  },
+  { /*id: "",*/ name: 'Funcionário 02', usr: 'usuario', psw: 'senha',
+    emails: { create: [
+      { email: 'endereco@email.com', userEmailTypeId: 'personal' }
+    ] },
+    phones: { create: [
+        { phone: '+9999999999', userPhoneTypeId: 'personal' }
+      , { phone: '+8888888888', userPhoneTypeId: 'personal' }
+    ] },
+    user: { connect: { id: usersData_manager[0].id } }
+  },
+  { /*id: "",*/ name: 'Funcionário 03', usr: 'usuario', psw: 'senha',
+    emails: { create: [
+      { email: 'endereco@email.com', userEmailTypeId: 'others' }
+    ] },
+    phones: { create: [
+      { phone: '+1111111111',        userPhoneTypeId: 'personal' }
+    ] },
+    user: { connect: { id: usersData_manager[0].id } }
+  },
+];
+
 async function main() {
-  for (const item of usersData_admin)   { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'admin'   } }, }, }); }
-  for (const item of usersData_support) { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'support' } }, }, }); }
-  for (const item of usersData_owner)   { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'owner'   } }, }, }); }
-  for (const item of usersData_manager) { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'manager' } }, }, }); }
+  for (const item of usersData_admin)    { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'admin'    } }, }, }); }
+  for (const item of usersData_support)  { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'support'  } }, }, }); }
+  for (const item of usersData_owner)    { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'owner'    } }, }, }); }
+  for (const item of usersData_manager)  { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'manager'  } }, }, }); }
+  for (const item of usersData_employee) { await prisma.users.create({ data: { ...item, userType: { connect: { id: 'employee' } }, }, }); }
   console.log('usersSeed - OK');
 
 }
