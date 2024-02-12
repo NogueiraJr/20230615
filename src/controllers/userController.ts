@@ -20,6 +20,7 @@ import { updateUser } from '../repository/user/updateUser';
 import { deleteUser } from '../repository/user/deleteUser';
 
 import { errorHandler } from '../errors/errorHandler';
+import { getUserCollection } from '../services/user/getUserCollection';
 
 export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
@@ -53,6 +54,21 @@ export const getUserHandler = async (request: FastifyRequest<{ Params: { id: str
     errorHandler(error as Error, reply);
   }
 };
+
+export const getUserCollectionHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+  const { id } = request.params;
+  try {
+    const users = await getUserCollection(id);
+    if (!users) {
+      errorHandler('Usuário não encontrado.', reply, 404);
+      return;
+    }
+    reply.send(users);
+  } catch (error) {
+    errorHandler(error as Error, reply);
+  }
+};
+
 
 export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   const { id } = request.params;
