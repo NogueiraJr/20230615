@@ -18,23 +18,6 @@ export async function getUserCollection(id: string) {
         name: subUser.name,
         usr: subUser.usr,
         active: subUser.active,
-        emails: subUser.emails.map((email: any) => ({
-          id: email.id,
-          email: email.email,
-          userEmailTypeId: email.userEmailTypeId,
-          active: email.active,
-        })),
-        phones: subUser.phones.map((phone: any) => ({
-          id: phone.id,
-          phone: phone.phone,
-          userPhoneTypeId: phone.userPhoneTypeId,
-          active: phone.active,
-        })),
-        userSystemMenuModule: subUser.userSystemMenuModule.map((userSystemMenuModule: any) => ( {
-          id: userSystemMenuModule.id,
-          active: userSystemMenuModule.active,
-          name: userSystemMenuModule.systemMenuModuleId,
-        })),
         userType: {
           id: subUser.userType.id,
           name: subUser.userType.name,
@@ -53,23 +36,6 @@ export async function getUserCollection(id: string) {
       name: mainUser.name,
       usr: mainUser.usr,
       active: mainUser.active,
-      emails: mainUser.emails.map((email: any) => ({
-        id: email.id,
-        email: email.email,
-        userEmailTypeId: email.userEmailTypeId,
-        active: email.active,
-      })),
-      phones: mainUser.phones.map((phone: any) => ({
-        id: phone.id,
-        phone: phone.phone,
-        userPhoneTypeId: phone.userPhoneTypeId,
-        active: phone.active,
-      })),
-      userSystemMenuModule: mainUser.userSystemMenuModule.map((userSystemMenuModule: any) => ( {
-        id: userSystemMenuModule.id,
-        active: userSystemMenuModule.active,
-        name: userSystemMenuModule.systemMenuModuleId,
-      })),
     userType: {
         id: mainUser.userType.id,
         name: mainUser.userType.name,

@@ -4,6 +4,7 @@ export async function getUsers() {
   try {
     const users = await _getUsers();
     const userSummary = users.map((user) => ({
+      id: user.id,
       name: user.name,
       usr: user.usr,
       userType: {
@@ -11,14 +12,6 @@ export async function getUsers() {
         description: user.userType.description,
       },
       active: user.active,
-      emails: user.emails.map((email) => ({
-        email: email.email,
-        type: email.userEmailTypeId,
-      })),
-      phones: user.phones.map((phone) => ({
-        phone: phone.phone,
-        type: phone.userPhoneTypeId,
-      })),
     }));
     return userSummary;
   } catch (error) {
