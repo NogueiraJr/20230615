@@ -7,7 +7,17 @@ export async function _getUser(id: string) {
       include: {
         emails: true,
         phones: true,
-        userSystemMenuModule: true,
+        userSystemMenuModule: {
+          include: {
+            systemMenuModule: {
+              include: {
+                system: true, 
+                module: true, 
+                menu: true 
+              }
+            }
+          }
+        },
         userType: true,
       },
     });

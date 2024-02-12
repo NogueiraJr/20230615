@@ -21,6 +21,7 @@ import { deleteUser } from '../repository/user/deleteUser';
 
 import { errorHandler } from '../errors/errorHandler';
 import { getUserCollection } from '../services/user/getUserCollection';
+import { getUserSystemMenuModule } from '../services/user/getUserSystemMenuModule';
 
 export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
@@ -69,6 +70,19 @@ export const getUserCollectionHandler = async (request: FastifyRequest<{ Params:
   }
 };
 
+export const getUserSystemMenuModuleHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+  const { id } = request.params;
+  try {
+    const users = await getUserSystemMenuModule(id);
+    if (!users) {
+      errorHandler('Usuário não encontrado.', reply, 404);
+      return;
+    }
+    reply.send(users);
+  } catch (error) {
+    errorHandler(error as Error, reply);
+  }
+};
 
 export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   const { id } = request.params;
