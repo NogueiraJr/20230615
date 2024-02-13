@@ -5,12 +5,22 @@ const seedCommands = [
   'userPhoneTypesSeed.ts',
   'userTypesSeed.ts',
   'usersSeed.ts',
-  'menusSeed.ts',
+  
   'systemsSeed.ts',
+  'menusSeed.ts',
   'modulesSeed.ts',
   'systemsMenusModulesSeed.ts',
+  
   'userSystemsMenusModulesSeed-auto.ts',
-  'userSystemsMenusModulesSeed-specific.ts'
+  'userSystemsMenusModulesSeed-specific.ts',
+  
+  'clientsSeed.ts',
+  'suppliersSeed.ts',
+  'partnersSeed.ts',
+
+  'userClientsSeed.ts',
+  'userSuppliersSeed.ts',
+  'userPartnersSeed.ts',
 ];
 
 const runSeeds = async () => {
