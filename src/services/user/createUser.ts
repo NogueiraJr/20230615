@@ -1,8 +1,10 @@
+
+import { FastifyRequest } from 'fastify';
 import { _createUser } from "../../repository/user/createUser";
 
-export async function createUser(userTypeId: string, name: string, usr: string, psw: string, emailData: any[], phoneData: any[]) {
+export async function createUser(request: FastifyRequest) {
   try {
-    const user = await _createUser(userTypeId, name, usr, psw, emailData, phoneData);
+    const user = await _createUser(request);
     const userSummary = {
       id: user?.id,
       usr: user?.usr,

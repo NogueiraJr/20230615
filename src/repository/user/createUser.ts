@@ -1,10 +1,13 @@
 import { prisma } from '../_prismaClient';
+import { UserPayload } from '../interface/UserPayload';
 import { createUserEmail } from './createUserEmail';
 import { createUserPhone } from './createUserPhone';
 
-export async function _createUser(userTypeId: string, name: string, usr: string, psw: string, emailData: any[], phoneData: any[]) {
+import { FastifyRequest } from 'fastify';
+
+export async function _createUser(request: FastifyRequest) {
   let user;
-  
+  const { userTypeId, name, usr, psw, emails, phones } = request.body as UserPayload;
   try {
     user = await prisma.users.create({
       data: {
@@ -15,11 +18,11 @@ export async function _createUser(userTypeId: string, name: string, usr: string,
       },
     });
 
-    if (emailData != undefined) for (const email of emailData) {
+    if (emails != undefined) for (const email of emails) {
       await createUserEmail(email, user);
     }
 
-    if (phoneData != undefined) for (const phone of phoneData) {
+    if (phones != undefined) for (const phone of phones) {
       await createUserPhone(phone, user);
     }
 

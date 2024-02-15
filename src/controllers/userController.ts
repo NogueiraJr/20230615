@@ -25,8 +25,7 @@ import { getUserSystemMenuModule } from '../services/user/getUserSystemMenuModul
 
 export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    const { userTypeId, name, usr, psw, emails, phones } = request.body as UserPayload; 
-    const user = await createUser(userTypeId, name, usr, psw, emails, phones);
+    const user = await createUser(request);
     reply.status(201).send(user);
   } catch (error) {
     errorHandler(error as Error, reply);
