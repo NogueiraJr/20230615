@@ -4,17 +4,21 @@ import { createUserEmail } from './createUserEmail';
 import { createUserPhone } from './createUserPhone';
 
 import { FastifyRequest } from 'fastify';
+const bcrypt = require('bcryptjs');
 
 export async function _createUser(request: FastifyRequest) {
   let user;
   const { userTypeId, name, usr, psw, emails, phones } = request.body as UserPayload;
+  
+  const _psw = await bcrypt.hash(psw, 10);
+    
   try {
     user = await prisma.users.create({
       data: {
         userTypeId,
         name,
         usr,
-        psw,
+        psw: _psw,
       },
     });
 
