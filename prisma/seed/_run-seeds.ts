@@ -21,6 +21,8 @@ const seedCommands = [
   'userClientsSeed.ts',
   'userSuppliersSeed.ts',
   'userPartnersSeed.ts',
+
+  'rentalOperationsSeed.ts',
 ];
 
 const runSeeds = async () => {

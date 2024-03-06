@@ -21,7 +21,7 @@ datasource db {
     updatedAt          DateTime    @updatedAt
     systemMenuModule   SystemMenuModule[]
     userRentals        UserRentals[]
-    rentalOperation    RentalOperation[]
+    rentalOperation    RentalOperations[]
   }
 
 // M E N U S 
@@ -246,7 +246,7 @@ datasource db {
     description  String
     notes        String
 
-    rentalPrice  Decimal
+    priceRental  Decimal
     priceCharged Decimal
 
     user_id      String      @map("user_id")
@@ -283,17 +283,18 @@ datasource db {
     updatedAt          DateTime    @updatedAt
 
     userRentals        UserRentals @relation(fields: [userRental_id], references: [id])
-    rentalOperation    RentalOperation @relation(fields: [rentalOperation_id], references: [id])
+    rentalOperation    RentalOperations @relation(fields: [rentalOperation_id], references: [id])
     userClient         UserClients @relation(fields: [userClient_id], references: [id])
 
   }
   
-  model RentalOperation {
+  model RentalOperations {
     id           String    @id @default(cuid())
+    system_id    String    @map("system_id")
+    
+    seq          String
     name         String
     description  String
-
-    system_id    String    @map("system_id")
 
     active       Boolean   @default(true)
     createAt     DateTime  @default(now())
@@ -303,4 +304,4 @@ datasource db {
         
     userRentalOperations   UserRentalOperations[]
 
-  }
+} 
