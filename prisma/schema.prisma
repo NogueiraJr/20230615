@@ -268,10 +268,15 @@ datasource db {
   model UserRentalOperations {
     id                 String      @id @default(cuid())
     userRental_id      String      @map("userRental_id")
-    rentalOperation_id String      @map("rentalOperation_id")
     userClient_id      String      @map("userClient_id")
+    rentalOperation_id String      @map("rentalOperation_id")
 
-    finished           Boolean     @default(false)
+    description        String
+    notes              String
+
+    scheduledAt        DateTime
+    executedAt         DateTime
+    finishedAt         DateTime
 
     active             Boolean     @default(true)
     createAt           DateTime    @default(now())
