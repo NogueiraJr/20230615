@@ -22,6 +22,7 @@ datasource db {
     systemMenuModule   SystemMenuModule[]
     userRentals        UserRentals[]
     rentalOperation    RentalOperations[]
+    products           Products[]
   }
 
 // M E N U S 
@@ -109,6 +110,8 @@ datasource db {
     partners    UserPartners[]
     
     rentals     UserRentals[]
+    
+    products     Products[]
 
   }
 
@@ -240,6 +243,37 @@ datasource db {
     @@unique([user_id, partner_id])
 
   }
+// P R O D U C T S
+  model Products {
+    id              String       @id @default(cuid())
+    name            String
+    description     String?
+    productType_id  String
+
+    active          Boolean      @default(true)
+    createAt        DateTime     @default(now())
+    updatedAt       DateTime     @updatedAt
+    
+    user_id         String       @map("user_id")
+    system_id       String       @map("system_id")
+
+    user            Users        @relation(fields: [user_id], references: [id])
+    system          Systems      @relation(fields: [system_id], references: [id])
+
+    ProductType     ProductTypes @relation(fields: [productType_id], references: [id])
+  }
+
+  model ProductTypes {
+    id          String       @id @unique
+    name        String
+    description String?
+
+    active      Boolean      @default(true)
+    createAt    DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+
+    products    Products[]
+  }
 // U S E R   R E N T A L S
   model UserRentals {
     id           String      @id @default(cuid())
@@ -278,6 +312,8 @@ datasource db {
     executedAt         DateTime
     finishedAt         DateTime
 
+    productTotalPrice  Decimal
+
     active             Boolean     @default(true)
     createAt           DateTime    @default(now())
     updatedAt          DateTime    @updatedAt
@@ -304,4 +340,4 @@ datasource db {
         
     userRentalOperations   UserRentalOperations[]
 
-} 
+  } 
