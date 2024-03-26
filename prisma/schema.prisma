@@ -20,6 +20,9 @@ datasource db {
     createAt           DateTime    @default(now())
     updatedAt          DateTime    @updatedAt
     systemMenuModule   SystemMenuModule[]
+    userRentals        UserRentals[]
+    rentalOperation    RentalOperations[]
+    products           Products[]
   }
 
 // M E N U S 
@@ -105,6 +108,10 @@ datasource db {
     clients     UserClients[]
     suppliers   UserSuppliers[]
     partners    UserPartners[]
+    
+    rentals     UserRentals[]
+    
+    products     Products[]
 
   }
 
@@ -172,7 +179,7 @@ datasource db {
     createAt    DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
 
-    users       UserClients[]
+    users                 UserClients[]
 
   }
 
@@ -183,6 +190,8 @@ datasource db {
     
     user        Users       @relation(fields: [user_id], references: [id])
     client      Clients     @relation(fields: [client_id], references: [id])
+
+    userRentalOperations  UserRentalOperations[]
 
     @@unique([user_id, client_id])
 
@@ -234,3 +243,101 @@ datasource db {
     @@unique([user_id, partner_id])
 
   }
+// P R O D U C T S
+  model Products {
+    id              String       @id @default(cuid())
+    name            String
+    description     String?
+    productType_id  String
+
+    active          Boolean      @default(true)
+    createAt        DateTime     @default(now())
+    updatedAt       DateTime     @updatedAt
+    
+    user_id         String       @map("user_id")
+    system_id       String       @map("system_id")
+
+    user            Users        @relation(fields: [user_id], references: [id])
+    system          Systems      @relation(fields: [system_id], references: [id])
+
+    ProductType     ProductTypes @relation(fields: [productType_id], references: [id])
+  }
+
+  model ProductTypes {
+    id          String       @id @unique
+    name        String
+    description String?
+
+    active      Boolean      @default(true)
+    createAt    DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+
+    products    Products[]
+  }
+// U S E R   R E N T A L S
+  model UserRentals {
+    id           String      @id @default(cuid())
+    description  String
+    notes        String
+
+    priceRental  Decimal
+    priceCharged Decimal
+
+    user_id      String      @map("user_id")
+    system_id    String      @map("system_id")
+    
+    user         Users       @relation(fields: [user_id], references: [id])
+    system       Systems     @relation(fields: [system_id], references: [id])
+
+    active       Boolean     @default(true)
+    createAt     DateTime    @default(now())
+    updatedAt    DateTime    @updatedAt
+
+    userRentalOperations    UserRentalOperations[]
+
+    @@unique([id, user_id, system_id])
+
+  }
+  
+  model UserRentalOperations {
+    id                 String      @id @default(cuid())
+    userRental_id      String      @map("userRental_id")
+    userClient_id      String      @map("userClient_id")
+    rentalOperation_id String      @map("rentalOperation_id")
+
+    description        String
+    notes              String
+
+    scheduledAt        DateTime
+    executedAt         DateTime
+    finishedAt         DateTime
+
+    productTotalPrice  Decimal
+
+    active             Boolean     @default(true)
+    createAt           DateTime    @default(now())
+    updatedAt          DateTime    @updatedAt
+
+    userRentals        UserRentals @relation(fields: [userRental_id], references: [id])
+    rentalOperation    RentalOperations @relation(fields: [rentalOperation_id], references: [id])
+    userClient         UserClients @relation(fields: [userClient_id], references: [id])
+
+  }
+  
+  model RentalOperations {
+    id           String    @id @default(cuid())
+    system_id    String    @map("system_id")
+    
+    seq          String
+    name         String
+    description  String
+
+    active       Boolean   @default(true)
+    createAt     DateTime  @default(now())
+    updatedAt    DateTime  @updatedAt
+
+    system       Systems   @relation(fields: [system_id], references: [id])
+        
+    userRentalOperations   UserRentalOperations[]
+
+  } 

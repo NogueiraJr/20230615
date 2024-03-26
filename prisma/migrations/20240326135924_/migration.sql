@@ -201,6 +201,82 @@ CREATE TABLE "UserPartners" (
     CONSTRAINT "UserPartners_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Products" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT,
+    "productType_id" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "system_id" TEXT NOT NULL,
+
+    CONSTRAINT "Products_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ProductTypes" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "ProductTypes_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UserRentals" (
+    "id" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "notes" TEXT NOT NULL,
+    "priceRental" DECIMAL(65,30) NOT NULL,
+    "priceCharged" DECIMAL(65,30) NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "system_id" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "UserRentals_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UserRentalOperations" (
+    "id" TEXT NOT NULL,
+    "userRental_id" TEXT NOT NULL,
+    "userClient_id" TEXT NOT NULL,
+    "rentalOperation_id" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "notes" TEXT NOT NULL,
+    "scheduledAt" TIMESTAMP(3) NOT NULL,
+    "executedAt" TIMESTAMP(3) NOT NULL,
+    "finishedAt" TIMESTAMP(3) NOT NULL,
+    "productTotalPrice" DECIMAL(65,30) NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "UserRentalOperations_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "RentalOperations" (
+    "id" TEXT NOT NULL,
+    "system_id" TEXT NOT NULL,
+    "seq" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "RentalOperations_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Systems_id_key" ON "Systems"("id");
 
@@ -230,6 +306,12 @@ CREATE UNIQUE INDEX "UserSuppliers_user_id_supplier_id_key" ON "UserSuppliers"("
 
 -- CreateIndex
 CREATE UNIQUE INDEX "UserPartners_user_id_partner_id_key" ON "UserPartners"("user_id", "partner_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ProductTypes_id_key" ON "ProductTypes"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserRentals_id_user_id_system_id_key" ON "UserRentals"("id", "user_id", "system_id");
 
 -- AddForeignKey
 ALTER TABLE "SystemMenuModule" ADD CONSTRAINT "SystemMenuModule_systemId_fkey" FOREIGN KEY ("systemId") REFERENCES "Systems"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -281,3 +363,30 @@ ALTER TABLE "UserPartners" ADD CONSTRAINT "UserPartners_user_id_fkey" FOREIGN KE
 
 -- AddForeignKey
 ALTER TABLE "UserPartners" ADD CONSTRAINT "UserPartners_partner_id_fkey" FOREIGN KEY ("partner_id") REFERENCES "Partners"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Products" ADD CONSTRAINT "Products_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Products" ADD CONSTRAINT "Products_system_id_fkey" FOREIGN KEY ("system_id") REFERENCES "Systems"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Products" ADD CONSTRAINT "Products_productType_id_fkey" FOREIGN KEY ("productType_id") REFERENCES "ProductTypes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserRentals" ADD CONSTRAINT "UserRentals_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserRentals" ADD CONSTRAINT "UserRentals_system_id_fkey" FOREIGN KEY ("system_id") REFERENCES "Systems"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserRentalOperations" ADD CONSTRAINT "UserRentalOperations_userRental_id_fkey" FOREIGN KEY ("userRental_id") REFERENCES "UserRentals"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserRentalOperations" ADD CONSTRAINT "UserRentalOperations_rentalOperation_id_fkey" FOREIGN KEY ("rentalOperation_id") REFERENCES "RentalOperations"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserRentalOperations" ADD CONSTRAINT "UserRentalOperations_userClient_id_fkey" FOREIGN KEY ("userClient_id") REFERENCES "UserClients"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "RentalOperations" ADD CONSTRAINT "RentalOperations_system_id_fkey" FOREIGN KEY ("system_id") REFERENCES "Systems"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
