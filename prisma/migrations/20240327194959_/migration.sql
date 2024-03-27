@@ -65,12 +65,26 @@ CREATE TABLE "UserSystemMenuModule" (
 );
 
 -- CreateTable
+CREATE TABLE "UserTags" (
+    "id" TEXT NOT NULL,
+    "tag" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "UserTags_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Users" (
     "id" TEXT NOT NULL,
     "userTypeId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "usr" TEXT NOT NULL,
     "psw" TEXT NOT NULL,
+    "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -97,6 +111,7 @@ CREATE TABLE "UserEmails" (
     "email" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "userEmailTypeId" TEXT NOT NULL,
+    "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -122,6 +137,7 @@ CREATE TABLE "UserPhones" (
     "phone" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "userPhoneTypeId" TEXT NOT NULL,
+    "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -145,6 +161,7 @@ CREATE TABLE "UserPhoneTypes" (
 CREATE TABLE "Clients" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -165,6 +182,7 @@ CREATE TABLE "UserClients" (
 CREATE TABLE "Suppliers" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -185,6 +203,7 @@ CREATE TABLE "UserSuppliers" (
 CREATE TABLE "Partners" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -207,6 +226,7 @@ CREATE TABLE "Products" (
     "name" TEXT NOT NULL,
     "description" TEXT,
     "productType_id" TEXT NOT NULL,
+    "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -237,6 +257,7 @@ CREATE TABLE "UserRentals" (
     "priceCharged" DECIMAL(65,30) NOT NULL,
     "user_id" TEXT NOT NULL,
     "system_id" TEXT NOT NULL,
+    "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -256,6 +277,7 @@ CREATE TABLE "UserRentalOperations" (
     "executedAt" TIMESTAMP(3) NOT NULL,
     "finishedAt" TIMESTAMP(3) NOT NULL,
     "productTotalPrice" DECIMAL(65,30) NOT NULL,
+    "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -270,6 +292,7 @@ CREATE TABLE "RentalOperations" (
     "seq" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -327,6 +350,9 @@ ALTER TABLE "UserSystemMenuModule" ADD CONSTRAINT "UserSystemMenuModule_userId_f
 
 -- AddForeignKey
 ALTER TABLE "UserSystemMenuModule" ADD CONSTRAINT "UserSystemMenuModule_systemMenuModuleId_fkey" FOREIGN KEY ("systemMenuModuleId") REFERENCES "SystemMenuModule"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserTags" ADD CONSTRAINT "UserTags_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Users" ADD CONSTRAINT "Users_userTypeId_fkey" FOREIGN KEY ("userTypeId") REFERENCES "UserTypes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

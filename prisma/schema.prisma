@@ -85,6 +85,21 @@ datasource db {
     updatedAt           DateTime  @updatedAt
   }
 
+// T A G S
+  model UserTags {
+    id          String      @id @default(cuid())
+    tag         String
+    description String
+    user_id     String      @map("user_id")
+    
+    active      Boolean     @default(true)
+    createAt    DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
+
+    users       Users       @relation(fields: [user_id], references: [id])
+
+  }
+
 // U S E R S 
   model Users {
     id          String      @id @default(cuid())
@@ -94,6 +109,8 @@ datasource db {
     psw         String
     emails      UserEmails[]
     phones      UserPhones[]
+
+    tags        String?
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
@@ -102,6 +119,7 @@ datasource db {
     user        Users?      @relation("user", fields: [userId], references: [id])
     userId      String?
     users       Users[]     @relation("user")
+    userTags    UserTags[]
 
     userSystemMenuModule UserSystemMenuModule[]
 
@@ -130,6 +148,8 @@ datasource db {
     email           String
     userId          String
     userEmailTypeId String
+
+    tags            String?
     active          Boolean        @default(true)
     createAt        DateTime       @default(now())
     updatedAt       DateTime       @updatedAt
@@ -153,6 +173,8 @@ datasource db {
     phone           String
     userId          String
     userPhoneTypeId String 
+
+    tags            String?
     active          Boolean        @default(true)
     createAt        DateTime       @default(now())
     updatedAt       DateTime       @updatedAt
@@ -175,6 +197,7 @@ datasource db {
     id          String      @id @default(cuid())
     name        String
 
+    tags        String?
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
@@ -202,6 +225,7 @@ datasource db {
     id          String      @id @default(cuid())
     name        String
 
+    tags        String?
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
@@ -225,6 +249,7 @@ datasource db {
     id          String      @id @default(cuid())
     name        String
 
+    tags        String?
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
@@ -250,6 +275,7 @@ datasource db {
     description     String?
     productType_id  String
 
+    tags            String?
     active          Boolean      @default(true)
     createAt        DateTime     @default(now())
     updatedAt       DateTime     @updatedAt
@@ -289,6 +315,7 @@ datasource db {
     user         Users       @relation(fields: [user_id], references: [id])
     system       Systems     @relation(fields: [system_id], references: [id])
 
+    tags         String?
     active       Boolean     @default(true)
     createAt     DateTime    @default(now())
     updatedAt    DateTime    @updatedAt
@@ -314,6 +341,7 @@ datasource db {
 
     productTotalPrice  Decimal
 
+    tags               String?
     active             Boolean     @default(true)
     createAt           DateTime    @default(now())
     updatedAt          DateTime    @updatedAt
@@ -332,6 +360,7 @@ datasource db {
     name         String
     description  String
 
+    tags         String?
     active       Boolean   @default(true)
     createAt     DateTime  @default(now())
     updatedAt    DateTime  @updatedAt
