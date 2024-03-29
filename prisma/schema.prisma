@@ -270,23 +270,25 @@ datasource db {
   }
 // P R O D U C T S
   model Products {
-    id              String       @id @default(cuid())
-    name            String
-    description     String?
-    productType_id  String
+    id                  String       @id @default(cuid())
+    name                String
+    description         String?
+    productType_id      String
 
-    tags            String?
-    active          Boolean      @default(true)
-    createAt        DateTime     @default(now())
-    updatedAt       DateTime     @updatedAt
+    tags                String?
+    active              Boolean      @default(true)
+    createAt            DateTime     @default(now())
+    updatedAt           DateTime     @updatedAt
     
-    user_id         String       @map("user_id")
-    system_id       String       @map("system_id")
+    user_id             String       @map("user_id")
+    system_id           String       @map("system_id")
 
-    user            Users        @relation(fields: [user_id], references: [id])
-    system          Systems      @relation(fields: [system_id], references: [id])
+    user                Users        @relation(fields: [user_id], references: [id])
+    system              Systems      @relation(fields: [system_id], references: [id])
 
-    ProductType     ProductTypes @relation(fields: [productType_id], references: [id])
+    productType         ProductTypes @relation(fields: [productType_id], references: [id])
+
+    userRentalProducts  UserRentalProducts[]
   }
 
   model ProductTypes {
@@ -350,6 +352,8 @@ datasource db {
     rentalOperation    RentalOperations @relation(fields: [rentalOperation_id], references: [id])
     userClient         UserClients @relation(fields: [userClient_id], references: [id])
 
+    userRentalProduct UserRentalProducts[]
+
   }
   
   model RentalOperations {
@@ -370,3 +374,20 @@ datasource db {
     userRentalOperations   UserRentalOperations[]
 
   } 
+
+  model UserRentalProducts {
+    id                      String    @id @default(cuid())
+    product_id              String
+    userRentalOperation_id  String
+
+    seq                     String
+    description             String
+
+    tags                    String?
+    active                  Boolean   @default(true)
+    createAt                DateTime  @default(now())
+    updatedAt               DateTime  @updatedAt
+
+    product                 Products              @relation(fields: [product_id], references: [id])
+    userRentalOperation     UserRentalOperations  @relation(fields: [userRentalOperation_id], references: [id])
+  }

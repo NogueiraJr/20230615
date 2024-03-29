@@ -300,6 +300,21 @@ CREATE TABLE "RentalOperations" (
     CONSTRAINT "RentalOperations_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "UserRentalProducts" (
+    "id" TEXT NOT NULL,
+    "product_id" TEXT NOT NULL,
+    "userRentalOperation_id" TEXT NOT NULL,
+    "seq" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "tags" TEXT,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "UserRentalProducts_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Systems_id_key" ON "Systems"("id");
 
@@ -416,3 +431,9 @@ ALTER TABLE "UserRentalOperations" ADD CONSTRAINT "UserRentalOperations_userClie
 
 -- AddForeignKey
 ALTER TABLE "RentalOperations" ADD CONSTRAINT "RentalOperations_system_id_fkey" FOREIGN KEY ("system_id") REFERENCES "Systems"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserRentalProducts" ADD CONSTRAINT "UserRentalProducts_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "Products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserRentalProducts" ADD CONSTRAINT "UserRentalProducts_userRentalOperation_id_fkey" FOREIGN KEY ("userRentalOperation_id") REFERENCES "UserRentalOperations"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
