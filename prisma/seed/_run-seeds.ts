@@ -22,7 +22,7 @@ const seedCommands = [
   'userSuppliersSeed.ts',
   'userPartnersSeed.ts',
 
-  'rentalOperationsSeed.ts',
+  'actionsSeed.ts',
 
   'productTypesSeed.ts',
   'productsSeed.ts',

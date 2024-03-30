@@ -20,8 +20,8 @@ datasource db {
     createAt           DateTime    @default(now())
     updatedAt          DateTime    @updatedAt
     systemMenuModule   SystemMenuModule[]
-    userRentals        UserRentals[]
-    rentalOperation    RentalOperations[]
+    userOperations     UserOperations[]
+    actions            Actions[]
     products           Products[]
   }
 
@@ -127,7 +127,7 @@ datasource db {
     suppliers   UserSuppliers[]
     partners    UserPartners[]
     
-    rentals     UserRentals[]
+    rentals     UserOperations[]
     
     products     Products[]
 
@@ -214,7 +214,7 @@ datasource db {
     user        Users       @relation(fields: [user_id], references: [id])
     client      Clients     @relation(fields: [client_id], references: [id])
 
-    userRentalOperations  UserRentalOperations[]
+    UserActions  UserActions[]
 
     @@unique([user_id, client_id])
 
@@ -275,6 +275,8 @@ datasource db {
     description         String?
     productType_id      String
 
+    price               Decimal
+
     tags                String?
     active              Boolean      @default(true)
     createAt            DateTime     @default(now())
@@ -288,7 +290,7 @@ datasource db {
 
     productType         ProductTypes @relation(fields: [productType_id], references: [id])
 
-    userRentalProducts  UserRentalProducts[]
+    UserActionProducts  UserActionProducts[]
   }
 
   model ProductTypes {
@@ -302,13 +304,13 @@ datasource db {
 
     products    Products[]
   }
-// U S E R   R E N T A L S
-  model UserRentals {
+// U S E R   O P E R A T I O N
+  model UserOperations {
     id           String      @id @default(cuid())
     description  String
     notes        String
 
-    priceRental  Decimal
+    priceActions Decimal
     priceCharged Decimal
 
     user_id      String      @map("user_id")
@@ -322,17 +324,17 @@ datasource db {
     createAt     DateTime    @default(now())
     updatedAt    DateTime    @updatedAt
 
-    userRentalOperations    UserRentalOperations[]
+    userActions  UserActions[]
 
     @@unique([id, user_id, system_id])
 
   }
   
-  model UserRentalOperations {
+  model UserActions {
     id                 String      @id @default(cuid())
-    userRental_id      String      @map("userRental_id")
+    userOperation_id   String      @map("userOperation_id")
     userClient_id      String      @map("userClient_id")
-    rentalOperation_id String      @map("rentalOperation_id")
+    action_id          String      @map("action_id")
 
     description        String
     notes              String
@@ -341,53 +343,52 @@ datasource db {
     executedAt         DateTime
     finishedAt         DateTime
 
-    productTotalPrice  Decimal
+    priceProducts      Decimal
 
     tags               String?
     active             Boolean     @default(true)
     createAt           DateTime    @default(now())
     updatedAt          DateTime    @updatedAt
 
-    userRentals        UserRentals @relation(fields: [userRental_id], references: [id])
-    rentalOperation    RentalOperations @relation(fields: [rentalOperation_id], references: [id])
+    userOperations     UserOperations @relation(fields: [userOperation_id], references: [id])
     userClient         UserClients @relation(fields: [userClient_id], references: [id])
+    actions            Actions @relation(fields: [action_id], references: [id])
 
-    userRentalProduct UserRentalProducts[]
+    userActionProducts UserActionProducts[]
 
   }
   
-  model RentalOperations {
-    id           String    @id @default(cuid())
+  model Actions {
+    id           String    @id
     system_id    String    @map("system_id")
     
     seq          String
     name         String
     description  String
 
-    tags         String?
     active       Boolean   @default(true)
-    createAt     DateTime  @default(now())
-    updatedAt    DateTime  @updatedAt
 
     system       Systems   @relation(fields: [system_id], references: [id])
         
-    userRentalOperations   UserRentalOperations[]
+    userActions   UserActions[]
+
+    @@unique([id, system_id])
 
   } 
 
-  model UserRentalProducts {
-    id                      String    @id @default(cuid())
-    product_id              String
-    userRentalOperation_id  String
+  model UserActionProducts {
+    id             String    @id @default(cuid())
+    product_id     String
+    userAction_id  String
 
-    seq                     String
-    description             String
+    seq            String
+    description    String
 
-    tags                    String?
-    active                  Boolean   @default(true)
-    createAt                DateTime  @default(now())
-    updatedAt               DateTime  @updatedAt
+    tags           String?
+    active         Boolean   @default(true)
+    createAt       DateTime  @default(now())
+    updatedAt      DateTime  @updatedAt
 
-    product                 Products              @relation(fields: [product_id], references: [id])
-    userRentalOperation     UserRentalOperations  @relation(fields: [userRentalOperation_id], references: [id])
+    product        Products     @relation(fields: [product_id], references: [id])
+    userAction     UserActions  @relation(fields: [userAction_id], references: [id])
   }

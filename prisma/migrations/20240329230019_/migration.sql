@@ -249,11 +249,11 @@ CREATE TABLE "ProductTypes" (
 );
 
 -- CreateTable
-CREATE TABLE "UserRentals" (
+CREATE TABLE "UserOperations" (
     "id" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "notes" TEXT NOT NULL,
-    "priceRental" DECIMAL(65,30) NOT NULL,
+    "priceActions" DECIMAL(65,30) NOT NULL,
     "priceCharged" DECIMAL(65,30) NOT NULL,
     "user_id" TEXT NOT NULL,
     "system_id" TEXT NOT NULL,
@@ -262,31 +262,31 @@ CREATE TABLE "UserRentals" (
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "UserRentals_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "UserOperations_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "UserRentalOperations" (
+CREATE TABLE "UserActions" (
     "id" TEXT NOT NULL,
-    "userRental_id" TEXT NOT NULL,
+    "userOperation_id" TEXT NOT NULL,
     "userClient_id" TEXT NOT NULL,
-    "rentalOperation_id" TEXT NOT NULL,
+    "action_id" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "notes" TEXT NOT NULL,
     "scheduledAt" TIMESTAMP(3) NOT NULL,
     "executedAt" TIMESTAMP(3) NOT NULL,
     "finishedAt" TIMESTAMP(3) NOT NULL,
-    "productTotalPrice" DECIMAL(65,30) NOT NULL,
+    "priceProducts" DECIMAL(65,30) NOT NULL,
     "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "UserRentalOperations_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "UserActions_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "RentalOperations" (
+CREATE TABLE "Actions" (
     "id" TEXT NOT NULL,
     "system_id" TEXT NOT NULL,
     "seq" TEXT NOT NULL,
@@ -297,14 +297,14 @@ CREATE TABLE "RentalOperations" (
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "RentalOperations_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Actions_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "UserRentalProducts" (
+CREATE TABLE "UserActionProducts" (
     "id" TEXT NOT NULL,
     "product_id" TEXT NOT NULL,
-    "userRentalOperation_id" TEXT NOT NULL,
+    "userAction_id" TEXT NOT NULL,
     "seq" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "tags" TEXT,
@@ -312,7 +312,7 @@ CREATE TABLE "UserRentalProducts" (
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "UserRentalProducts_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "UserActionProducts_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -349,7 +349,7 @@ CREATE UNIQUE INDEX "UserPartners_user_id_partner_id_key" ON "UserPartners"("use
 CREATE UNIQUE INDEX "ProductTypes_id_key" ON "ProductTypes"("id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "UserRentals_id_user_id_system_id_key" ON "UserRentals"("id", "user_id", "system_id");
+CREATE UNIQUE INDEX "UserOperations_id_user_id_system_id_key" ON "UserOperations"("id", "user_id", "system_id");
 
 -- AddForeignKey
 ALTER TABLE "SystemMenuModule" ADD CONSTRAINT "SystemMenuModule_systemId_fkey" FOREIGN KEY ("systemId") REFERENCES "Systems"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -415,25 +415,25 @@ ALTER TABLE "Products" ADD CONSTRAINT "Products_system_id_fkey" FOREIGN KEY ("sy
 ALTER TABLE "Products" ADD CONSTRAINT "Products_productType_id_fkey" FOREIGN KEY ("productType_id") REFERENCES "ProductTypes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserRentals" ADD CONSTRAINT "UserRentals_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserOperations" ADD CONSTRAINT "UserOperations_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserRentals" ADD CONSTRAINT "UserRentals_system_id_fkey" FOREIGN KEY ("system_id") REFERENCES "Systems"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserOperations" ADD CONSTRAINT "UserOperations_system_id_fkey" FOREIGN KEY ("system_id") REFERENCES "Systems"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserRentalOperations" ADD CONSTRAINT "UserRentalOperations_userRental_id_fkey" FOREIGN KEY ("userRental_id") REFERENCES "UserRentals"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserActions" ADD CONSTRAINT "UserActions_userOperation_id_fkey" FOREIGN KEY ("userOperation_id") REFERENCES "UserOperations"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserRentalOperations" ADD CONSTRAINT "UserRentalOperations_rentalOperation_id_fkey" FOREIGN KEY ("rentalOperation_id") REFERENCES "RentalOperations"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserActions" ADD CONSTRAINT "UserActions_userClient_id_fkey" FOREIGN KEY ("userClient_id") REFERENCES "UserClients"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserRentalOperations" ADD CONSTRAINT "UserRentalOperations_userClient_id_fkey" FOREIGN KEY ("userClient_id") REFERENCES "UserClients"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserActions" ADD CONSTRAINT "UserActions_action_id_fkey" FOREIGN KEY ("action_id") REFERENCES "Actions"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "RentalOperations" ADD CONSTRAINT "RentalOperations_system_id_fkey" FOREIGN KEY ("system_id") REFERENCES "Systems"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Actions" ADD CONSTRAINT "Actions_system_id_fkey" FOREIGN KEY ("system_id") REFERENCES "Systems"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserRentalProducts" ADD CONSTRAINT "UserRentalProducts_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "Products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserActionProducts" ADD CONSTRAINT "UserActionProducts_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "Products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserRentalProducts" ADD CONSTRAINT "UserRentalProducts_userRentalOperation_id_fkey" FOREIGN KEY ("userRentalOperation_id") REFERENCES "UserRentalOperations"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserActionProducts" ADD CONSTRAINT "UserActionProducts_userAction_id_fkey" FOREIGN KEY ("userAction_id") REFERENCES "UserActions"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
