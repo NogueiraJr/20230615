@@ -16,9 +16,9 @@ datasource db {
     seq                String
     name               String
     description        String?
+
     active             Boolean     @default(true)
-    createAt           DateTime    @default(now())
-    updatedAt          DateTime    @updatedAt
+
     systemMenuModule   SystemMenuModule[]
     userOperations     UserOperations[]
     actions            Actions[]
@@ -32,9 +32,9 @@ datasource db {
     ref                String
     name               String
     description        String?
+    
     active             Boolean     @default(true)
-    createAt           DateTime    @default(now())
-    updatedAt          DateTime    @updatedAt
+
     systemMenuModule   SystemMenuModule[]
   }
 
@@ -45,9 +45,9 @@ datasource db {
     ref                String
     name               String
     description        String?
+    
     active             Boolean     @default(true)
-    createAt           DateTime    @default(now())
-    updatedAt          DateTime    @updatedAt
+
     systemMenuModule   SystemMenuModule[]
   } 
 
@@ -67,8 +67,6 @@ datasource db {
 
     userSystemMenuModule    UserSystemMenuModule[]
 
-    createAt    DateTime    @default(now())
-    updatedAt   DateTime    @updatedAt
   } 
 
   model UserSystemMenuModule {
@@ -275,7 +273,7 @@ datasource db {
     description         String?
     productType_id      String
 
-    price               Decimal
+    price               Decimal      @default(0.00)
 
     tags                String?
     active              Boolean      @default(true)
@@ -359,7 +357,8 @@ datasource db {
   }
   
   model Actions {
-    id           String    @id
+    id           String    @id @default(cuid())
+    action       String
     system_id    String    @map("system_id")
     
     seq          String

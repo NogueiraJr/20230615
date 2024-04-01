@@ -5,8 +5,6 @@ CREATE TABLE "Systems" (
     "name" TEXT NOT NULL,
     "description" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
-    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Systems_pkey" PRIMARY KEY ("id")
 );
@@ -19,8 +17,6 @@ CREATE TABLE "Menus" (
     "name" TEXT NOT NULL,
     "description" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
-    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Menus_pkey" PRIMARY KEY ("id")
 );
@@ -33,8 +29,6 @@ CREATE TABLE "Modules" (
     "name" TEXT NOT NULL,
     "description" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
-    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Modules_pkey" PRIMARY KEY ("id")
 );
@@ -46,8 +40,6 @@ CREATE TABLE "SystemMenuModule" (
     "systemId" TEXT,
     "menuId" TEXT,
     "moduleId" TEXT,
-    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "SystemMenuModule_pkey" PRIMARY KEY ("id")
 );
@@ -226,6 +218,7 @@ CREATE TABLE "Products" (
     "name" TEXT NOT NULL,
     "description" TEXT,
     "productType_id" TEXT NOT NULL,
+    "price" DECIMAL(65,30) NOT NULL,
     "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -288,14 +281,12 @@ CREATE TABLE "UserActions" (
 -- CreateTable
 CREATE TABLE "Actions" (
     "id" TEXT NOT NULL,
+    "action" TEXT NOT NULL,
     "system_id" TEXT NOT NULL,
     "seq" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
-    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Actions_pkey" PRIMARY KEY ("id")
 );
@@ -350,6 +341,9 @@ CREATE UNIQUE INDEX "ProductTypes_id_key" ON "ProductTypes"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "UserOperations_id_user_id_system_id_key" ON "UserOperations"("id", "user_id", "system_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Actions_id_system_id_key" ON "Actions"("id", "system_id");
 
 -- AddForeignKey
 ALTER TABLE "SystemMenuModule" ADD CONSTRAINT "SystemMenuModule_systemId_fkey" FOREIGN KEY ("systemId") REFERENCES "Systems"("id") ON DELETE SET NULL ON UPDATE CASCADE;
