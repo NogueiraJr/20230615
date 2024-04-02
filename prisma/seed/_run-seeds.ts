@@ -28,6 +28,8 @@ const seedCommands = [
   'productsSeed.ts',
 
   'tagsSeed.ts',
+
+  'userOperationsSeed.ts',
 ];
 
 const runSeeds = async () => {
