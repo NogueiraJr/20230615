@@ -218,7 +218,7 @@ CREATE TABLE "Products" (
     "name" TEXT NOT NULL,
     "description" TEXT,
     "productType_id" TEXT NOT NULL,
-    "price" DECIMAL(65,30) NOT NULL,
+    "price" DECIMAL(65,30) NOT NULL DEFAULT 0.00,
     "tags" TEXT,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
