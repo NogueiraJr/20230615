@@ -273,7 +273,7 @@ datasource db {
     description         String?
     productType_id      String
 
-    price               Decimal      @default(0.00)
+    price               Decimal?     @default(0.00)
 
     tags                String?
     active              Boolean      @default(true)
@@ -306,10 +306,10 @@ datasource db {
   model UserOperations {
     id           String      @id @default(cuid())
     description  String
-    notes        String
+    notes        String?
 
-    priceActions Decimal
-    priceCharged Decimal
+    priceActions Decimal?
+    priceCharged Decimal?
 
     user_id      String      @map("user_id")
     system_id    String      @map("system_id")
@@ -335,13 +335,13 @@ datasource db {
     action_id          String      @map("action_id")
 
     description        String
-    notes              String
+    notes              String?
 
-    scheduledAt        DateTime
-    executedAt         DateTime
-    finishedAt         DateTime
+    scheduledAt        DateTime?
+    executedAt         DateTime?
+    finishedAt         DateTime?
 
-    priceProducts      Decimal
+    priceProducts      Decimal?
 
     tags               String?
     active             Boolean     @default(true)
@@ -363,7 +363,7 @@ datasource db {
     
     seq          String
     name         String
-    description  String
+    description  String?
 
     active       Boolean   @default(true)
 
