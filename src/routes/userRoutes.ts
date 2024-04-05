@@ -1,9 +1,12 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
+import { getUserLoginHandler } from '../controllers/loginController';
 import { getUsersHandler, getUserHandler, createUserHandler, updateUserHandler, deleteUserHandler, getUserCollectionHandler, getUserSystemMenuModuleHandler } from '../controllers/userController';
 import { createUserEmailHandler, updateUserEmailHandler, deleteUserEmailHandler } from '../controllers/userEmailController';
 import { createUserPhoneHandler, updateUserPhoneHandler, deleteUserPhoneHandler } from '../controllers/userPhoneController';
 
 const userRoutes = (router: FastifyInstance) => {
+  router.post('/login', getUserLoginHandler);
+
   router.get('/user', getUsersHandler);
   router.get('/user/:id', getUserHandler);
   
