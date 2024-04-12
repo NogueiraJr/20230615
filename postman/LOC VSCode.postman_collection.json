@@ -1,0 +1,408 @@
+{
+	"info": {
+		"_postman_id": "eca56347-5e22-4980-9d1e-ac6d3be6fe63",
+		"name": "LOC VSCode",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4260388"
+	},
+	"item": [
+		{
+			"name": "20230615-api",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "User Email",
+							"item": [
+								{
+									"name": "Create User Email",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"user\": {\r\n        \"id\": \"idAdmin000\"\r\n    },\r\n    \"email\": {\r\n        \"email\": \"endereco@email.com\",\r\n        \"userEmailTypeId\": \"others\",\r\n        \"active\": true,\r\n        \"createAt\": \"2023-09-19T22:23:45.345Z\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3333/user/email",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3333",
+											"path": [
+												"user",
+												"email"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update User Email",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"userId\": \"idSupport003\",\r\n    \"newEmail\": \"fulano5-alterado@example.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3333/user/email/clms8i93f000gxiijab729muk",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3333",
+											"path": [
+												"user",
+												"email",
+												"clms8i93f000gxiijab729muk"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete User Email",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3333/user/email/clmtrlf6m0004xidwx81m3dwi",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3333",
+											"path": [
+												"user",
+												"email",
+												"clmtrlf6m0004xidwx81m3dwi"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "User Phone",
+							"item": [
+								{
+									"name": "Create User Phone",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"user\": {\r\n        \"id\": \"idAdmin000\"\r\n    },\r\n    \"phone\": {\r\n        \"phone\": \"1239189853\",\r\n        \"userPhoneTypeId\": \"others\",\r\n        \"active\": true,\r\n        \"createAt\": \"2023-09-19T22:23:45.345Z\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3333/user/phone",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3333",
+											"path": [
+												"user",
+												"phone"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update User Phone",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"userId\": \"idSupport003\",\r\n    \"newPhone\": \"1234567890\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3333/user/phone/clms8i93f000gxiijab729muk",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3333",
+											"path": [
+												"user",
+												"phone",
+												"clms8i93f000gxiijab729muk"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete User Phone",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3333/user/phone/clmtrlfcb0008xidww7siseek",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3333",
+											"path": [
+												"user",
+												"phone",
+												"clmtrlfcb0008xidww7siseek"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Login",
+							"item": [
+								{
+									"name": "User Login",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"usr\": \"usrCiclanoComSenha\",\r\n    \"psw\": \"SenhaDoCiclano\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3333/login",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3333",
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3333/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ciclano\",\r\n    \"usr\": \"usrCiclanoComSenha\",\r\n    \"psw\": \"SenhaDoCiclano\",\r\n    \"emails\": [\r\n        {\r\n            \"email\": \"endereco@email.com\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userEmailTypeId\": \"others\",\r\n            \"active\": true\r\n        },\r\n        {\r\n            \"email\": \"endereco2@email.com\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userEmailTypeId\": \"others\",\r\n            \"active\": true\r\n        }\r\n    ],\r\n    \"phones\": [\r\n        {\r\n            \"phone\": \"12489156131\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userPhoneTypeId\": \"others\",\r\n            \"active\": true\r\n        },\r\n        {\r\n            \"phone\": \"1248915613123465\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userPhoneTypeId\": \"others\",\r\n            \"active\": true\r\n        }\r\n    ],\r\n    \"userTypeId\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3333/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User by Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3333/user/idAdmin000",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"user",
+										"idAdmin000"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User by Id Collection",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3333/user/collection/idProprietario01",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"user",
+										"collection",
+										"idProprietario01"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User by Id System Menu Module",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3333/user/system-menu-module/idProprietario01",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"user",
+										"system-menu-module",
+										"idProprietario01"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Fulano Alterado\",\r\n    \"emails\": [\r\n        { \"email\": \"fulano-alterado@example.com\" },\r\n        { \"email\": \"fulano-alterado@gmail.com\" }\r\n  ],\r\n  \"userTypeId\": \"owner\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3333/user/idAdmin000",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"user",
+										"idAdmin000"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3333/user/idSupport003",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"user",
+										"idSupport003"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
