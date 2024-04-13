@@ -4,16 +4,11 @@ import { createUserEmail } from './createUserEmail';
 import { createUserPhone } from './createUserPhone';
 
 import { FastifyRequest } from 'fastify';
-const bcrypt = require('bcryptjs');
 
-export async function _createUser(request: FastifyRequest) {
-  let user;
-  const { userTypeId, name, usr, psw, emails, phones } = request.body as UserPayload;
-  
-  const _psw = await bcrypt.hash(psw, 10);
-    
+export async function _createUser(request: FastifyRequest, _psw: string) {
+  const { userTypeId, name, usr, emails, phones } = request.body as UserPayload;
   try {
-    user = await prisma.users.create({
+    let user = await prisma.users.create({
       data: {
         userTypeId,
         name,
@@ -29,6 +24,8 @@ export async function _createUser(request: FastifyRequest) {
     if (phones != undefined) for (const phone of phones) {
       await createUserPhone(phone, user);
     }
+    
+    return user;
 
   } catch (error) {
     throw error;
@@ -36,5 +33,4 @@ export async function _createUser(request: FastifyRequest) {
     await prisma.$disconnect();
   }
   
-  return user;
 }

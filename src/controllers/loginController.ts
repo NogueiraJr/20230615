@@ -1,19 +1,22 @@
-// import { generateAccessToken } from '../utils/jwt';
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { getUserByLogin } from "../services/user/getUserByLogin";
 import { UserPayload } from '../repository/interface/UserPayload';
+import { errorHandler } from '../errors/errorHandler';
 
 const bcrypt = require('bcryptjs');
 
 export const getUserLoginHandler = async (request: FastifyRequest, reply: FastifyReply) => {
-  const { psw } = request.body as UserPayload;
-  const user = await getUserByLogin(request);
+  try {
+    const { psw } = request.body as UserPayload;
+    const user = await getUserByLogin(request);
 
-  if (!user) return reply.status(400).send({ message: 'Usuário não encontrado' });
+    if (user.id == undefined) return reply.status(400).send({ message: 'Usuário não encontrado' });
 
-  const validPassword = await bcrypt.compare(user.psw, psw);
-  if (!validPassword) return reply.status(400).send({ message: 'Credenciais inválidas' });
+    const validPassword = await bcrypt.compare(psw, user.psw);
+    if (!validPassword) return reply.status(400).send({ message: 'Credenciais inválidas' });
 
-//   const accessToken = generateAccessToken({ id: user.id, usr: user.usr });
-  reply.status(201).send(user);
+    reply.status(200).send(user);
+  } catch (error) {
+    errorHandler(error as Error, reply);
+  }
 };
