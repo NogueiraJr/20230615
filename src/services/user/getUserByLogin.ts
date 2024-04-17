@@ -5,7 +5,7 @@ import { _getUserByLogin } from "../../repository/user/getUserByLogin";
 export async function getUserByLogin(request: FastifyRequest, reply: FastifyReply) {
   try {
     const user = await _getUserByLogin(request);
-    if (user?.id == undefined) return reply.status(400).send({ message: 'Usuário não encontrado' });    
+    if (user?.id == undefined) return reply.status(400).send({ message: 'Usuário não encontrado' });
     
     const bcrypt = require('bcryptjs');
     const { psw } = request.body as UserPayload;

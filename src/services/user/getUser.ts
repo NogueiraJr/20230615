@@ -1,8 +1,9 @@
 import { _getUser } from "../../repository/user/getUser";
 
-export async function getUser(id: string) {
+export async function getUser(id: string, reply: any) {
   try {
     const user = await _getUser(id);
+    if (!user) return reply.status(404).send({ message: 'Usuário não encontrado' });
     const userSummary = {
       name: user?.name,
       usr: user?.usr,

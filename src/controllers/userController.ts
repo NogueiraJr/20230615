@@ -44,11 +44,7 @@ export const getUsersHandler = async (request: FastifyRequest, reply: FastifyRep
 export const getUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   const { id } = request.params;
   try {
-    const user = await getUser(id);
-    if (!user) {
-      errorHandler('Usuário não encontrado.', reply, 404);
-      return;
-    }
+    const user = await getUser(id, reply);
     reply.send(user);
   } catch (error) {
     errorHandler(error as Error, reply);
@@ -58,11 +54,7 @@ export const getUserHandler = async (request: FastifyRequest<{ Params: { id: str
 export const getUserCollectionHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   const { id } = request.params;
   try {
-    const users = await getUserCollection(id);
-    if (!users) {
-      errorHandler('Usuário não encontrado.', reply, 404);
-      return;
-    }
+    const users = await getUserCollection(id, reply);
     reply.send(users);
   } catch (error) {
     errorHandler(error as Error, reply);
@@ -72,11 +64,7 @@ export const getUserCollectionHandler = async (request: FastifyRequest<{ Params:
 export const getUserSystemMenuModuleHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
   const { id } = request.params;
   try {
-    const users = await getUserSystemMenuModule(id);
-    if (!users) {
-      errorHandler('Usuário não encontrado.', reply, 404);
-      return;
-    }
+    const users = await getUserSystemMenuModule(id, reply);
     reply.send(users);
   } catch (error) {
     errorHandler(error as Error, reply);
@@ -96,8 +84,7 @@ export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: 
 
 export const deleteUserHandler = async (
   request: FastifyRequest<{ Params: { id: string } }>,
-  reply: FastifyReply
-) => {
+  reply: FastifyReply) => {
   const { id } = request.params;
   let user: Users | null = null;
   try {

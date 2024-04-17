@@ -1,9 +1,10 @@
 import { _getUser } from "../../repository/user/getUser";
 import { _getUserCollection } from "../../repository/user/getUserCollection";
 
-export async function getUserSystemMenuModule(id: string) {
+export async function getUserSystemMenuModule(id: string, reply: any) {
   try {
     const user = await _getUser(id);
+    if (!user) return reply.status(404).send({ message: 'Usuário não encontrado' });
 
     // Extrair informações do sistema fora do mapeamento
     const systemInfo = user?.userSystemMenuModule.map(userSystemMenuModule => {
