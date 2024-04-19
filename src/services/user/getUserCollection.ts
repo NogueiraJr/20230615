@@ -1,15 +1,11 @@
 import { _getUser } from "../../repository/user/getUser";
 import { _getUserCollection } from "../../repository/user/getUserCollection";
 
-export async function getUserCollection(id: string) {
+export async function getUserCollection(id: string, reply: any) {
   try {
     const collectionUsers = await _getUserCollection(id);
-
+    if (!collectionUsers[0]) return reply.status(404).send({ message: 'Usuário principal não encontrado' });
     const mainUser = collectionUsers.find((user: any) => user.id === id);
-
-    if (!mainUser) {
-      throw new Error('Usuário principal não encontrado.');
-    }
 
     function mapCollectionUsers(user: any): any[] {
       const subUsers = collectionUsers.filter((subUser: any) => subUser.userId === user.id);
