@@ -52,6 +52,7 @@ CREATE TABLE "UserSystemMenuModule" (
     "systemMenuModuleId" TEXT NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "UserSystemMenuModule_pkey" PRIMARY KEY ("id")
 );
@@ -65,6 +66,7 @@ CREATE TABLE "UserTags" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "UserTags_pkey" PRIMARY KEY ("id")
 );
@@ -80,6 +82,7 @@ CREATE TABLE "Users" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
     "userId" TEXT,
 
     CONSTRAINT "Users_pkey" PRIMARY KEY ("id")
@@ -93,6 +96,7 @@ CREATE TABLE "UserTypes" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "UserTypes_pkey" PRIMARY KEY ("id")
 );
@@ -107,6 +111,7 @@ CREATE TABLE "UserEmails" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "UserEmails_pkey" PRIMARY KEY ("id")
 );
@@ -119,6 +124,7 @@ CREATE TABLE "UserEmailTypes" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "UserEmailTypes_pkey" PRIMARY KEY ("id")
 );
@@ -133,6 +139,7 @@ CREATE TABLE "UserPhones" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "UserPhones_pkey" PRIMARY KEY ("id")
 );
@@ -145,6 +152,7 @@ CREATE TABLE "UserPhoneTypes" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "UserPhoneTypes_pkey" PRIMARY KEY ("id")
 );
@@ -157,6 +165,7 @@ CREATE TABLE "Clients" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "Clients_pkey" PRIMARY KEY ("id")
 );
@@ -178,6 +187,7 @@ CREATE TABLE "Suppliers" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "Suppliers_pkey" PRIMARY KEY ("id")
 );
@@ -199,6 +209,7 @@ CREATE TABLE "Partners" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "Partners_pkey" PRIMARY KEY ("id")
 );
@@ -223,6 +234,7 @@ CREATE TABLE "Products" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
     "user_id" TEXT NOT NULL,
     "system_id" TEXT NOT NULL,
 
@@ -237,6 +249,7 @@ CREATE TABLE "ProductTypes" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "ProductTypes_pkey" PRIMARY KEY ("id")
 );
@@ -254,6 +267,7 @@ CREATE TABLE "UserOperations" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "UserOperations_pkey" PRIMARY KEY ("id")
 );
@@ -274,6 +288,7 @@ CREATE TABLE "UserActions" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "UserActions_pkey" PRIMARY KEY ("id")
 );
@@ -302,6 +317,7 @@ CREATE TABLE "UserActionProducts" (
     "active" BOOLEAN NOT NULL DEFAULT true,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "UserActionProducts_pkey" PRIMARY KEY ("id")
 );
