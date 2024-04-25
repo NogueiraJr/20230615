@@ -3,15 +3,6 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 
 export const prisma = new PrismaClient();
 
-interface UserPayload {
-  userTypeId: string;
-  name: string;
-  usr: string;
-  psw: string;
-  emails: any[];
-  phones: any[];
-}
-
 import { Users } from '@prisma/client';
 import { getUsers } from '../services/user/getUsers';
 import { getUser } from '../services/user/getUser';
@@ -22,6 +13,7 @@ import { deleteUser } from '../repository/user/deleteUser';
 import { errorHandler } from '../errors/errorHandler';
 import { getUserCollection } from '../services/user/getUserCollection';
 import { getUserSystemMenuModule } from '../services/user/getUserSystemMenuModule';
+import { UserPayload } from '../repository/interface/UserPayload';
 
 export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {

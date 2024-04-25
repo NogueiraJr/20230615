@@ -6,23 +6,15 @@ import { UserPhones } from '@prisma/client';
 
 export const prisma = new PrismaClient();
 
-interface UserPayload {
-  id: any;
-  user: any;
-  phone: any;
-  userId: any;
-  phoneId: any;
-  newPhone: any;
-}
-
 import { createUserPhone } from '../repository/user/createUserPhone';
 import { updateUserPhone } from '../repository/user/updateUserPhone';
 import { deleteUserPhone } from '../repository/user/deleteUserPhone';
+import { UserPayload } from '../repository/interface/UserPayload';
 
 export const createUserPhoneHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    const { phone, user } = request.body as UserPayload; 
-    const ret = await createUserPhone(phone, user);
+    const { phones, users } = request.body as UserPayload; 
+    const ret = await createUserPhone(phones, users);
     reply.send(ret);
   } catch (error) {
     errorHandler(error as Error, reply);
