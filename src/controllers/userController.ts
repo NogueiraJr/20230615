@@ -8,7 +8,7 @@ import { getUsers } from '../services/user/getUsers';
 import { getUser } from '../services/user/getUser';
 import { createUser } from '../services/user/createUser';
 import { updateUser } from '../repository/user/updateUser';
-import { deleteUser } from '../repository/user/deleteUser';
+import { deleteUser } from '../services/user/deleteUser';
 
 import { errorHandler } from '../errors/errorHandler';
 import { getUserCollection } from '../services/user/getUserCollection';
@@ -78,9 +78,8 @@ export const deleteUserHandler = async (
   request: FastifyRequest<{ Params: { id: string } }>,
   reply: FastifyReply) => {
   const { id } = request.params;
-  let user: Users | null = null;
   try {
-    user = await deleteUser(user, id, reply);
+    let user = await deleteUser(id, reply);
     reply.send(user);
   } catch (error) {
     errorHandler(error as Error, reply);
