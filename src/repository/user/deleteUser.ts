@@ -1,8 +1,9 @@
 import { Users } from '@prisma/client';
 import { prisma } from '../../controllers/userController';
 
-export async function deleteUser(user: Users | null, id: string, reply: any) {
+export async function _deleteUser(id: string) {
   try {
+    let user: any;
     await prisma.$transaction(async (tx) => {
       // Primeiro, obtenha o usuário a ser excluído e seus registros relacionados
       user = await tx.users.findUnique({
@@ -16,8 +17,8 @@ export async function deleteUser(user: Users | null, id: string, reply: any) {
       });
   
       if (!user) {
-        reply.status(404).send({ error: 'Usuário não encontrado.' });
-        return;
+        // reply.status(404).send({ error: 'Usuário não encontrado.' });
+        return user;
       }
   
       // Exclua os registros em UserSystemMenuModule que fazem referência ao usuário
