@@ -1,16 +1,16 @@
 import { prisma } from '../../controllers/userController';
 
-export async function updateUser(id: string, userTypeId: string, name: string, usr: string, psw: string) {
+export async function _updateUser(id: string, userTypeId: string, name: string, usr: string, psw: string) {
   try {
     return await prisma.users.update({
         where: { id },
         data: { userTypeId, name, usr, psw },
-        // include: {
+        include: {
         //   emails: true,
         //   phones: true,
         //   userSystemMenuModule: true,
-        //   userType: true,
-        // },
+          userType: true,
+        },
       });
   } catch (error) {
     throw error;

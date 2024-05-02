@@ -7,7 +7,7 @@ import { Users } from '@prisma/client';
 import { getUsers } from '../services/user/getUsers';
 import { getUser } from '../services/user/getUser';
 import { createUser } from '../services/user/createUser';
-import { updateUser } from '../repository/user/updateUser';
+import { updateUser } from '../services/user/updateUser';
 import { deleteUser } from '../services/user/deleteUser';
 
 import { errorHandler } from '../errors/errorHandler';
@@ -63,11 +63,13 @@ export const getUserSystemMenuModuleHandler = async (request: FastifyRequest<{ P
   }
 };
 
-export const updateUserHandler = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+export const updateUserHandler = async (
+  request: FastifyRequest<{ Params: { id: string } }>, 
+  reply: FastifyReply) => {
   const { id } = request.params;
   const { userTypeId, name, usr, psw } = request.body as UserPayload;
   try {
-    const user = await updateUser(id, userTypeId, name, usr, psw);
+    const user = await updateUser(id, userTypeId, name, usr, psw, reply);
     reply.send(user);
   } catch (error) {
     errorHandler(error as Error, reply);
