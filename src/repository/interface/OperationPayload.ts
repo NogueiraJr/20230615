@@ -5,7 +5,7 @@ export interface OperationPayload {
   notes: string;
   priceActions: Decimal;
   priceCharged: Decimal;
-  user_id: string;
+  userId: string;
   system_id: string;
   tags: string;
 }

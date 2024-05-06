@@ -89,14 +89,14 @@ datasource db {
     id          String      @id @default(cuid())
     tag         String
     description String
-    user_id     String      @map("user_id")
+    userId     String      @map("userId")
     
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
     deletedAt   DateTime?
 
-    users       Users       @relation(fields: [user_id], references: [id])
+    users       Users       @relation(fields: [userId], references: [id])
 
   }
 
@@ -215,15 +215,15 @@ datasource db {
 
   model UserClients {
     id          String      @id @default(cuid())
-    user_id     String      @map("user_id")
+    userId     String      @map("userId")
     client_id   String      @map("client_id")
     
-    user        Users       @relation(fields: [user_id], references: [id])
+    user        Users       @relation(fields: [userId], references: [id])
     client      Clients     @relation(fields: [client_id], references: [id])
 
     UserActions  UserActions[]
 
-    @@unique([user_id, client_id])
+    @@unique([userId, client_id])
 
   }
 
@@ -243,13 +243,13 @@ datasource db {
 
   model UserSuppliers {
     id           String      @id @default(cuid())
-    user_id      String      @map("user_id")
+    userId       String      @map("userId")
     supplier_id  String      @map("supplier_id")
     
-    user        Users        @relation(fields: [user_id], references: [id])
+    user        Users        @relation(fields: [userId], references: [id])
     supplier    Suppliers    @relation(fields: [supplier_id], references: [id])
 
-    @@unique([user_id, supplier_id])
+    @@unique([userId, supplier_id])
 
   }
 // P A R T N E R 
@@ -268,13 +268,13 @@ datasource db {
 
   model UserPartners {
     id           String      @id @default(cuid())
-    user_id      String      @map("user_id")
+    userId      String      @map("userId")
     partner_id  String      @map("partner_id")
     
-    user        Users        @relation(fields: [user_id], references: [id])
+    user        Users        @relation(fields: [userId], references: [id])
     partner    Partners    @relation(fields: [partner_id], references: [id])
 
-    @@unique([user_id, partner_id])
+    @@unique([userId, partner_id])
 
   }
 // P R O D U C T S
@@ -292,10 +292,10 @@ datasource db {
     updatedAt           DateTime     @updatedAt
     deletedAt           DateTime?
     
-    user_id             String       @map("user_id")
+    userId             String       @map("userId")
     system_id           String       @map("system_id")
 
-    user                Users        @relation(fields: [user_id], references: [id])
+    user                Users        @relation(fields: [userId], references: [id])
     system              Systems      @relation(fields: [system_id], references: [id])
 
     productType         ProductTypes @relation(fields: [productType_id], references: [id])
@@ -324,10 +324,10 @@ datasource db {
     priceActions Decimal?
     priceCharged Decimal?
 
-    user_id      String      @map("user_id")
+    userId       String      @map("userId")
     system_id    String      @map("system_id")
     
-    user         Users       @relation(fields: [user_id], references: [id])
+    user         Users       @relation(fields: [userId], references: [id])
     system       Systems     @relation(fields: [system_id], references: [id])
 
     tags         String?
@@ -338,7 +338,7 @@ datasource db {
 
     userActions  UserActions[]
 
-    @@unique([id, user_id, system_id])
+    @@unique([id, userId, system_id])
 
   }
   

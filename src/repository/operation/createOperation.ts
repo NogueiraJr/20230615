@@ -4,7 +4,7 @@ import { OperationPayload } from '../interface/OperationPayload';
 import { FastifyRequest } from 'fastify';
 
 export async function _createOperation(request: FastifyRequest) {
-  const { description, notes, priceActions, priceCharged, user_id, system_id, tags } = request.body as OperationPayload;
+  const { description, notes, priceActions, priceCharged, userId, system_id, tags } = request.body as OperationPayload;
   try {
     let userOperation = await prisma.userOperations.create({
       data: {
@@ -12,7 +12,7 @@ export async function _createOperation(request: FastifyRequest) {
         notes,
         priceActions,
         priceCharged,
-        user_id,
+        userId,
         system_id,
         tags
       },

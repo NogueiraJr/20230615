@@ -9,7 +9,7 @@ async function main() {
   
   // Obtendo os IDs do Cliente do Usuário
   const cli01 = await prisma.clients.findFirst({ where: { id: 'Cliente 01', }, });
-  const userCli01 = await prisma.userClients.findFirst({ where: { user_id: cli01?.id, }, });
+  const userCli01 = await prisma.userClients.findFirst({ where: { userId: cli01?.id, }, });
   
   // L O C A Ç Õ E S   D E   R O U P A S
   // Obtendo os IDs das Ações das Operações
