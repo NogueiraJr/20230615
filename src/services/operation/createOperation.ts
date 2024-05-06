@@ -9,7 +9,7 @@ export async function createOperation(request: FastifyRequest) {
       notes: operation?.notes,
       priceActions: operation?.priceActions,
       priceCharged: operation?.priceCharged,
-      user_id: operation?.user_id,
+      userId: operation?.userId,
       system_id: operation?.system_id,
       tags: operation?.tags
     };
