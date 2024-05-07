@@ -13,11 +13,11 @@ async function main() {
   
   // L O C A Ç Õ E S   D E   R O U P A S
   // Obtendo os IDs das Ações das Operações
-  const act01 = await prisma.actions.findFirst({ where: { action: 'reservar', system_id: userOper01?.system_id, }, });
-  const act02 = await prisma.actions.findFirst({ where: { action: 'retirar',  system_id: userOper01?.system_id, }, });
-  const act03 = await prisma.actions.findFirst({ where: { action: 'devolver', system_id: userOper01?.system_id, }, });
-  // const act04 = await prisma.actions.findFirst({ where: { action: 'levar',    system_id: userOper01?.system_id, }, });
-  // const act05 = await prisma.actions.findFirst({ where: { action: 'buscar',   system_id: userOper01?.system_id, }, });
+  const act01 = await prisma.actions.findFirst({ where: { action: 'reservar', systemId: userOper01?.systemId, }, });
+  const act02 = await prisma.actions.findFirst({ where: { action: 'retirar',  systemId: userOper01?.systemId, }, });
+  const act03 = await prisma.actions.findFirst({ where: { action: 'devolver', systemId: userOper01?.systemId, }, });
+  // const act04 = await prisma.actions.findFirst({ where: { action: 'levar',    systemId: userOper01?.systemId, }, });
+  // const act05 = await prisma.actions.findFirst({ where: { action: 'buscar',   systemId: userOper01?.systemId, }, });
   
   // Criando os relacionamentos
   const reservar = new Date(new Date().setDate(new Date().getDate() - 10));

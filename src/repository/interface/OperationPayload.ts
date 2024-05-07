@@ -6,6 +6,6 @@ export interface OperationPayload {
   priceActions: Decimal;
   priceCharged: Decimal;
   userId: string;
-  system_id: string;
+  systemId: string;
   tags: string;
 }

@@ -216,14 +216,14 @@ datasource db {
   model UserClients {
     id          String      @id @default(cuid())
     userId     String      @map("userId")
-    client_id   String      @map("client_id")
+    clientId   String      @map("clientId")
     
     user        Users       @relation(fields: [userId], references: [id])
-    client      Clients     @relation(fields: [client_id], references: [id])
+    client      Clients     @relation(fields: [clientId], references: [id])
 
     UserActions  UserActions[]
 
-    @@unique([userId, client_id])
+    @@unique([userId, clientId])
 
   }
 
@@ -244,12 +244,12 @@ datasource db {
   model UserSuppliers {
     id           String      @id @default(cuid())
     userId       String      @map("userId")
-    supplier_id  String      @map("supplier_id")
+    supplierId  String      @map("supplierId")
     
     user        Users        @relation(fields: [userId], references: [id])
-    supplier    Suppliers    @relation(fields: [supplier_id], references: [id])
+    supplier    Suppliers    @relation(fields: [supplierId], references: [id])
 
-    @@unique([userId, supplier_id])
+    @@unique([userId, supplierId])
 
   }
 // P A R T N E R 
@@ -269,12 +269,12 @@ datasource db {
   model UserPartners {
     id           String      @id @default(cuid())
     userId      String      @map("userId")
-    partner_id  String      @map("partner_id")
+    partnerId  String      @map("partnerId")
     
     user        Users        @relation(fields: [userId], references: [id])
-    partner    Partners    @relation(fields: [partner_id], references: [id])
+    partner    Partners    @relation(fields: [partnerId], references: [id])
 
-    @@unique([userId, partner_id])
+    @@unique([userId, partnerId])
 
   }
 // P R O D U C T S
@@ -282,7 +282,7 @@ datasource db {
     id                  String       @id @default(cuid())
     name                String
     description         String?
-    productType_id      String
+    productTypeId      String
 
     price               Decimal?     @default(0.00)
 
@@ -293,12 +293,12 @@ datasource db {
     deletedAt           DateTime?
     
     userId             String       @map("userId")
-    system_id           String       @map("system_id")
+    systemId           String       @map("systemId")
 
     user                Users        @relation(fields: [userId], references: [id])
-    system              Systems      @relation(fields: [system_id], references: [id])
+    system              Systems      @relation(fields: [systemId], references: [id])
 
-    productType         ProductTypes @relation(fields: [productType_id], references: [id])
+    productType         ProductTypes @relation(fields: [productTypeId], references: [id])
 
     UserActionProducts  UserActionProducts[]
   }
@@ -325,10 +325,10 @@ datasource db {
     priceCharged Decimal?
 
     userId       String      @map("userId")
-    system_id    String      @map("system_id")
+    systemId    String      @map("systemId")
     
     user         Users       @relation(fields: [userId], references: [id])
-    system       Systems     @relation(fields: [system_id], references: [id])
+    system       Systems     @relation(fields: [systemId], references: [id])
 
     tags         String?
     active       Boolean     @default(true)
@@ -338,15 +338,15 @@ datasource db {
 
     userActions  UserActions[]
 
-    @@unique([id, userId, system_id])
+    @@unique([id, userId, systemId])
 
   }
   
   model UserActions {
     id                 String      @id @default(cuid())
-    userOperation_id   String      @map("userOperation_id")
-    userClient_id      String      @map("userClient_id")
-    action_id          String      @map("action_id")
+    userOperationId   String      @map("userOperationId")
+    userClientId      String      @map("userClientId")
+    actionId          String      @map("actionId")
 
     description        String
     notes              String?
@@ -363,9 +363,9 @@ datasource db {
     updatedAt          DateTime    @updatedAt
     deletedAt          DateTime?
 
-    userOperations     UserOperations @relation(fields: [userOperation_id], references: [id])
-    userClient         UserClients @relation(fields: [userClient_id], references: [id])
-    actions            Actions @relation(fields: [action_id], references: [id])
+    userOperations     UserOperations @relation(fields: [userOperationId], references: [id])
+    userClient         UserClients @relation(fields: [userClientId], references: [id])
+    actions            Actions @relation(fields: [actionId], references: [id])
 
     userActionProducts UserActionProducts[]
 
@@ -374,7 +374,7 @@ datasource db {
   model Actions {
     id           String    @id @default(cuid())
     action       String
-    system_id    String    @map("system_id")
+    systemId    String    @map("systemId")
     
     seq          String
     name         String
@@ -382,18 +382,18 @@ datasource db {
 
     active       Boolean   @default(true)
 
-    system       Systems   @relation(fields: [system_id], references: [id])
+    system       Systems   @relation(fields: [systemId], references: [id])
         
     userActions   UserActions[]
 
-    @@unique([id, system_id])
+    @@unique([id, systemId])
 
   } 
 
   model UserActionProducts {
     id             String    @id @default(cuid())
-    product_id     String
-    userAction_id  String
+    productId     String
+    userActionId  String
 
     seq            String
     description    String
@@ -404,6 +404,6 @@ datasource db {
     updatedAt      DateTime  @updatedAt
     deletedAt      DateTime?
 
-    product        Products     @relation(fields: [product_id], references: [id])
-    userAction     UserActions  @relation(fields: [userAction_id], references: [id])
+    product        Products     @relation(fields: [productId], references: [id])
+    userAction     UserActions  @relation(fields: [userActionId], references: [id])
   }
