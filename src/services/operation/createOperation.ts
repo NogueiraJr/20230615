@@ -10,7 +10,7 @@ export async function createOperation(request: FastifyRequest) {
       priceActions: operation?.priceActions,
       priceCharged: operation?.priceCharged,
       userId: operation?.userId,
-      system_id: operation?.system_id,
+      systemId: operation?.systemId,
       tags: operation?.tags
     };
 
