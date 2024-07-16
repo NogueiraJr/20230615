@@ -51,7 +51,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"userId\": \"idSupport003\",\r\n    \"newEmail\": \"fulano5-alterado@example.com\"\r\n}",
+											"raw": "{\r\n    \"userId\": \"idSupport002\",\r\n    \"newEmail\": \"fulano5-alterado@example.com\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -89,7 +89,7 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:3333/user/email/clmtrlf6m0004xidwx81m3dwi",
+											"raw": "http://localhost:3333/user/email/clvd3nz7i0002fmukua81j2bp",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -98,7 +98,7 @@
 											"path": [
 												"user",
 												"email",
-												"clmtrlf6m0004xidwx81m3dwi"
+												"clvd3nz7i0002fmukua81j2bp"
 											]
 										}
 									},
@@ -116,7 +116,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"user\": {\r\n        \"id\": \"idAdmin000\"\r\n    },\r\n    \"phone\": {\r\n        \"phone\": \"1239189853\",\r\n        \"userPhoneTypeId\": \"others\",\r\n        \"active\": true,\r\n        \"createAt\": \"2023-09-19T22:23:45.345Z\"\r\n    }\r\n}",
+											"raw": "{\r\n    \"users\": {\r\n        \"id\": \"idAdmin000\"\r\n    },\r\n    \"phones\": {\r\n        \"phone\": \"1239189853\",\r\n        \"userPhoneTypeId\": \"others\",\r\n        \"active\": true,\r\n        \"createAt\": \"2023-09-19T22:23:45.345Z\"\r\n    }\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -145,7 +145,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"userId\": \"idSupport003\",\r\n    \"newPhone\": \"1234567890\"\r\n}",
+											"raw": "{\r\n    \"userId\": \"idSupport002\",\r\n    \"newPhone\": \"1234567890\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -183,7 +183,7 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:3333/user/phone/clmtrlfcb0008xidww7siseek",
+											"raw": "http://localhost:3333/user/phone/clvfmghds0009q2qa5bvbz7u7",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -192,7 +192,7 @@
 											"path": [
 												"user",
 												"phone",
-												"clmtrlfcb0008xidww7siseek"
+												"clvfmghds0009q2qa5bvbz7u7"
 											]
 										}
 									},
@@ -210,7 +210,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"usr\": \"usrCiclanoComSenha\",\r\n    \"psw\": \"SenhaDoCiclano\"\r\n}",
+											"raw": "{\r\n    \"usr\": \"usrCiclanoComSenha2\",\r\n    \"psw\": \"SenhaDoCiclano2\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -259,7 +259,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Ciclano\",\r\n    \"usr\": \"usrCiclanoComSenha\",\r\n    \"psw\": \"SenhaDoCiclano\",\r\n    \"emails\": [\r\n        {\r\n            \"email\": \"endereco@email.com\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userEmailTypeId\": \"others\",\r\n            \"active\": true\r\n        },\r\n        {\r\n            \"email\": \"endereco2@email.com\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userEmailTypeId\": \"others\",\r\n            \"active\": true\r\n        }\r\n    ],\r\n    \"phones\": [\r\n        {\r\n            \"phone\": \"12489156131\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userPhoneTypeId\": \"others\",\r\n            \"active\": true\r\n        },\r\n        {\r\n            \"phone\": \"1248915613123465\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userPhoneTypeId\": \"others\",\r\n            \"active\": true\r\n        }\r\n    ],\r\n    \"userTypeId\": \"admin\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Ciclano\",\r\n    \"usr\": \"usrCiclanoComSenha3\",\r\n    \"psw\": \"SenhaDoCiclano3\",\r\n    \"emails\": [\r\n        {\r\n            \"email\": \"endereco@email.com\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userEmailTypeId\": \"others\",\r\n            \"active\": true\r\n        },\r\n        {\r\n            \"email\": \"endereco2@email.com\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userEmailTypeId\": \"others\",\r\n            \"active\": true\r\n        }\r\n    ],\r\n    \"phones\": [\r\n        {\r\n            \"phone\": \"12489156131\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userPhoneTypeId\": \"others\",\r\n            \"active\": true\r\n        },\r\n        {\r\n            \"phone\": \"1248915613123465\",\r\n            \"userId\": \"idAdmin000\",\r\n            \"userPhoneTypeId\": \"others\",\r\n            \"active\": true\r\n        }\r\n    ],\r\n    \"userTypeId\": \"admin\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -357,7 +357,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3333/user/idAdmin000",
+									"raw": "http://localhost:3333/user/clvd3nzbw001kfmuk8r14kmlb",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -365,7 +365,7 @@
 									"port": "3333",
 									"path": [
 										"user",
-										"idAdmin000"
+										"clvd3nzbw001kfmuk8r14kmlb"
 									]
 								}
 							},
@@ -386,7 +386,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3333/user/idSupport003",
+									"raw": "http://localhost:3333/user/clvd3nzbk001efmuky51ej8uh",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -394,7 +394,52 @@
 									"port": "3333",
 									"path": [
 										"user",
-										"idSupport003"
+										"clvd3nzbk001efmuky51ej8uh"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Operation",
+					"item": [
+						{
+							"name": "Create Operation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"operationId\", JSON.parse(responseBody).id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Casamento do Beltrano\",\r\n    \"notes\": \"Descrição do Casamento do Beltrano\",\r\n    \"priceActions\": \"660.15\",\r\n    \"priceCharged\": \"600.25\",\r\n    \"userId\": \"idProprietario03\",\r\n    \"systemId\": \"sysLocacaoRoupa\",\r\n    \"tags\": \"casamento|festa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3333/operation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"operation"
 									]
 								}
 							},
