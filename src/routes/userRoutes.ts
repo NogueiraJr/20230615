@@ -4,6 +4,7 @@ import { getUsersHandler, getUserHandler, createUserHandler, updateUserHandler, 
 import { createUserEmailHandler, updateUserEmailHandler, deleteUserEmailHandler } from '../controllers/userEmailController';
 import { createUserPhoneHandler, updateUserPhoneHandler, deleteUserPhoneHandler } from '../controllers/userPhoneController';
 import { createOperationHandler } from '../controllers/operationController';
+import { createActionHandler } from '../controllers/actionController';
 
 const userRoutes = (router: FastifyInstance) => {
   router.post('/login', getUserLoginHandler);
@@ -27,6 +28,7 @@ const userRoutes = (router: FastifyInstance) => {
   router.delete('/user/phone/:id', deleteUserPhoneHandler);
 
   router.post('/operation', createOperationHandler);
+  router.post('/action', createActionHandler);
 };
 
 export default userRoutes;
