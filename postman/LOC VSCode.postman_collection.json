@@ -412,7 +412,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.environment.set(\"operationId\", JSON.parse(responseBody).id);"
+											"pm.environment.set(\"userOperationId\", JSON.parse(responseBody).id);"
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -440,6 +440,51 @@
 									"port": "3333",
 									"path": [
 										"operation"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Action",
+					"item": [
+						{
+							"name": "Create Action",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"userActionId\", JSON.parse(responseBody).id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userOperationId\": \"{{userOperationId}}\",\r\n    \"userClientId\": \"clynh1s0100002rpudkmvfjl0\",\r\n    \"actionId\": \"sysLocacaoRoupa_reservar\",\r\n    \"description\": \"Reservando uma Roupa\",\r\n    \"notes\": \"Anotações sobre a reserva da Roupa\",\r\n    \"scheduledAt\": \"2024-07-15T21:03:01Z\",\r\n    \"executedAt\": \"2024-07-15T21:03:01Z\",\r\n    \"finishedAt\": \"2024-07-15T21:03:01Z\",\r\n    \"priceProducts\": \"450.90\",\r\n    \"tags\": \"casamento\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3333/action",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"action"
 									]
 								}
 							},
