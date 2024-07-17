@@ -491,6 +491,51 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "ActionProduct",
+					"item": [
+						{
+							"name": "Create Action Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"actionProductId\", JSON.parse(responseBody).id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productId\": \"clynh20hp0001cz1rjomxz50l\",\r\n    \"userActionId\": \"{{userActionId}}\",\r\n    \"seq\": \"001\",\r\n    \"description\": \"Reservando o Vestido de Festa\",\r\n    \"tags\": \"casamento|festa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3333/actionProduct",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"actionProduct"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
