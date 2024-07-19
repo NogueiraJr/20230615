@@ -106,7 +106,7 @@ emails: { create: [
 ];
 
 const usersData_employee = [
-  { /*id: "",*/ name: 'Funcionário 01', usr: 'usuario', psw: 'senha',
+  { id: "idEmployee01", name: 'Funcionário 01', usr: 'usuario', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'work' }
     ] },
@@ -115,7 +115,7 @@ const usersData_employee = [
     ] },
     user: { connect: { id: usersData_manager[0].id } }
   },
-  { /*id: "",*/ name: 'Funcionário 02', usr: 'usuario', psw: 'senha',
+  { id: "idEmployee02", name: 'Funcionário 02', usr: 'usuario', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'personal' }
     ] },
@@ -125,7 +125,7 @@ const usersData_employee = [
     ] },
     user: { connect: { id: usersData_manager[0].id } }
   },
-  { /*id: "",*/ name: 'Funcionário 03', usr: 'usuario', psw: 'senha',
+  { id: "idEmployee03", name: 'Funcionário 03', usr: 'usuario', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'others' }
     ] },
