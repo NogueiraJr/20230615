@@ -4,15 +4,15 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 export const prisma = new PrismaClient();
 
 import { Users } from '@prisma/client';
-import { getUsers } from '../services/user/getUsers';
-import { getUser } from '../services/user/getUser';
-import { createUser } from '../services/user/createUser';
-import { updateUser } from '../services/user/updateUser';
-import { deleteUser } from '../services/user/deleteUser';
+import { getUsers } from '../business/user/getUsers';
+import { getUser } from '../business/user/getUser';
+import { createUser } from '../business/user/createUser';
+import { updateUser } from '../business/user/updateUser';
+import { deleteUser } from '../business/user/deleteUser';
 
 import { errorHandler } from '../errors/errorHandler';
-import { getUserCollection } from '../services/user/getUserCollection';
-import { getUserSystemMenuModule } from '../services/user/getUserSystemMenuModule';
+import { getUserCollection } from '../business/user/getUserCollection';
+import { getUserSystemMenuModule } from '../business/user/getUserSystemMenuModule';
 import { UserPayload } from '../repository/interface/UserPayload';
 
 export const createUserHandler = async (request: FastifyRequest, reply: FastifyReply) => {

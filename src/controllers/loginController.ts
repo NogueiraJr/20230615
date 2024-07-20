@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { getUserByLogin } from "../services/user/getUserByLogin";
+import { getUserByLogin } from "../business/user/getUserByLogin";
 import { errorHandler } from '../errors/errorHandler';
 
 const bcrypt = require('bcryptjs');
