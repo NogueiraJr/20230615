@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
 import { errorHandler } from '../errors/errorHandler';
-import { createAction } from '../services/action/createAction';
+import { createAction } from '../business/action/createAction';
 
 export const prisma = new PrismaClient();
 
