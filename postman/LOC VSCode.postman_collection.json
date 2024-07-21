@@ -424,7 +424,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"Casamento do Beltrano\",\r\n    \"notes\": \"Descrição do Casamento do Beltrano\",\r\n    \"priceActions\": \"660.15\",\r\n    \"priceCharged\": \"600.25\",\r\n    \"userId\": \"idProprietario03\",\r\n    \"systemId\": \"sysLocacaoRoupa\",\r\n    \"tags\": \"casamento|festa\"\r\n}",
+									"raw": "{\r\n    \"description\": \"Casamento do Beltrano\",\r\n    \"notes\": \"Descrição do Casamento do Beltrano\",\r\n    \"priceActions\": \"0.0\",\r\n    \"priceCharged\": \"0.00\",\r\n    \"userId\": \"idProprietario03\",\r\n    \"systemId\": \"sysLocacaoRoupa\",\r\n    \"tags\": \"casamento|festa\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -530,6 +530,47 @@
 									"port": "3333",
 									"path": [
 										"actionProduct"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product",
+					"item": [
+						{
+							"name": "Get Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"productId\", JSON.parse(responseBody).id);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3333/product/Vestido de Festa/product/idProprietario01/sysLocacaoRoupa",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"product",
+										"Vestido de Festa",
+										"product",
+										"idProprietario01",
+										"sysLocacaoRoupa"
 									]
 								}
 							},
