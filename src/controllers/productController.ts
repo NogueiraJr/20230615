@@ -1,11 +1,11 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { getProduct } from "../business/product/getProduct";
 import { errorHandler } from '../errors/errorHandler';
+import { IGetProductBody } from '../interfaces/request/IGetProductBody';
 
-export const getProductHandler = async (request: FastifyRequest<{ Params: {name: string, productTypeId: string, userId: string, systemId: string } }>, reply: FastifyReply) => {
+export const getProductHandler = async (request: FastifyRequest<{ Body: IGetProductBody }>, reply: FastifyReply) => {
   try {
-    const { name, productTypeId, userId, systemId } = request.params;
-    const product = await getProduct(name, productTypeId, userId, systemId, reply);
+    const product = await getProduct(request, reply);
     reply.status(200).send(product);
   } catch (error) {
     errorHandler(error as Error, reply);
