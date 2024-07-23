@@ -7,6 +7,7 @@ import { createOperationHandler } from '../controllers/operationController';
 import { createActionHandler } from '../controllers/actionController';
 import { createActionProductHandler } from '../controllers/actionProductController';
 import { getProductHandler } from '../controllers/productController';
+import { getClientHandler } from '../controllers/clientController';
 
 const userRoutes = (router: FastifyInstance) => {
   router.post('/login', getUserLoginHandler);
@@ -18,6 +19,8 @@ const userRoutes = (router: FastifyInstance) => {
   router.get('/user/system-menu-module/:id', getUserSystemMenuModuleHandler);
   
   router.get('/product/:name/:productTypeId/:userId/:systemId', getProductHandler);
+  
+  router.get('/client/:name', getClientHandler);
 
   router.post('/user', createUserHandler);
   router.patch('/user/:id', updateUserHandler);
