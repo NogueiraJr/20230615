@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "55de15ad-6b38-40f6-a67e-92de52c9b4ee",
+		"name": "IA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4260388"
+	},
+	"item": [
+		{
+			"name": "IA_Client_Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseText = pm.response.text();\r",
+							"let responseLines = responseText.trim().split('\\n');\r",
+							"let responseJson = [];\r",
+							"responseLines.forEach(line => {\r",
+							"    try {\r",
+							"        responseJson.push(JSON.parse(line));\r",
+							"    } catch (e) {\r",
+							"        console.error(`Erro ao parsear a linha: ${line}`, e);\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"let concatenatedResponses = '';\r",
+							"responseJson.forEach(item => {\r",
+							"    if (!item.done) {\r",
+							"        concatenatedResponses += item.response;\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.environment.set('ia_clientName', concatenatedResponses);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": \"llama3\",\r\n    \"prompt\": \"Me retorne apenas um nome e sobrenome\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:11434/api/generate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "11434",
+					"path": [
+						"api",
+						"generate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
