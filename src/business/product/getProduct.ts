@@ -1,8 +1,11 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { _getProduct } from "../../repository/product/getProduct";
+import { IGetProductBody } from "../../interfaces/request/IGetProductBody";
 
-export async function getProduct(name: string, productTypeId: string, userId: string, systemId: string, reply: FastifyReply) {
+export async function getProduct(request: FastifyRequest<{ Body: IGetProductBody }>, reply: FastifyReply) {
   try {
+    const { name, productTypeId, userId, systemId } = request.body;
+
     if (name == undefined) return reply.status(400).send({ message: 'Nome necessário' });
     if (productTypeId == undefined) return reply.status(400).send({ message: 'Tipo do Produto necessário' });
     if (userId == undefined) return reply.status(400).send({ message: 'Usuário necessário' });

@@ -18,7 +18,7 @@ const userRoutes = (router: FastifyInstance) => {
   router.get('/user/collection/:id', getUserCollectionHandler);
   router.get('/user/system-menu-module/:id', getUserSystemMenuModuleHandler);
   
-  router.get('/product/:name/:productTypeId/:userId/:systemId', getProductHandler);
+  router.post('/getProduct', getProductHandler);
   
   router.get('/client/:name', getClientHandler);
 
