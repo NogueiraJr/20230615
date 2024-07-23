@@ -584,21 +584,26 @@
 								}
 							],
 							"request": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Vestido de Festa\",\r\n    \"productTypeId\": \"product\",\r\n    \"userId\": \"idProprietario01\",\r\n    \"systemId\": \"sysLocacaoRoupa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:3333/product/Vestido de Festa/product/idProprietario01/sysLocacaoRoupa",
+									"raw": "http://localhost:3333/getProduct",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3333",
 									"path": [
-										"product",
-										"Vestido de Festa",
-										"product",
-										"idProprietario01",
-										"sysLocacaoRoupa"
+										"getProduct"
 									]
 								}
 							},
@@ -625,18 +630,26 @@
 								}
 							],
 							"request": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ana Silva\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:3333/client/Ana Silva",
+									"raw": "http://localhost:3333/getClient",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3333",
 									"path": [
-										"client",
-										"Ana Silva"
+										"getClient"
 									]
 								}
 							},

@@ -20,7 +20,7 @@ const userRoutes = (router: FastifyInstance) => {
   
   router.post('/getProduct', getProductHandler);
   
-  router.get('/client/:name', getClientHandler);
+  router.post('/getClient', getClientHandler);
 
   router.post('/user', createUserHandler);
   router.patch('/user/:id', updateUserHandler);
