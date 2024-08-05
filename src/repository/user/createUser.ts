@@ -6,7 +6,7 @@ import { createUserPhone } from './createUserPhone';
 import { FastifyRequest } from 'fastify';
 
 export async function _createUser(request: FastifyRequest, _psw: string) {
-  const { userTypeId, name, usr, emails, phones } = request.body as UserPayload;
+  const { userId, userTypeId, name, usr, emails, phones } = request.body as UserPayload;
   try {
     let user = await prisma.users.create({
       data: {
@@ -14,6 +14,7 @@ export async function _createUser(request: FastifyRequest, _psw: string) {
         name,
         usr,
         psw: _psw,
+        userId
       },
     });
 
