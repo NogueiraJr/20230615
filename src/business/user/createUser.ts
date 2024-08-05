@@ -14,7 +14,7 @@ export async function createUser(request: FastifyRequest) {
       usr: user?.usr,
       name: user?.name,
       userTypeId: user?.userTypeId,
-      createAt: user?.createAt,
+      userId: user?.userId,
     };
 
     return userSummary;
