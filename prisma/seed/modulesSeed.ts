@@ -15,6 +15,7 @@ const modulesData = [
   { id: 'cadastroCliente',    seq: "0010", ref: "/cadastro-cliente",    name: 'Cadastrar Cliente',      description: 'Módulo de Cadastrar', },
   { id: 'cadastroProduto',    seq: "0020", ref: "/cadastro-produto",    name: 'Cadastar Produto',       description: 'Módulo de Cadastar Produto', },
   { id: 'cadastroFornecedor', seq: "0030", ref: "/cadastro-fornecedor", name: 'Cadastrar Fornecedores', description: 'Módulo de Cadastrar Fornecedores', },
+  { id: 'cadastroParceiro',   seq: "0040", ref: "/cadastro-parceiro",   name: 'Cadastrar Parceiros',    description: 'Módulo de Cadastrar Parceiros', },
   
   { id: 'cadastroTags',       seq: "0040", ref: "/cadastro-tags",       name: 'Cadastrar Tags',         description: 'Módulo de Cadastrar Tags', },
 ];

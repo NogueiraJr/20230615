@@ -12,7 +12,8 @@ const sysLocacaoRoupasData = [
   { systemId: 'sysLocacaoRoupa', menuId: "dds", moduleId: 'cadastroCliente',    id: "sysLocacaoRoupa-dds-cadastroCliente", },
   { systemId: 'sysLocacaoRoupa', menuId: "dds", moduleId: 'cadastroProduto',    id: "sysLocacaoRoupa-dds-cadastroProduto", },
   { systemId: 'sysLocacaoRoupa', menuId: "dds", moduleId: 'cadastroFornecedor', id: "sysLocacaoRoupa-dds-cadastroFornecedor", },
-
+  { systemId: 'sysLocacaoRoupa', menuId: "dds", moduleId: 'cadastroParceiro',   id: "sysLocacaoRoupa-dds-cadastroParceiro", },
+  
 ];
 
 const sysOficinaCarrosData = [
@@ -24,6 +25,7 @@ const sysOficinaCarrosData = [
   { systemId: 'sysOficinaCarros', menuId: "dds", moduleId: 'cadastroCliente',    id: "sysOficinaCarros-dds-cadastroCliente", },
   { systemId: 'sysOficinaCarros', menuId: "dds", moduleId: 'cadastroProduto',    id: "sysOficinaCarros-dds-cadastroProduto", },
   { systemId: 'sysOficinaCarros', menuId: "dds", moduleId: 'cadastroFornecedor', id: "sysOficinaCarros-dds-cadastroFornecedor", },
+  { systemId: 'sysOficinaCarros', menuId: "dds", moduleId: 'cadastroParceiro',   id: "sysOficinaCarros-dds-cadastroParceiro", },
 
 ];
 

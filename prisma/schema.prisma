@@ -283,9 +283,10 @@ datasource db {
     id                  String       @id @default(cuid())
     name                String
     description         String?
-    productTypeId      String
+    productTypeId       String
 
-    price               Decimal?     @default(0.00)
+    quantity            Int          @default(1)
+    price               Decimal      @default(0.00)
 
     tags                String?
     active              Boolean      @default(true)
@@ -293,8 +294,8 @@ datasource db {
     updatedAt           DateTime     @updatedAt
     deletedAt           DateTime?
     
-    userId             String       @map("userId")
-    systemId           String       @map("systemId")
+    userId              String       @map("userId")
+    systemId            String       @map("systemId")
 
     user                Users        @relation(fields: [userId], references: [id])
     system              Systems      @relation(fields: [systemId], references: [id])
@@ -390,11 +391,12 @@ datasource db {
 
   model UserActionProducts {
     id             String    @id @default(cuid())
-    productId     String
-    userActionId  String
+    productId      String
+    userActionId   String
 
     seq            String
     description    String
+    quantity       Int       @default(0)
 
     tags           String?
     active         Boolean   @default(true)
