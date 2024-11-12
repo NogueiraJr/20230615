@@ -1,8 +1,9 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
-import { getClientHandler } from '../controllers/clientController';
+import { getClientHandler, getUserClientIdHandler } from '../controllers/clientController';
 
 const clientRoutes = (router: FastifyInstance) => {
   router.post('/getClient', getClientHandler);
+  router.post('/getUserClientId', getUserClientIdHandler);
 
 };
 
