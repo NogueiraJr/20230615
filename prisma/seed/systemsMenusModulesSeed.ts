@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 const sysLocacaoRoupasData = [
   // O P E R A C I O N A L
   { systemId: 'sysLocacaoRoupa', menuId: "opr", moduleId: 'reservaRoupa',   id: "sysLocacaoRoupa-opr-reservaRoupa", },
+  { systemId: 'sysLocacaoRoupa', menuId: "opr", moduleId: 'provaRoupa',     id: "sysLocacaoRoupa-opr-provarRoupa", },
   { systemId: 'sysLocacaoRoupa', menuId: "opr", moduleId: 'retiradaRoupa',  id: "sysLocacaoRoupa-opr-retiradaRoupa", },
   { systemId: 'sysLocacaoRoupa', menuId: "opr", moduleId: 'devolucaoRoupa', id: "sysLocacaoRoupa-opr-devolucaoRoupa", },
 
@@ -16,16 +17,16 @@ const sysLocacaoRoupasData = [
   
 ];
 
-const sysOficinaCarrosData = [
+const sysOficinaCarroData = [
   // O P E R A C I O N A L
-  { systemId: 'sysOficinaCarros', menuId: "opr", moduleId: 'agendamentoRevisao', id: "sysOficinaCarros-opr-agendamentoRevisao", },
-  { systemId: 'sysOficinaCarros', menuId: "opr", moduleId: 'atendimentoCarro',   id: "sysOficinaCarros-opr-atendimentoCarro", },
+  { systemId: 'sysOficinaCarro', menuId: "opr", moduleId: 'agendamentoRevisao', id: "sysOficinaCarro-opr-agendamentoRevisao", },
+  { systemId: 'sysOficinaCarro', menuId: "opr", moduleId: 'atendimentoCarro',   id: "sysOficinaCarro-opr-atendimentoCarro", },
 
   // D A D O S
-  { systemId: 'sysOficinaCarros', menuId: "dds", moduleId: 'cadastroCliente',    id: "sysOficinaCarros-dds-cadastroCliente", },
-  { systemId: 'sysOficinaCarros', menuId: "dds", moduleId: 'cadastroProduto',    id: "sysOficinaCarros-dds-cadastroProduto", },
-  { systemId: 'sysOficinaCarros', menuId: "dds", moduleId: 'cadastroFornecedor', id: "sysOficinaCarros-dds-cadastroFornecedor", },
-  { systemId: 'sysOficinaCarros', menuId: "dds", moduleId: 'cadastroParceiro',   id: "sysOficinaCarros-dds-cadastroParceiro", },
+  { systemId: 'sysOficinaCarro', menuId: "dds", moduleId: 'cadastroCliente',    id: "sysOficinaCarro-dds-cadastroCliente", },
+  { systemId: 'sysOficinaCarro', menuId: "dds", moduleId: 'cadastroProduto',    id: "sysOficinaCarro-dds-cadastroProduto", },
+  { systemId: 'sysOficinaCarro', menuId: "dds", moduleId: 'cadastroFornecedor', id: "sysOficinaCarro-dds-cadastroFornecedor", },
+  { systemId: 'sysOficinaCarro', menuId: "dds", moduleId: 'cadastroParceiro',   id: "sysOficinaCarro-dds-cadastroParceiro", },
 
 ];
 
@@ -35,7 +36,7 @@ async function main() {
       data: item,
     });
   }
-  for (const item of sysOficinaCarrosData) {
+  for (const item of sysOficinaCarroData) {
     await prisma.systemMenuModule.create({
       data: item,
     });

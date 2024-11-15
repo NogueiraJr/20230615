@@ -5,23 +5,24 @@ const prisma = new PrismaClient();
 const actionsData = [
   // L O C A Ç Ã O   D E   R O U P A S
   { id: "sysLocacaoRoupa_reservar",       action: "reservar", seq: "0010", systemId: "sysLocacaoRoupa",        name: 'Reservar', description: 'Ação de Reservar as Roupas', },
-  { id: "sysLocacaoRoupa_retirar",        action: "retirar",  seq: "0020", systemId: "sysLocacaoRoupa",        name: 'Retirar',  description: 'Ação de Retirar as Roupas', },
-  { id: "sysLocacaoRoupa_devolver",       action: "devolver", seq: "0030", systemId: "sysLocacaoRoupa",        name: 'Devolver', description: 'Ação de Devolver as Roupas', },
-  { id: "sysLocacaoRoupa_levar",          action: "levar",    seq: "0040", systemId: "sysLocacaoRoupa",        name: 'Levar',    description: 'Ação de Levar as Roupas', },
-  { id: "sysLocacaoRoupa_buscar",         action: "buscar",   seq: "0050", systemId: "sysLocacaoRoupa",        name: 'Buscar',   description: 'Ação de Buscar as Roupas', },
+  { id: "sysLocacaoRoupa_provar",         action: "provar",   seq: "0020", systemId: "sysLocacaoRoupa",        name: 'Provar',   description: 'Ação de Provar as Roupas', },
+  { id: "sysLocacaoRoupa_retirar",        action: "retirar",  seq: "0030", systemId: "sysLocacaoRoupa",        name: 'Retirar',  description: 'Ação de Retirar as Roupas', },
+  { id: "sysLocacaoRoupa_devolver",       action: "devolver", seq: "0040", systemId: "sysLocacaoRoupa",        name: 'Devolver', description: 'Ação de Devolver as Roupas', },
+  { id: "sysLocacaoRoupa_levar",          action: "levar",    seq: "0050", systemId: "sysLocacaoRoupa",        name: 'Levar',    description: 'Ação de Levar as Roupas', },
+  { id: "sysLocacaoRoupa_buscar",         action: "buscar",   seq: "0060", systemId: "sysLocacaoRoupa",        name: 'Buscar',   description: 'Ação de Buscar as Roupas', },
   
   // L O C A Ç Ã O   D E   C A R R O S
-  { id: "sysLocacaoCarros_reservar",      action: "reservar", seq: "0010", systemId: "sysLocacaoCarros",       name: 'Reservar', description: 'Ação de Reservar o Veículo', },
-  { id: "sysLocacaoCarros_retirar",       action: "retirar",  seq: "0020", systemId: "sysLocacaoCarros",       name: 'Retirar',  description: 'Ação de Retirar o Veículo', },
-  { id: "sysLocacaoCarros_devolver",      action: "devolver", seq: "0030", systemId: "sysLocacaoCarros",       name: 'Devolver', description: 'Ação de Devolver o Veículo', },
-  { id: "sysLocacaoCarros_levar",         action: "levar",    seq: "0040", systemId: "sysLocacaoCarros",       name: 'Levar',    description: 'Ação de Levar o Veículo', },
-  { id: "sysLocacaoCarros_buscar",        action: "buscar",   seq: "0050", systemId: "sysLocacaoCarros",       name: 'Buscar',   description: 'Ação de Buscar o Veículo', },
+  { id: "sysLocacaoCarro_reservar",       action: "reservar", seq: "0010", systemId: "sysLocacaoCarro",        name: 'Reservar', description: 'Ação de Reservar o Veículo', },
+  { id: "sysLocacaoCarro_retirar",        action: "retirar",  seq: "0020", systemId: "sysLocacaoCarro",        name: 'Retirar',  description: 'Ação de Retirar o Veículo', },
+  { id: "sysLocacaoCarro_devolver",       action: "devolver", seq: "0030", systemId: "sysLocacaoCarro",        name: 'Devolver', description: 'Ação de Devolver o Veículo', },
+  { id: "sysLocacaoCarro_levar",          action: "levar",    seq: "0040", systemId: "sysLocacaoCarro",        name: 'Levar',    description: 'Ação de Levar o Veículo', },
+  { id: "sysLocacaoCarro_buscar",         action: "buscar",   seq: "0050", systemId: "sysLocacaoCarro",        name: 'Buscar',   description: 'Ação de Buscar o Veículo', },
 
   // O F I C I N A   D E   C A R R O S
-  { id: "sysOficinaCarros_orcar",         action: "orcar",    seq: "0010", systemId: "sysOficinaCarros",       name: 'Orçar',    description: 'Ação de Orçar um Serviço', },
-  { id: "sysOficinaCarros_executar",      action: "executar", seq: "0020", systemId: "sysOficinaCarros",       name: 'Executar', description: 'Ação de Executar um Serviço', },
-  { id: "sysOficinaCarros_buscar",        action: "buscar",   seq: "0030", systemId: "sysOficinaCarros",       name: 'Buscar',   description: 'Ação de Buscar o Veículo', },
-  { id: "sysOficinaCarros_levar",         action: "levar",    seq: "0040", systemId: "sysOficinaCarros",       name: 'Levar',    description: 'Ação de Levar o Veículo', },
+  { id: "sysOficinaCarro_orcar",          action: "orcar",    seq: "0010", systemId: "sysOficinaCarro",        name: 'Orçar',    description: 'Ação de Orçar um Serviço', },
+  { id: "sysOficinaCarro_executar",       action: "executar", seq: "0020", systemId: "sysOficinaCarro",        name: 'Executar', description: 'Ação de Executar um Serviço', },
+  { id: "sysOficinaCarro_buscar",         action: "buscar",   seq: "0030", systemId: "sysOficinaCarro",        name: 'Buscar',   description: 'Ação de Buscar o Veículo', },
+  { id: "sysOficinaCarro_levar",          action: "levar",    seq: "0040", systemId: "sysOficinaCarro",        name: 'Levar',    description: 'Ação de Levar o Veículo', },
 
   // P E T S H O P
   { id: "sysPetShop_orcar",               action: "orcar",    seq: "0010", systemId: "sysPetShop",             name: 'Orçar',    description: 'Ação de Orçar um Atendimento', },

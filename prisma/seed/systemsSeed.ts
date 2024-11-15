@@ -6,10 +6,10 @@ const systemsData = [
   //Admin
   { id: 'sysOCSTApp',            seq: '0000', name: 'OCSTApp 1.0',             description: 'Sistema Administrador do Aplicativo', },
   //Locações
-  { id: 'sysLocacaoRoupa',       seq: '0110', name: 'Locação de Roupas 1.0',   description: 'Reservas, Retiradas e Devoluções', },
-  { id: 'sysLocacaoCarros',      seq: '0120', name: 'Locação de Carros 1.0',   description: 'Reservas, Locações, Devoluções', },
+  { id: 'sysLocacaoRoupa',       seq: '0110', name: 'Locação de Roupas 1.0',   description: 'Reservas, Provas, Retiradas e Devoluções', },
+  { id: 'sysLocacaoCarro',       seq: '0120', name: 'Locação de Carros 1.0',   description: 'Reservas, Locações, Devoluções', },
   //Oficina
-  { id: 'sysOficinaCarros',      seq: '0210', name: 'Oficina de Carros 1.0',   description: 'Agendamentos de Serviços, Vendas de Kits', },
+  { id: 'sysOficinaCarro',       seq: '0210', name: 'Oficina de Carros 1.0',   description: 'Agendamentos de Serviços, Vendas de Kits', },
   //Pet
   { id: 'sysPetShop',            seq: '0310', name: 'PetShop 1.0',             description: 'Agendamentos, Atendimentos, Orçamentos, Ficha de Atendimento', },
   { id: 'sysClinicaVeterinaria', seq: '0320', name: 'Clínica Veterinária 1.0', description: 'Agendamentos, Orçamentos, Consultas', },

@@ -12,11 +12,11 @@ const userProprietarioSysLocacaoRoupa = [
 
 ];
 
-const userProprietarioSysOficinaCarros = [
-  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarros-opr-agendamentoRevisao", },
-  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarros-dds-cadastroCliente", },
-  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarros-dds-cadastroProduto", },
-  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarros-dds-cadastroFornecedor", },
+const userProprietariosysOficinaCarro = [
+  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarro-opr-agendamentoRevisao", },
+  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarro-dds-cadastroCliente", },
+  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarro-dds-cadastroProduto", },
+  { userId: 'idProprietario02', systemMenuModuleId: "sysOficinaCarro-dds-cadastroFornecedor", },
 
 ];
 
@@ -26,7 +26,7 @@ async function main() {
       data: item,
     });
   }
-  for (const item of userProprietarioSysOficinaCarros) {
+  for (const item of userProprietariosysOficinaCarro) {
     await prisma.userSystemMenuModule.create({
       data: item,
     });
