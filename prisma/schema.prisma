@@ -302,7 +302,7 @@ datasource db {
 
     productType         ProductTypes @relation(fields: [productTypeId], references: [id])
 
-    UserActionProducts  UserActionProducts[]
+    UserActionItems  UserActionItems[]
   }
 
   model ProductTypes {
@@ -366,7 +366,7 @@ datasource db {
     userClient         UserClients @relation(fields: [userClientId], references: [id])
     actions            Actions @relation(fields: [actionId], references: [id])
 
-    userActionProducts UserActionProducts[]
+    userActionProducts UserActionItems[]
 
   }
   
@@ -389,7 +389,7 @@ datasource db {
 
   } 
 
-  model UserActionProducts {
+  model UserActionItems {
     id             String    @id @default(cuid())
     productId      String
     userActionId   String
