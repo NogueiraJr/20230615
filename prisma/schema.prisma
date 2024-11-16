@@ -354,7 +354,7 @@ datasource db {
     executedAt         DateTime?
     finishedAt         DateTime?
 
-    priceProducts      Decimal?
+    priceItems      Decimal?
 
     tags               String?
     active             Boolean     @default(true)

@@ -4,7 +4,7 @@ import { ActionPayload } from '../interface/ActionPayload';
 import { FastifyRequest } from 'fastify';
 
 export async function _createAction(request: FastifyRequest) {
-  const { userOperationId, userClientId, actionId, description, notes, scheduledAt, executedAt, finishedAt, priceProducts, tags } = request.body as ActionPayload;
+  const { userOperationId, userClientId, actionId, description, notes, scheduledAt, executedAt, finishedAt, priceItems, tags } = request.body as ActionPayload;
   try {
     let userAction = await prisma.userActions.create({
       data: {
@@ -16,7 +16,7 @@ export async function _createAction(request: FastifyRequest) {
         , scheduledAt
         , executedAt
         , finishedAt
-        , priceProducts
+        , priceItems
         , tags
       },
     });

@@ -29,7 +29,7 @@ async function main() {
     , scheduledAt: new Date(reservar).toISOString()
     , executedAt:  new Date(reservar.setDate(reservar.getDate() + 1)).toISOString()
     , finishedAt:  new Date(reservar.setDate(reservar.getDate() + 1)).toISOString()
-    , priceProducts: 0.00 }});
+    , priceItems: 0.00 }});
 
     const retirar =  new Date(new Date().setDate(new Date().getDate() - 7));
     await prisma.userActions.create({ data: { 
@@ -40,7 +40,7 @@ async function main() {
     , scheduledAt: new Date(retirar).toISOString()
     , executedAt:  new Date(retirar.setDate(retirar.getDate() + 1)).toISOString()
     , finishedAt:  new Date(retirar.setDate(retirar.getDate() + 1)).toISOString()
-    , priceProducts: 0.00 }});
+    , priceItems: 0.00 }});
   
     const devolver =  new Date(new Date().setDate(new Date().getDate() - 4));
     await prisma.userActions.create({ data: { 
@@ -51,7 +51,7 @@ async function main() {
     , scheduledAt: new Date(devolver).toISOString()
     , executedAt:  new Date(devolver.setDate(devolver.getDate() + 1)).toISOString()
     , finishedAt:  new Date(devolver.setDate(devolver.getDate() + 1)).toISOString()
-    , priceProducts: 0.00 }});
+    , priceItems: 0.00 }});
 
     console.log('userActionsSeed - OK');
 }

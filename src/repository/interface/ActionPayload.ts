@@ -9,6 +9,6 @@ export interface ActionPayload {
   scheduledAt: Date;
   executedAt: Date;
   finishedAt: Date;
-  priceProducts: Decimal;
+  priceItems: Decimal;
   tags: string;
 }

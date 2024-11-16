@@ -497,7 +497,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userOperationId\": \"{{userOperationId}}\",\r\n    \"userClientId\": \"clyqa5y1d0000b1kxvknkzc5p\",\r\n    \"actionId\": \"sysLocacaoRoupa_reservar\",\r\n    \"description\": \"Reservando uma Roupa para {{ia_clientName}}\",\r\n    \"notes\": \"Anotações sobre a reserva da Roupa para {{ia_clientName}}\",\r\n    \"scheduledAt\": \"{{action_scheduledAt}}\",\r\n    \"executedAt\": null,\r\n    \"finishedAt\": null,\r\n    \"priceProducts\": \"450.90\",\r\n    \"tags\": \"casamento\"\r\n}",
+									"raw": "{\r\n    \"userOperationId\": \"{{userOperationId}}\",\r\n    \"userClientId\": \"clyqa5y1d0000b1kxvknkzc5p\",\r\n    \"actionId\": \"sysLocacaoRoupa_reservar\",\r\n    \"description\": \"Reservando uma Roupa para {{ia_clientName}}\",\r\n    \"notes\": \"Anotações sobre a reserva da Roupa para {{ia_clientName}}\",\r\n    \"scheduledAt\": \"{{action_scheduledAt}}\",\r\n    \"executedAt\": null,\r\n    \"finishedAt\": null,\r\n    \"priceItems\": \"450.90\",\r\n    \"tags\": \"casamento\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
