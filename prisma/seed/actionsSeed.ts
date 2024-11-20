@@ -19,10 +19,11 @@ const actionsData = [
   { id: "sysLocacaoCarro_buscar",         action: "buscar",   seq: "0050", systemId: "sysLocacaoCarro",        name: 'Buscar',   description: 'Ação de Buscar o Veículo', },
 
   // O F I C I N A   D E   C A R R O S
-  { id: "sysOficinaCarro_orcar",          action: "orcar",    seq: "0010", systemId: "sysOficinaCarro",        name: 'Orçar',    description: 'Ação de Orçar um Serviço', },
-  { id: "sysOficinaCarro_executar",       action: "executar", seq: "0020", systemId: "sysOficinaCarro",        name: 'Executar', description: 'Ação de Executar um Serviço', },
-  { id: "sysOficinaCarro_buscar",         action: "buscar",   seq: "0030", systemId: "sysOficinaCarro",        name: 'Buscar',   description: 'Ação de Buscar o Veículo', },
-  { id: "sysOficinaCarro_levar",          action: "levar",    seq: "0040", systemId: "sysOficinaCarro",        name: 'Levar',    description: 'Ação de Levar o Veículo', },
+  { id: "sysOficinaCarro_diagnosticar",   action: "diagnosticar", seq: "0010", systemId: "sysOficinaCarro",        name: 'Diagnosticar', description: 'Ação de Diagnosticar um Serviço', },
+  { id: "sysOficinaCarro_orcar",          action: "orcar",        seq: "0020", systemId: "sysOficinaCarro",        name: 'Orçar',        description: 'Ação de Orçar um Serviço', },
+  { id: "sysOficinaCarro_executar",       action: "executar",     seq: "0030", systemId: "sysOficinaCarro",        name: 'Executar',     description: 'Ação de Executar um Serviço', },
+  { id: "sysOficinaCarro_buscar",         action: "buscar",       seq: "0040", systemId: "sysOficinaCarro",        name: 'Buscar',       description: 'Ação de Buscar o Veículo', },
+  { id: "sysOficinaCarro_levar",          action: "levar",        seq: "0050", systemId: "sysOficinaCarro",        name: 'Levar',        description: 'Ação de Levar o Veículo', },
 
   // P E T S H O P
   { id: "sysPetShop_orcar",               action: "orcar",    seq: "0010", systemId: "sysPetShop",             name: 'Orçar',    description: 'Ação de Orçar um Atendimento', },
@@ -31,10 +32,11 @@ const actionsData = [
   { id: "sysPetShop_levar",               action: "levar",    seq: "0040", systemId: "sysPetShop",             name: 'Levar',    description: 'Ação de Levar o Pet', },
 
   // C L Í N I C A   V E T E R I N Á R I A
-  { id: "sysClinicaVeterinaria_orcar",    action: "orcar",    seq: "0010", systemId: "sysClinicaVeterinaria",  name: 'Orçar',    description: 'Ação de Orçar um Atendimento', },
-  { id: "sysClinicaVeterinaria_executar", action: "executar", seq: "0020", systemId: "sysClinicaVeterinaria",  name: 'Executar', description: 'Ação de Executar um Atendimento', },
-  { id: "sysClinicaVeterinaria_buscar",   action: "buscar",   seq: "0030", systemId: "sysClinicaVeterinaria",  name: 'Buscar',   description: 'Ação de Buscar o Pet', },
-  { id: "sysClinicaVeterinaria_levar",    action: "levar",    seq: "0040", systemId: "sysClinicaVeterinaria",  name: 'Levar',    description: 'Ação de Levar o Pet', },
+  { id: "sysClinicaVeterinaria_diagnosticar", action: "diagnosticar", seq: "0010", systemId: "sysClinicaVeterinaria",  name: 'Diagnosticar', description: 'Ação de Diagnosticar um Atendimento', },
+  { id: "sysClinicaVeterinaria_orcar",        action: "orcar",        seq: "0020", systemId: "sysClinicaVeterinaria",  name: 'Orçar',        description: 'Ação de Orçar um Atendimento', },
+  { id: "sysClinicaVeterinaria_executar",     action: "executar",     seq: "0030", systemId: "sysClinicaVeterinaria",  name: 'Executar',     description: 'Ação de Executar um Atendimento', },
+  { id: "sysClinicaVeterinaria_buscar",       action: "buscar",       seq: "0040", systemId: "sysClinicaVeterinaria",  name: 'Buscar',       description: 'Ação de Buscar o Pet', },
+  { id: "sysClinicaVeterinaria_levar",        action: "levar",        seq: "0050", systemId: "sysClinicaVeterinaria",  name: 'Levar',        description: 'Ação de Levar o Pet', },
 
   // C A B E L E I R E I R O
   { id: "sysCabeleireiro_orcar",          action: "orcar",    seq: "0010", systemId: "sysCabeleireiro",        name: 'Orçar',    description: 'Ação de Orçar um Atendimento', },
@@ -45,8 +47,9 @@ const actionsData = [
   { id: "sysClinicaEstetica_executar",    action: "executar", seq: "0020", systemId: "sysClinicaEstetica",     name: 'Executar', description: 'Ação de Executar um Atendimento', },
 
   // D E N T I S T A
-  { id: "sysDentista_orcar",              action: "orcar",    seq: "0010", systemId: "sysDentista",            name: 'Orçar',    description: 'Ação de Orçar um Atendimento', },
-  { id: "sysDentista_executar",           action: "executar", seq: "0020", systemId: "sysDentista",            name: 'Executar', description: 'Ação de Executar um Atendimento', },
+  { id: "sysDentista_diagnosticar",       action: "diagnosticar", seq: "0010", systemId: "sysDentista",            name: 'Diagnosticar', description: 'Ação de Diagnosticar um Atendimento', },
+  { id: "sysDentista_orcar",              action: "orcar",        seq: "0020", systemId: "sysDentista",            name: 'Orçar',        description: 'Ação de Orçar um Atendimento', },
+  { id: "sysDentista_executar",           action: "executar",     seq: "0030", systemId: "sysDentista",            name: 'Executar',     description: 'Ação de Executar um Atendimento', },
 
   // E S T Ú D I O   F O T O G R Á F I C O
   { id: "sysEstudioFotografico_orcar",    action: "orcar",    seq: "0010", systemId: "sysEstudioFotografico",  name: 'Orçar',    description: 'Ação de Orçar um Atendimento', },
