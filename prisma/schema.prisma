@@ -22,6 +22,7 @@ datasource db {
     systemMenuModule   SystemMenuModule[]
     userOperations     UserOperations[]
     actions            Actions[]
+    actionsFlowPoint   ActionsFlowPoints[]
     products           Products[]
   }
 
@@ -133,6 +134,9 @@ datasource db {
     
     products     Products[]
 
+    userActionsFlowPoint UserActionsFlowPoint[]
+    actionsFlowPoints ActionsFlowPoints[]
+
   }
 
   model UserTypes {
@@ -223,6 +227,7 @@ datasource db {
     client      Clients     @relation(fields: [clientId], references: [id])
 
     UserActions  UserActions[]
+    userActionsFlowPoint UserActionsFlowPoint[]
 
     @@unique([userId, clientId])
 
@@ -336,6 +341,7 @@ datasource db {
     deletedAt    DateTime?
 
     userActions  UserActions[]
+    userActionsFlowPoint UserActionsFlowPoint[]
 
     @@unique([id, userId, systemId])
 
@@ -370,6 +376,52 @@ datasource db {
 
   }
   
+  model UserActionsFlowPoint {
+    id                 String      @id @default(cuid())
+    userOperationId    String      @map("userOperationId")
+    userClientId       String      @map("userClientId")
+    actionId           String      @map("actionId")
+    actionFlowPointId  String      @map("actionFlowPointId")
+    
+    notes              String?
+
+    checkedAt          DateTime?
+    checkedUserId      String?     @map("checkedUserId")
+
+    createAt           DateTime    @default(now())
+    updatedAt          DateTime    @updatedAt
+
+    userOperations     UserOperations @relation(fields: [userOperationId], references: [id])
+    userClient         UserClients @relation(fields: [userClientId], references: [id])
+    actions            Actions @relation(fields: [actionId], references: [id])
+    actionsFlowPoints  ActionsFlowPoints @relation(fields: [actionFlowPointId], references: [id])
+    users              Users? @relation(fields: [checkedUserId], references: [id])
+    
+  }
+  
+  model ActionsFlowPoints {
+    id              String    @id @default(cuid())
+    systemId        String    @map("systemId")
+    userId          String    @map("userId")
+
+    moment          String
+
+    seq             String
+    name            String
+    description     String?
+
+    active          Boolean   @default(true)
+    createAt        DateTime  @default(now())
+    updatedAt       DateTime  @updatedAt
+    deletedAt       DateTime?
+
+    system          Systems   @relation(fields: [systemId], references: [id])
+    users           Users     @relation(fields: [userId], references: [id])
+
+    userActionsFlowPoint UserActionsFlowPoint[]
+
+  } 
+
   model Actions {
     id           String    @id @default(cuid())
     action       String
@@ -384,6 +436,7 @@ datasource db {
     system       Systems   @relation(fields: [systemId], references: [id])
         
     userActions   UserActions[]
+    userActionsFlowPoint UserActionsFlowPoint[]
 
     @@unique([id, systemId])
 
