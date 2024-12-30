@@ -1,22 +1,22 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { _getProduct } from "../../repository/item/getItem";
-import { IGetProductBody } from "../../interfaces/request/IGetItemBody";
+import { _getItem } from "../../repository/item/getItem";
+import { IGetItemBody } from "../../interfaces/request/IGetItemBody";
 
-export async function getProduct(request: FastifyRequest<{ Body: IGetProductBody }>, reply: FastifyReply) {
+export async function getItem(request: FastifyRequest<{ Body: IGetItemBody }>, reply: FastifyReply) {
   try {
-    const { name, productTypeId, userId, systemId } = request.body;
+    const { name, itemTypeId, userId, systemId } = request.body;
 
     if (name == undefined) return reply.status(400).send({ message: 'Nome necessário' });
-    if (productTypeId == undefined) return reply.status(400).send({ message: 'Tipo do Produto necessário' });
+    if (itemTypeId == undefined) return reply.status(400).send({ message: 'Tipo do Produto necessário' });
     if (userId == undefined) return reply.status(400).send({ message: 'Usuário necessário' });
     if (systemId == undefined) return reply.status(400).send({ message: 'Sistema necessário' });
     
-    const product = await _getProduct(name, productTypeId, userId, systemId);
+    const item = await _getItem(name, itemTypeId, userId, systemId);
 
-    if (!product) return reply.status(400).send({ message: 'Produto não encontrado' });
+    if (!item) return reply.status(400).send({ message: 'Produto não encontrado' });
 
     return {
-      id: product?.id,
+      id: item?.id,
     };
 
   } catch (error) {

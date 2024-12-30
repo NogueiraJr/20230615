@@ -23,7 +23,7 @@ datasource db {
     userOperations     UserOperations[]
     actions            Actions[]
     actionsFlowPoint   ActionsFlowPoints[]
-    products           Products[]
+    items           Items[]
   }
 
 // M E N U S 
@@ -132,7 +132,7 @@ datasource db {
     
     rentals     UserOperations[]
     
-    products     Products[]
+    items     Items[]
 
     userActionsFlowPoint UserActionsFlowPoint[]
     actionsFlowPoints ActionsFlowPoints[]
@@ -283,12 +283,12 @@ datasource db {
     @@unique([userId, partnerId])
 
   }
-// P R O D U C T S
-  model Products {
+// I T E M S
+  model Items {
     id                  String       @id @default(cuid())
     name                String
     description         String?
-    productTypeId       String
+    itemTypeId       String
 
     quantity            Int          @default(1)
     price               Decimal      @default(0.00)
@@ -305,19 +305,19 @@ datasource db {
     user                Users        @relation(fields: [userId], references: [id])
     system              Systems      @relation(fields: [systemId], references: [id])
 
-    productType         ProductTypes @relation(fields: [productTypeId], references: [id])
+    itemType         ItemTypes @relation(fields: [itemTypeId], references: [id])
 
     UserActionItems  UserActionItems[]
   }
 
-  model ProductTypes {
+  model ItemTypes {
     id          String       @id @unique
     name        String
     description String?
 
     active      Boolean      @default(true)
 
-    products    Products[]
+    items    Items[]
   }
 // U S E R   O P E R A T I O N
   model UserOperations {
@@ -374,7 +374,7 @@ datasource db {
     actions            Actions @relation(fields: [actionId], references: [id])
     userAction         UserActions?      @relation("UserAction", fields: [userActionId], references: [id])
 
-    userActionProducts UserActionItems[]
+    userActionItems UserActionItems[]
     userActions        UserActions[]     @relation("UserAction")
 
   }
@@ -447,7 +447,7 @@ datasource db {
 
   model UserActionItems {
     id             String    @id @default(cuid())
-    productId      String
+    itemId      String
     userActionId   String
 
     seq            String
@@ -460,6 +460,6 @@ datasource db {
     updatedAt      DateTime  @updatedAt
     deletedAt      DateTime?
 
-    product        Products     @relation(fields: [productId], references: [id])
+    item        Items     @relation(fields: [itemId], references: [id])
     userAction     UserActions  @relation(fields: [userActionId], references: [id])
   }

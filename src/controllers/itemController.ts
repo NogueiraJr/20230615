@@ -1,22 +1,22 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { createProduct } from "../business/item/createItem";
-import { getProduct } from "../business/item/getItem";
+import { createItem } from "../business/item/createItem";
+import { getItem } from "../business/item/getItem";
 import { errorHandler } from '../errors/errorHandler';
-import { IGetProductBody } from '../interfaces/request/IGetItemBody';
+import { IGetItemBody } from '../interfaces/request/IGetItemBody';
 
-export const createProductHandler = async (request: FastifyRequest, reply: FastifyReply) => {
+export const createItemHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    const user = await createProduct(request);
+    const user = await createItem(request);
     reply.status(201).send(user);
   } catch (error) {
     errorHandler(error as Error, reply);
   }
 };
 
-export const getProductHandler = async (request: FastifyRequest<{ Body: IGetProductBody }>, reply: FastifyReply) => {
+export const getItemHandler = async (request: FastifyRequest<{ Body: IGetItemBody }>, reply: FastifyReply) => {
   try {
-    const product = await getProduct(request, reply);
-    reply.status(200).send(product);
+    const item = await getItem(request, reply);
+    reply.status(200).send(item);
   } catch (error) {
     errorHandler(error as Error, reply);
   }

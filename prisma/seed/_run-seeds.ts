@@ -25,8 +25,8 @@ const seedCommands = [
   'actionsSeed.ts',
   'actionsFlowPointsSeed.ts',
 
-  'productTypesSeed.ts',
-  'productsSeed.ts',
+  'itemTypesSeed.ts',
+  'itemsSeed.ts',
 
   'tagsSeed.ts',
 

@@ -1,5 +1,5 @@
-export interface ActionProductPayload {
-  productId: string;
+export interface ActionItemPayload {
+  itemId: string;
   userActionId: string;
   seq: string;
   description: string;

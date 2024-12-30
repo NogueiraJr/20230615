@@ -1,8 +1,8 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
-import { createActionProductHandler } from '../controllers/actionItemController';
+import { createActionItemHandler } from '../controllers/actionItemController';
 
-const actionProductRoutes = (router: FastifyInstance) => {
-  router.post('/actionProduct', createActionProductHandler);
+const actionItemRoutes = (router: FastifyInstance) => {
+  router.post('/actionItem', createActionItemHandler);
 };
 
-export default actionProductRoutes;
+export default actionItemRoutes;

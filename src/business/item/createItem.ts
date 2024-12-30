@@ -1,21 +1,21 @@
 import { FastifyRequest } from 'fastify';
-import { _createProduct } from "../../repository/item/createItem";
+import { _createItem } from "../../repository/item/createItem";
 
-export async function createProduct(request: FastifyRequest) {
+export async function createItem(request: FastifyRequest) {
   try {
-    const product = await _createProduct(request);
-    const productSummary = {
-      id: product?.id,
-      name: product?.name,
-      description: product?.description,
-      productTypeId: product?.productTypeId,
-      price: product?.price,
-      tags: product?.tags,
-      userId: product?.userId,
-      systemId: product?.systemId,
+    const item = await _createItem(request);
+    const itemSummary = {
+      id: item?.id,
+      name: item?.name,
+      description: item?.description,
+      itemTypeId: item?.itemTypeId,
+      price: item?.price,
+      tags: item?.tags,
+      userId: item?.userId,
+      systemId: item?.systemId,
     };
 
-    return productSummary;
+    return itemSummary;
 
   } catch (error) {
     throw error;

@@ -1,14 +1,14 @@
 import { prisma } from '../_prismaClient';
-import { ActionProductPayload } from '../interface/ActionItemPayload';
+import { ActionItemPayload } from '../interface/ActionItemPayload';
 
 import { FastifyRequest } from 'fastify';
 
-export async function _createActionProduct(request: FastifyRequest) {
-  const { productId, userActionId, seq, description, tags } = request.body as ActionProductPayload;
+export async function _createActionItem(request: FastifyRequest) {
+  const { itemId, userActionId, seq, description, tags } = request.body as ActionItemPayload;
   try {
-    let userActionProduct = await prisma.userActionItems.create({
+    let userActionItem = await prisma.userActionItems.create({
       data: {
-        productId
+        itemId
         , userActionId
         , seq
         , description
@@ -17,7 +17,7 @@ export async function _createActionProduct(request: FastifyRequest) {
       },
     });
 
-    return userActionProduct;
+    return userActionItem;
 
   } catch (error) {
     throw error;

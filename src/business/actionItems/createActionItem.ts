@@ -1,12 +1,12 @@
 import { FastifyRequest } from 'fastify';
-import { _createActionProduct } from '../../repository/actionItem/createActionItem';
+import { _createActionItem } from '../../repository/actionItem/createActionItem';
 
-export async function createActionProduct(request: FastifyRequest) {
+export async function createActionItem(request: FastifyRequest) {
   try {
-    const actionProduct = await _createActionProduct(request);
-    const actionProductSummary = { id: actionProduct?.id };
+    const actionItem = await _createActionItem(request);
+    const actionItemSummary = { id: actionItem?.id };
 
-    return actionProductSummary;
+    return actionItemSummary;
 
   } catch (error) {
     throw error;

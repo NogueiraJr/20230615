@@ -1,17 +1,17 @@
 import { prisma } from '../_prismaClient';
-import { ProductPayload } from '../interface/ItemPayload';
+import { ItemPayload } from '../interface/ItemPayload';
 
 import { FastifyRequest } from 'fastify';
 
-export async function _createProduct(request: FastifyRequest) {
-  const { id, name, description, productTypeId, price, tags, userId, systemId } = request.body as ProductPayload;
+export async function _createItem(request: FastifyRequest) {
+  const { id, name, description, itemTypeId, price, tags, userId, systemId } = request.body as ItemPayload;
   try {
-    let product = await prisma.products.create({
+    let item = await prisma.items.create({
       data: {
         id,
         name,
         description,
-        productTypeId,
+        itemTypeId,
         price,
         tags,
         userId,
@@ -19,7 +19,7 @@ export async function _createProduct(request: FastifyRequest) {
       },
     });
 
-    return product;
+    return item;
 
   } catch (error) {
     throw error;

@@ -1,6 +1,6 @@
-export interface IGetProductBody {
+export interface IGetItemBody {
   name: string;
-  productTypeId: string;
+  itemTypeId: string;
   userId: string;
   systemId: string;
 }

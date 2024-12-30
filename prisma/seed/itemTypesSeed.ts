@@ -2,18 +2,18 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const productTypesData = [
+const itemTypesData = [
   { id: 'product', name: 'Produto', description: 'Tipo Produto oferecido' },
   { id: 'service', name: 'Serviço', description: 'Tipo Serviço oferecido' },
 ];
 
 async function main() {
-  for (const productTypeData of productTypesData) {
-    await prisma.productTypes.create({
-      data: productTypeData,
+  for (const itemTypeData of itemTypesData) {
+    await prisma.itemTypes.create({
+      data: itemTypeData,
     });
   }
-  console.log('productTypesSeed - OK');
+  console.log('itemTypesSeed - OK');
 }
 
 main()
