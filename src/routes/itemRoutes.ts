@@ -1,6 +1,6 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
-import { createProductHandler } from '../controllers/productController';
-import { getProductHandler } from '../controllers/productController';
+import { createProductHandler } from '../controllers/itemController';
+import { getProductHandler } from '../controllers/itemController';
 
 const productRoutes = (router: FastifyInstance) => {
   router.post('/createProduct', createProductHandler);

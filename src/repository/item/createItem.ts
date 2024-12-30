@@ -1,5 +1,5 @@
 import { prisma } from '../_prismaClient';
-import { ProductPayload } from '../interface/ProductPayload';
+import { ProductPayload } from '../interface/ItemPayload';
 
 import { FastifyRequest } from 'fastify';
 

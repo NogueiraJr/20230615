@@ -1,5 +1,5 @@
 import { FastifyRequest } from 'fastify';
-import { _createActionProduct } from '../../repository/actionProduct/createActionProduct';
+import { _createActionProduct } from '../../repository/actionItem/createActionItem';
 
 export async function createActionProduct(request: FastifyRequest) {
   try {

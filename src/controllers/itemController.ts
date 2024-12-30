@@ -1,8 +1,8 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { createProduct } from "../business/product/createProduct";
-import { getProduct } from "../business/product/getProduct";
+import { createProduct } from "../business/item/createItem";
+import { getProduct } from "../business/item/getItem";
 import { errorHandler } from '../errors/errorHandler';
-import { IGetProductBody } from '../interfaces/request/IGetProductBody';
+import { IGetProductBody } from '../interfaces/request/IGetItemBody';
 
 export const createProductHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {

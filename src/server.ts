@@ -1,10 +1,10 @@
 import fastify from 'fastify';
 import userRoutes from './routes/userRoutes';
-import productRoutes from './routes/productRoutes';
+import productRoutes from './routes/itemRoutes';
 import clientRoutes from './routes/clientRoutes';
 import operationRoutes from './routes/operationRoutes';
 import actionRoutes from './routes/actionRoutes';
-import actionProductRoutes from './routes/actionProductRoutes';
+import actionProductRoutes from './routes/actionItemRoutes';
 
 const app = fastify();
 

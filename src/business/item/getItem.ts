@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { _getProduct } from "../../repository/product/getProduct";
-import { IGetProductBody } from "../../interfaces/request/IGetProductBody";
+import { _getProduct } from "../../repository/item/getItem";
+import { IGetProductBody } from "../../interfaces/request/IGetItemBody";
 
 export async function getProduct(request: FastifyRequest<{ Body: IGetProductBody }>, reply: FastifyReply) {
   try {
