@@ -521,16 +521,16 @@
 					]
 				},
 				{
-					"name": "ActionProduct",
+					"name": "ActionItem",
 					"item": [
 						{
-							"name": "Create Action Product",
+							"name": "Create Action Item",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.environment.set(\"actionProductId\", JSON.parse(responseBody).id);"
+											"pm.environment.set(\"actionItemId\", JSON.parse(responseBody).id);"
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -542,7 +542,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"productId\": \"{{productId}}\",\r\n    \"userActionId\": \"{{userActionId}}\",\r\n    \"seq\": \"001\",\r\n    \"description\": \"Reservando o Vestido de Festa para {{ia_clientName}}\",\r\n    \"tags\": \"casamento|festa\"\r\n}",
+									"raw": "{\r\n    \"itemId\": \"{{itemId}}\",\r\n    \"userActionId\": \"{{userActionId}}\",\r\n    \"seq\": \"001\",\r\n    \"description\": \"Reservando o Vestido de Festa para {{ia_clientName}}\",\r\n    \"tags\": \"casamento|festa\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -550,14 +550,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3333/actionProduct",
+									"raw": "http://localhost:3333/actionItem",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3333",
 									"path": [
-										"actionProduct"
+										"actionItem"
 									]
 								}
 							},
@@ -566,16 +566,16 @@
 					]
 				},
 				{
-					"name": "Product",
+					"name": "Item",
 					"item": [
 						{
-							"name": "Get Product",
+							"name": "Get Item",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.environment.set(\"productId\", JSON.parse(responseBody).id);\r",
+											"pm.environment.set(\"itemId\", JSON.parse(responseBody).id);\r",
 											""
 										],
 										"type": "text/javascript",
@@ -588,7 +588,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Vestido de Festa\",\r\n    \"productTypeId\": \"product\",\r\n    \"userId\": \"idProprietario01\",\r\n    \"systemId\": \"sysLocacaoRoupa\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Vestido de Festa\",\r\n    \"itemTypeId\": \"item\",\r\n    \"userId\": \"idProprietario01\",\r\n    \"systemId\": \"sysLocacaoRoupa\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -596,14 +596,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3333/getProduct",
+									"raw": "http://localhost:3333/getItem",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3333",
 									"path": [
-										"getProduct"
+										"getItem"
 									]
 								}
 							},
