@@ -2,13 +2,13 @@ import { PrismaClient } from '@prisma/client';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
 import { errorHandler } from '../errors/errorHandler';
-import { createActionProduct } from '../business/actionProducts/createActionProduct';
+import { createActionItem } from '../business/actionItems/createActionItem';
 
 export const prisma = new PrismaClient();
 
-export const createActionProductHandler = async (request: FastifyRequest, reply: FastifyReply) => {
+export const createActionItemHandler = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    const ret = await createActionProduct(request);
+    const ret = await createActionItem(request);
     reply.send(ret);
   } catch (error) {
     errorHandler(error as Error, reply);

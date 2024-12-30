@@ -1,10 +1,10 @@
 import { Decimal } from "@prisma/client/runtime/library";
 
-export interface ProductPayload {
+export interface ItemPayload {
   id: any;
   name: string;
   description: string;
-  productTypeId: string;
+  itemTypeId: string;
   price: Decimal;
 
   tags: string;
