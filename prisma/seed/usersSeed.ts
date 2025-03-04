@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const usersData_admin = [
-  { id: "idAdmin000", name: 'Administrador', usr: 'usuario', psw: 'senha',
+  { id: "idAdmin000", name: 'Administrador', usr: 'idAdmin000', psw: 'senha',
     emails: { create: [
         { email: 'admin@emailwork.com',     userEmailTypeId: 'work' }
       , { email: 'admin@emailpersonal.com', userEmailTypeId: 'personal' }
@@ -16,7 +16,7 @@ const usersData_admin = [
 ];
 
 const usersData_support = [
-  { id: "idSupport001", name: 'Suporte 01', usr: 'usuario', psw: 'senha',
+  { id: "idSupport001", name: 'Suporte 01', usr: 'idSupport001', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'work' }
     ] },
@@ -25,7 +25,7 @@ const usersData_support = [
     ] },
     user: { connect: { id: usersData_admin[0].id } }
   },
-  { id: "idSupport002", name: 'Suporte 02', usr: 'usuario', psw: 'senha',
+  { id: "idSupport002", name: 'Suporte 02', usr: 'idSupport002', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'personal' }
     ] },
@@ -35,7 +35,7 @@ const usersData_support = [
     ] },
     user: { connect: { id: usersData_admin[0].id } }
   },
-  { id: "idSupport003", name: 'Suporte 03', usr: 'usuario', psw: 'senha',
+  { id: "idSupport003", name: 'Suporte 03', usr: 'idSupport003', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'others' }
     ] },
@@ -47,7 +47,7 @@ const usersData_support = [
 ];
 
 const usersData_owner = [
-  { id: "idProprietario01", name: 'Proprietário 01', usr: 'usuario', psw: 'senha',
+  { id: "idProprietario01", name: 'Proprietário 01', usr: 'idProprietario01', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'work' }
     ] },
@@ -55,7 +55,7 @@ const usersData_owner = [
       { phone: '+5555555555', userPhoneTypeId: 'personal' }
     ] }
   },
-  { id: "idProprietario02", name: 'Proprietário 02', usr: 'usuario', psw: 'senha',
+  { id: "idProprietario02", name: 'Proprietário 02', usr: 'idProprietario02', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'personal' }
     ] },
@@ -64,7 +64,7 @@ const usersData_owner = [
       , { phone: '+8888888888', userPhoneTypeId: 'personal' }
     ] }
   },
-  { id: "idProprietario03", name: 'Proprietário 03', usr: 'usuario', psw: 'senha',
+  { id: "idProprietario03", name: 'Proprietário 03', usr: 'idProprietario03', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'others' }
     ] },
@@ -75,7 +75,7 @@ const usersData_owner = [
 ];
 
 const usersData_manager = [
-  { id: "idManager01", name: 'Gerente 01', usr: 'usuario', psw: 'senha',
+  { id: "idManager01", name: 'Gerente 01', usr: 'idManager01', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'work' }
     ] },
@@ -84,7 +84,7 @@ const usersData_manager = [
     ] },
     user: { connect: { id: usersData_owner[0].id } }
   },
-  { id: "idManager02", name: 'Gerente 02', usr: 'usuario', psw: 'senha',
+  { id: "idManager02", name: 'Gerente 02', usr: 'idManager02', psw: 'senha',
 emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'personal' }
     ] },
@@ -106,7 +106,7 @@ emails: { create: [
 ];
 
 const usersData_employee = [
-  { id: "idEmployee01", name: 'Funcionário 01', usr: 'usuario', psw: 'senha',
+  { id: "idEmployee01", name: 'Funcionário 01', usr: 'idEmployee01', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'work' }
     ] },
@@ -115,7 +115,7 @@ const usersData_employee = [
     ] },
     user: { connect: { id: usersData_manager[0].id } }
   },
-  { id: "idEmployee02", name: 'Funcionário 02', usr: 'usuario', psw: 'senha',
+  { id: "idEmployee02", name: 'Funcionário 02', usr: 'idEmployee02', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'personal' }
     ] },
@@ -125,7 +125,7 @@ const usersData_employee = [
     ] },
     user: { connect: { id: usersData_manager[0].id } }
   },
-  { id: "idEmployee03", name: 'Funcionário 03', usr: 'usuario', psw: 'senha',
+  { id: "idEmployee03", name: 'Funcionário 03', usr: 'idEmployee03', psw: 'senha',
     emails: { create: [
       { email: 'endereco@email.com', userEmailTypeId: 'others' }
     ] },
