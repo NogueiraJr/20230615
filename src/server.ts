@@ -1,4 +1,5 @@
 import fastify from 'fastify';
+import cors from '@fastify/cors';
 import userRoutes from './routes/userRoutes';
 import itemRoutes from './routes/itemRoutes';
 import clientRoutes from './routes/clientRoutes';
@@ -8,7 +9,13 @@ import actionItemRoutes from './routes/actionItemRoutes';
 
 const app = fastify();
 
-// Register routes
+// Configurar CORS
+app.register(cors, {
+  origin: 'http://localhost:3000', // Permitir requisições do frontend
+  credentials: true, // Permitir cookies, autenticação, etc.
+});
+
+// Registrar rotas
 userRoutes(app);
 itemRoutes(app);
 clientRoutes(app);
