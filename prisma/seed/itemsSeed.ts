@@ -2,6 +2,15 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+const generateRandomTags = (systemId: string) => {
+  const possibleTags = 
+    systemId === 'sysOficinaCarro' 
+    ? ['acessório', 'durável', 'mecânica', 'automotivo', 'reparação', 'manutenção']
+    : ['elegante', 'formal', 'casual', 'luxo', 'infantil', 'acessório', 'durável', 'confortável'];
+  const tagCount = Math.floor(Math.random() * 2) + 2; // 2 ou 3 tags
+  return Array.from({ length: tagCount }, () => possibleTags[Math.floor(Math.random() * possibleTags.length)]);
+};
+
 const itemsData = [
   { name: 'Vestido de Festa', description: 'Vestidos elegantes e sofisticados adequados para eventos formais, como casamentos, bailes de formatura e festas de gala.', itemTypeId: 'product', userId: 'idProprietario01', systemId: 'sysLocacaoRoupa' },
   { name: 'Terno', description: 'Conjunto de calça e paletó elegante para homens, adequado para eventos formais, reuniões de negócios e ocasiões especiais.', itemTypeId: 'product', userId: 'idProprietario01', systemId: 'sysLocacaoRoupa' },
@@ -25,7 +34,22 @@ const itemsData = [
   { name: 'Reparo de suspensão', description: 'Reparo ou substituição de componentes da suspensão danificados para garantir um passeio confortável e estável.', itemTypeId: 'service', userId: 'idProprietario02', systemId: 'sysOficinaCarro' },
   { name: 'Diagnóstico de problemas', description: 'Identificação e resolução de problemas mecânicos, elétricos ou eletrônicos por meio de testes e análises especializadas.', itemTypeId: 'service', userId: 'idProprietario02', systemId: 'sysOficinaCarro' },
   { name: 'Troca de fluidos', description: 'Substituição de fluidos do veículo, como líquido de arrefecimento, fluido de transmissão, fluido de direção hidráulica, etc., para manter os sistemas funcionando corretamente.', itemTypeId: 'service', userId: 'idProprietario02', systemId: 'sysOficinaCarro' },
-  ];
+
+  { name: "Filtro de Óleo",     description: "Filtro de óleo de alta eficiência para motores a combustão.",     itemTypeId: "product",     userId: "idProprietario02",     systemId: "sysOficinaCarro"},   
+  { name: "Pastilhas de Freio",     description: "Conjunto de pastilhas de freio para veículos de passeio.",     itemTypeId: "product",     userId: "idProprietario02",     systemId: "sysOficinaCarro"},   
+  { name: "Correia Dentada",     description: "Correia dentada resistente para motores de alta performance.",     itemTypeId: "product",     userId: "idProprietario02",     systemId: "sysOficinaCarro"},   
+  { name: "Amortecedor Traseiro",     description: "Amortecedor traseiro para veículos utilitários.",     itemTypeId: "product",     userId: "idProprietario02",     systemId: "sysOficinaCarro"},   
+  { name: "Velas de Ignição",     description: "Velas de ignição de alta durabilidade para motores a gasolina.",     itemTypeId: "product",     userId: "idProprietario02",     systemId: "sysOficinaCarro"},   
+  { name: "Bateria 60Ah",     description: "Bateria automotiva de 60Ah para veículos de passeio.",     itemTypeId: "product",     userId: "idProprietario02",     systemId: "sysOficinaCarro"},   
+  { name: "Filtro de Combustível",     description: "Filtro de combustível para motores a diesel.",     itemTypeId: "product",     userId: "idProprietario02",     systemId: "sysOficinaCarro"},   
+  { name: "Radiador",     description: "Radiador de alta eficiência para sistemas de arrefecimento.",     itemTypeId: "product",     userId: "idProprietario02",     systemId: "sysOficinaCarro"}
+
+].map(item => ({
+  ...item,
+  quantity: Math.floor(Math.random() * 100) + 1, // Quantidade aleatória entre 1 e 100
+  price: parseFloat((Math.random() * 500 + 50).toFixed(2)), // Preço aleatório entre 50 e 550
+  tags: Array.from(new Set(generateRandomTags(item.systemId))).join('|'), // 2 ou 3 etiquetas aleatórias únicas como string separada por vírgulas
+}));
 
 async function main() {
   for (const itemData of itemsData) {
