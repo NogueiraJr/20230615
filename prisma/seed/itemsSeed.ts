@@ -12,6 +12,10 @@ const generateRandomTags = (systemId: string) => {
 };
 
 const itemsData = [
+  // Locação de Roupas
+  { name: 'Leva e Traz', description: 'Entrega e retira a sua roupa onde você desejar.', itemTypeId: 'service', userId: 'idProprietario01', systemId: 'sysLocacaoRoupa' },
+  { name: 'Consultoria de Moda', description: 'Dicas sobre moda para você em seu evento.', itemTypeId: 'service', userId: 'idProprietario01', systemId: 'sysLocacaoRoupa' },
+
   { name: 'Vestido de Festa', description: 'Vestidos elegantes e sofisticados adequados para eventos formais, como casamentos, bailes de formatura e festas de gala.', itemTypeId: 'product', userId: 'idProprietario01', systemId: 'sysLocacaoRoupa' },
   { name: 'Terno', description: 'Conjunto de calça e paletó elegante para homens, adequado para eventos formais, reuniões de negócios e ocasiões especiais.', itemTypeId: 'product', userId: 'idProprietario01', systemId: 'sysLocacaoRoupa' },
   { name: 'Vestido de Noiva', description: 'Vestidos de noiva em uma variedade de estilos, cortes e designs para o dia mais especial na vida de uma mulher.', itemTypeId: 'product', userId: 'idProprietario01', systemId: 'sysLocacaoRoupa' },
@@ -24,6 +28,7 @@ const itemsData = [
   { name: 'Vestido de Madrinha', description: 'Vestidos elegantes e coordenados para as madrinhas em casamentos, disponíveis em uma variedade de estilos e cores.', itemTypeId: 'product', userId: 'idProprietario01', systemId: 'sysLocacaoRoupa' },
   { name: 'Smoking Infantil', description: 'Versões em miniatura de smokings para meninos, perfeitos para eventos formais, casamentos e festas.', itemTypeId: 'product', userId: 'idProprietario01', systemId: 'sysLocacaoRoupa' },
   
+  // Oficina de Carros
   { name: 'Troca de óleo', description: 'Substituição do óleo do motor por um novo e filtro de óleo para garantir a lubrificação adequada e prolongar a vida útil do motor.', itemTypeId: 'service', userId: 'idProprietario02', systemId: 'sysOficinaCarro' },
   { name: 'Troca de filtros', description: 'Substituição de filtros de ar, óleo e combustível para manter o sistema de filtragem do veículo em bom funcionamento.', itemTypeId: 'service', userId: 'idProprietario02', systemId: 'sysOficinaCarro' },
   { name: 'Alinhamento e balanceamento', description: 'Ajuste preciso da geometria das rodas para garantir que o veículo se mova suavemente e em linha reta, reduzindo o desgaste dos pneus.', itemTypeId: 'service', userId: 'idProprietario02', systemId: 'sysOficinaCarro' },
