@@ -24,6 +24,7 @@ const actionsData = [
   { id: "sysOficinaCarro_executar",       action: "executar",     seq: "0030", systemId: "sysOficinaCarro",        name: 'Executar',     description: 'Ação de Executar um Serviço', },
   { id: "sysOficinaCarro_buscar",         action: "buscar",       seq: "0040", systemId: "sysOficinaCarro",        name: 'Buscar',       description: 'Ação de Buscar o Veículo', },
   { id: "sysOficinaCarro_levar",          action: "levar",        seq: "0050", systemId: "sysOficinaCarro",        name: 'Levar',        description: 'Ação de Levar o Veículo', },
+  { id: "sysOficinaCarro_conveniencia",   action: "conveniencia", seq: "0060", systemId: "sysOficinaCarro",        name: 'Conveniência', description: 'Ação de Oferecer uma Conveniência enquanto o Serviço é Executado', },
 
   // P E T S H O P
   { id: "sysPetShop_orcar",               action: "orcar",    seq: "0010", systemId: "sysPetShop",             name: 'Orçar',    description: 'Ação de Orçar um Atendimento', },

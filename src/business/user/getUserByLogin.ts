@@ -12,9 +12,13 @@ export async function getUserByLogin(request: FastifyRequest, reply: FastifyRepl
     const validPassword = await bcrypt.compare(psw, user.psw);
     if (!validPassword) return reply.status(400).send({ message: 'Credenciais inválidas' });
 
+    const systemIds = [...new Set(user?.userSystemMenuModule?.map(module => module.systemMenuModule?.system?.id))];
+
     return {
       id: user?.id,
       usr: user?.usr,
+      userTypeId: user?.userType?.id,
+      systemIds: systemIds
     };
 
   } catch (error) {
