@@ -24,6 +24,7 @@ datasource db {
     actions            Actions[]
     actionsFlowPoint   ActionsFlowPoints[]
     items           Items[]
+    ThingTypes ThingTypes[]
   }
 
 // M E N U S 
@@ -133,6 +134,7 @@ datasource db {
     rentals     UserOperations[]
     
     items     Items[]
+    Things Things[]
 
     userActionsFlowPoint UserActionsFlowPoint[]
     actionsFlowPoints ActionsFlowPoints[]
@@ -228,6 +230,7 @@ datasource db {
 
     UserActions  UserActions[]
     userActionsFlowPoint UserActionsFlowPoint[]
+    thingFeatures ThingFeatures[]
 
     @@unique([userId, clientId])
 
@@ -341,6 +344,8 @@ datasource db {
     deletedAt    DateTime?
 
     userActions  UserActions[]
+    thingFeatures ThingFeatures[]
+
     userActionsFlowPoint UserActionsFlowPoint[]
 
     @@unique([id, userId, systemId])
@@ -374,8 +379,10 @@ datasource db {
     actions            Actions @relation(fields: [actionId], references: [id])
     userAction         UserActions?      @relation("UserAction", fields: [userActionId], references: [id])
 
-    userActionItems UserActionItems[]
+    userActionItems   UserActionItems[]
     userActions        UserActions[]     @relation("UserAction")
+
+    ThingFeatures ThingFeatures[]
 
   }
   
@@ -463,3 +470,105 @@ datasource db {
     item        Items     @relation(fields: [itemId], references: [id])
     userAction     UserActions  @relation(fields: [userActionId], references: [id])
   }
+
+
+// =============================================
+// S E R V I Ç O S   &   C A R A C T E R Í S T I C A S
+// =============================================
+
+// TIPOS DE SERVIÇOS (locacao_roupas, petshop, etc)
+model ThingTypes {
+  id          String   @id @default(cuid())
+  systemId    String   @map("systemId")
+  seq         String
+  name        String
+  description String?
+  
+  active      Boolean  @default(true)
+  createAt    DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+  
+  system      Systems  @relation(fields: [systemId], references: [id])
+  Things    Things[]
+  ThingFeatureFields ThingFeatureFields[] // ← RELAÇÃO INVERSA ADICIONADA
+  
+  @@unique([systemId, seq])
+}
+
+// SERVIÇOS (instâncias de serviços para usuários)
+model Things {
+  id             String   @id @default(cuid())
+  ThingTypeId  String   @map("ThingTypeId")
+  userId         String   @map("userId")
+  
+  notes          String?
+  
+  active         Boolean  @default(true)
+  createAt       DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  deletedAt      DateTime?
+  
+  ThingType    ThingTypes @relation(fields: [ThingTypeId], references: [id])
+  user           Users        @relation(fields: [userId], references: [id])
+  ThingFeatures ThingFeatures[]
+  
+  @@unique([ThingTypeId, userId, createAt])
+}
+
+// DEFINIÇÕES DAS CARACTERÍSTICAS POR TIPO DE SERVIÇO
+model ThingFeatureFields {
+  id            String   @id @default(cuid())
+  ThingTypeId String   @map("ThingTypeId")
+  seq           String
+  name          String
+  description   String?
+  displayName   String
+  
+  dataType      String   // string, number, boolean, date, json
+  isRequired    Boolean  @default(false)
+  validationRules String?
+  
+  active        Boolean  @default(true)
+  createAt      DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     DateTime?
+  
+  ThingType   ThingTypes @relation(fields: [ThingTypeId], references: [id])
+  ThingFeatures ThingFeatures[]
+  
+  @@unique([ThingTypeId, seq])
+}
+
+// VALORES DAS CARACTERÍSTICAS (EAV - Entity Attribute Value)
+model ThingFeatures {
+  id                       String   @id @default(cuid())
+  ThingFeatureFieldId String @map("ThingFeatureFieldId")
+  userClientId      String @map("UserClientId")
+
+  userOperationId     String?         @map("userOperationId")
+  userActionId        String?         @map("userActionId")
+  ThingId                String?   @map("ThingId")
+  
+  valueString              String?
+  valueNumber              Float?
+  valueBoolean             Boolean?
+  valueDate                DateTime?
+  valueJson                Json?
+  
+  active                   Boolean  @default(true)
+  createAt                 DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+  deletedAt                DateTime?
+
+  userClient         UserClients @relation(fields: [userClientId], references: [id])
+  userActions        UserActions? @relation(fields: [userActionId], references: [id]) // ← RELAÇÃO MANY-TO-ONE
+  
+  userOperation      UserOperations? @relation(fields: [userOperationId], references: [id]) // ← RELAÇÃO MANY-TO-ONE
+  ThingFeatureField  ThingFeatureFields @relation(fields: [ThingFeatureFieldId], references: [id])
+  Thing              Things? @relation(fields: [ThingId], references: [id])
+  
+  @@index([ThingId])
+  @@index([userOperationId])
+  @@index([userActionId])
+}
