@@ -496,13 +496,13 @@ datasource db {
 
   model ThingFields {
     id            String   @id @default(cuid())
-    ThingId String   @map("ThingId")
+    ThingId       String   @map("ThingId")
     seq           String
     name          String
     description   String?
     displayName   String
     
-    dataType      String   // string, number, boolean, date, json
+    dataType      String   // string, number, boolean, date, json, combobox, dropdown
     isRequired    Boolean  @default(false)
     validationRules String?
     
@@ -511,11 +511,46 @@ datasource db {
     updatedAt     DateTime @updatedAt
     deletedAt     DateTime?
     
-    ThingType   Things @relation(fields: [ThingId], references: [id])
-    ThingValues ThingValues[]
+    ThingType     Things   @relation(fields: [ThingId], references: [id])
+    ThingValues   ThingValues[]
+    options       ThingFieldOptions[] // para casos de dataType = dropdown ou combobox
+    config        ThingFieldConfig?   // para casos de dataType = dropdown ou combobox
     
     @@index([id])
     @@unique([id, ThingId])
+  }
+
+  model ThingFieldOptions {
+    id            String   @id @default(cuid())
+    thingFieldId  String   @map("thingFieldId")
+    seq           String
+    value         String   // valor armazenado (ex: "small", "medium", "large")
+    label         String   // texto exibido (ex: "Pequeno", "Médio", "Grande")
+    description   String?  // alguma descrição para aparecer como 'hint' ao passar o mouse, por exemplo.
+    
+    active        Boolean  @default(true)
+    createAt      DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+    deletedAt     DateTime?
+    
+    thingField    ThingFields @relation(fields: [thingFieldId], references: [id])
+    
+    @@unique([thingFieldId, seq])
+    @@index([thingFieldId])
+  }
+
+  model ThingFieldConfig {
+    id            String   @id @default(cuid())
+    thingFieldId  String   @map("thingFieldId") @unique
+    isMultiSelect Boolean  @default(false) // dropdown de múltipla escolha ou única escolha
+    maxSelections Int?     // máximo de seleções (para múltipla escolha)
+    
+    active        Boolean  @default(true)
+    createAt      DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+    deletedAt     DateTime?
+    
+    thingField    ThingFields @relation(fields: [thingFieldId], references: [id])
   }
 
   model ThingValues {
