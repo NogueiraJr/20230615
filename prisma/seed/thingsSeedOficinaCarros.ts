@@ -19,7 +19,26 @@ async function seedThingsOficinaCarros() {
       ThingFields: {
         create: [
           { seq: '001', name: 'Placa', displayName: 'Placa', dataType: 'string', isRequired: true },
-          { seq: '002', name: 'Modelo', displayName: 'Modelo', dataType: 'string', isRequired: true },
+          {
+            seq: '002',
+            name: 'Modelo',
+            displayName: 'Modelo',
+            dataType: 'combobox',
+            isRequired: true,
+            options: {
+              create: [
+                { seq: '001', value: 'Sedan', label: 'Sedan' },
+                { seq: '002', value: 'SUV', label: 'SUV' },
+                { seq: '003', value: 'Hatchback', label: 'Hatchback' },
+                { seq: '004', value: 'Pickup', label: 'Pickup' },
+              ],
+            },
+            config: {
+              create: {
+                isMultiSelect: false,
+              },
+            },
+          },
           { seq: '003', name: 'Ano', displayName: 'Ano', dataType: 'number', isRequired: true },
           { seq: '004', name: 'Chassi', displayName: 'Chassi', dataType: 'string', isRequired: false },
           { seq: '005', name: 'Cor', displayName: 'Cor', dataType: 'string', isRequired: false },
