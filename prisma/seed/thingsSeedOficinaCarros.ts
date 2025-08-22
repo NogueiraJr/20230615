@@ -18,7 +18,7 @@ async function seedThingsOficinaCarros() {
   const thing = await prisma.things.create({
     data: {
       systemId: system.id,
-      name: 'Dados do Veículo',
+      name: 'DadosVeiculo',
       description: 'Informações sobre o veículo para reparo',
       displayName: 'Veículo',
     },

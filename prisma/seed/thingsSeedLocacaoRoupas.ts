@@ -13,7 +13,7 @@ async function seedThingsLocacaoRoupas() {
   const things = await prisma.things.create({
     data: {
       systemId: system.id,
-      name: 'Medidas Corporais',
+      name: 'MedidasCorporais',
       description: 'Medidas corporais para locação de roupas',
       displayName: 'Medidas',
       ThingFields: {

@@ -18,7 +18,7 @@ async function seedThingsPetShop() {
   const thing = await prisma.things.create({
     data: {
       systemId: system.id,
-      name: 'Dados do Pet',
+      name: 'DadosPet',
       description: 'Informações sobre o pet para serviços de banho e tosa',
       displayName: 'Pet',
     },
@@ -30,8 +30,23 @@ async function seedThingsPetShop() {
   const especies = [
     { seq: '001', name: 'Cachorro', displayName: 'Cachorro' },
     { seq: '002', name: 'Gato', displayName: 'Gato' },
-    { seq: '003', name: 'Pássaro', displayName: 'Pássaro' },
+    { seq: '003', name: 'Passaro', displayName: 'Pássaro' },
     { seq: '004', name: 'Peixe', displayName: 'Peixe' },
+  ];
+
+  const racas = [
+    { seq: '001', name: 'Labrador', displayName: 'Labrador', parentEspecie: 'Cachorro' },
+    { seq: '002', name: 'GoldenRetriever', displayName: 'Golden Retriever', parentEspecie: 'Cachorro' },
+    { seq: '003', name: 'Bulldog', displayName: 'Bulldog', parentEspecie: 'Cachorro' },
+    { seq: '004', name: 'Persa', displayName: 'Persa', parentEspecie: 'Gato' },
+    { seq: '005', name: 'Siames', displayName: 'Siamês', parentEspecie: 'Gato' },
+    { seq: '006', name: 'MaineCoon', displayName: 'Maine Coon', parentEspecie: 'Gato' },
+    { seq: '007', name: 'Calopsita', displayName: 'Calopsita', parentEspecie: 'Passaro' },
+    { seq: '008', name: 'Canario', displayName: 'Canário', parentEspecie: 'Passaro' },
+    { seq: '009', name: 'Papagaio', displayName: 'Papagaio', parentEspecie: 'Passaro' },
+    { seq: '010', name: 'Betta', displayName: 'Betta', parentEspecie: 'Peixe' },
+    { seq: '011', name: 'Carpa', displayName: 'Carpa', parentEspecie: 'Peixe' },
+    { seq: '012', name: 'Tetra', displayName: 'Tetra', parentEspecie: 'Peixe' },
   ];
 
   try {
@@ -61,21 +76,6 @@ async function seedThingsPetShop() {
     console.log('Mapa de IDs das Espécies:', especieIdMap);
 
     // Create Raça records linked to Espécie IDs
-    const racas = [
-      { seq: '001', name: 'Labrador', displayName: 'Labrador', parentEspecie: 'Cachorro' },
-      { seq: '002', name: 'Golden Retriever', displayName: 'Golden Retriever', parentEspecie: 'Cachorro' },
-      { seq: '003', name: 'Bulldog', displayName: 'Bulldog', parentEspecie: 'Cachorro' },
-      { seq: '004', name: 'Persa', displayName: 'Persa', parentEspecie: 'Gato' },
-      { seq: '005', name: 'Siamês', displayName: 'Siamês', parentEspecie: 'Gato' },
-      { seq: '006', name: 'Maine Coon', displayName: 'Maine Coon', parentEspecie: 'Gato' },
-      { seq: '007', name: 'Calopsita', displayName: 'Calopsita', parentEspecie: 'Pássaro' },
-      { seq: '008', name: 'Canário', displayName: 'Canário', parentEspecie: 'Pássaro' },
-      { seq: '009', name: 'Papagaio', displayName: 'Papagaio', parentEspecie: 'Pássaro' },
-      { seq: '010', name: 'Betta', displayName: 'Betta', parentEspecie: 'Peixe' },
-      { seq: '011', name: 'Carpa', displayName: 'Carpa', parentEspecie: 'Peixe' },
-      { seq: '012', name: 'Tetra', displayName: 'Tetra', parentEspecie: 'Peixe' },
-    ];
-
     const racaRecords = await Promise.all(
       racas.map((raca) => {
         console.log('Criando Raça:', raca);
