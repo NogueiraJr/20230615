@@ -146,8 +146,8 @@ datasource db {
     name        String
     description String?
     active      Boolean     @default(true)
-    createAt    DateTime    @default(now())
-    updatedAt   DateTime    @updatedAt
+    createAt    DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
     deletedAt   DateTime?
     users       Users[]
   }
@@ -222,15 +222,15 @@ datasource db {
 
   model UserClients {
     id          String      @id @default(cuid())
-    userId     String      @map("userId")
-    clientId   String      @map("clientId")
+    userId      String      @map("userId")
+    clientId    String      @map("clientId")
     
     user        Users       @relation(fields: [userId], references: [id])
     client      Clients     @relation(fields: [clientId], references: [id])
 
-    UserActions  UserActions[]
+    UserActions UserActions[]
     userActionsFlowPoint UserActionsFlowPoint[]
-    ThingValues ThingValues[]
+    ThingValues ThingValues[] @relation("ThingValues")
 
     @@unique([userId, clientId])
 
@@ -506,6 +506,10 @@ datasource db {
     isRequired    Boolean  @default(false)
     validationRules String?
     
+    parentFieldId String?   @map("parentFieldId") // Campo opcional para vincular ao campo genérico pai
+    parentField   ThingFields? @relation("ParentChildField", fields: [parentFieldId], references: [id]) // Relacionamento com o campo genérico pai
+    childFields   ThingFields[] @relation("ParentChildField") // Relacionamento inverso para listar os campos filhos vinculados
+    
     active        Boolean  @default(true)
     createAt      DateTime @default(now())
     updatedAt     DateTime @updatedAt
@@ -527,7 +531,9 @@ datasource db {
     value         String   // valor armazenado (ex: "small", "medium", "large")
     label         String   // texto exibido (ex: "Pequeno", "Médio", "Grande")
     description   String?  // alguma descrição para aparecer como 'hint' ao passar o mouse, por exemplo.
-    
+
+    parentFieldId String?  @map("parentFieldId") // Campo opcional para vincular ao campo genérico pai
+
     active        Boolean  @default(true)
     createAt      DateTime @default(now())
     updatedAt     DateTime @updatedAt
@@ -555,29 +561,29 @@ datasource db {
 
   model ThingValues {
     id                       String   @id @default(cuid())
-    ThingFieldId String @map("ThingFieldId")
-    userClientId      String? @map("UserClientId")
+    ThingFieldId             String   @map("ThingFieldId")
+    userClientId             String?  @map("UserClientId")
 
-    userOperationId     String?         @map("userOperationId")
-    userActionId        String?         @map("userActionId")
-    
+    userOperationId          String?  @map("userOperationId")
+    userActionId             String?  @map("userActionId")
+
     valueString              String?
     valueNumber              Float?
     valueBoolean             Boolean?
     valueDate                DateTime?
     valueJson                Json?
-    
+
     active                   Boolean  @default(true)
     createAt                 DateTime @default(now())
     updatedAt                DateTime @updatedAt
     deletedAt                DateTime?
 
-    userClient         UserClients? @relation(fields: [userClientId], references: [id])
-    userActions        UserActions? @relation(fields: [userActionId], references: [id])
-    
-    userOperation      UserOperations? @relation(fields: [userOperationId], references: [id])
-    thingFeatureField  ThingFields @relation(fields: [ThingFieldId], references: [id])
-    
+    userClient               UserClients? @relation("ThingValues", fields: [userClientId], references: [id])
+    userActions              UserActions? @relation(fields: [userActionId], references: [id])
+
+    userOperation            UserOperations? @relation(fields: [userOperationId], references: [id])
+    thingFeatureField        ThingFields @relation(fields: [ThingFieldId], references: [id])
+
     @@index([userOperationId])
     @@index([userActionId])
   }
