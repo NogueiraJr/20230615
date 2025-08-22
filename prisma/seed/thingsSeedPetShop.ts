@@ -3,6 +3,8 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function seedThingsPetShop() {
+  console.log('Iniciando o seed para PetShop...');
+
   const system = await prisma.systems.findFirst({ where: { name: { contains: 'PetShop' } } });
 
   if (!system) {
@@ -10,67 +12,97 @@ async function seedThingsPetShop() {
     return;
   }
 
-  const things = await prisma.things.create({
+  console.log('Sistema encontrado:', system);
+
+  // Create a Things record
+  const thing = await prisma.things.create({
     data: {
       systemId: system.id,
       name: 'Dados do Pet',
       description: 'Informações sobre o pet para serviços de banho e tosa',
       displayName: 'Pet',
-      ThingFields: {
-        create: [
-          { seq: '001', name: 'Nome', displayName: 'Nome', dataType: 'string', isRequired: true },
-          {
-            seq: '002',
-            name: 'Espécie',
-            displayName: 'Espécie',
-            dataType: 'combobox',
-            isRequired: true,
-            options: {
-              create: [
-                { seq: '001', value: 'Cachorro', label: 'Cachorro' },
-                { seq: '002', value: 'Gato', label: 'Gato' },
-                { seq: '003', value: 'Pássaro', label: 'Pássaro' },
-                { seq: '004', value: 'Peixe', label: 'Peixe' },
-              ],
-            },
-            config: {
-              create: {
-                isMultiSelect: false,
-              },
-            },
-          },
-          {
-            seq: '003',
-            name: 'Raça',
-            displayName: 'Raça',
-            dataType: 'combobox',
-            isRequired: false,
-            options: {
-              create: [
-                { seq: '001', value: 'Labrador', label: 'Labrador' },
-                { seq: '002', value: 'Persa', label: 'Persa' },
-                { seq: '003', value: 'Calopsita', label: 'Calopsita' },
-                { seq: '004', value: 'Betta', label: 'Betta' },
-              ],
-            },
-            config: {
-              create: {
-                isMultiSelect: false,
-              },
-            },
-          },
-          { seq: '004', name: 'Idade', displayName: 'Idade', dataType: 'number', isRequired: false },
-          { seq: '005', name: 'Peso', displayName: 'Peso', dataType: 'number', isRequired: false },
-        ],
-      },
     },
   });
 
-  console.log('Seed concluído para PetShop:', things);
+  console.log('Registro criado na tabela Things:', thing);
+
+  // Create Espécie records and store their IDs
+  const especies = [
+    { seq: '001', name: 'Cachorro', displayName: 'Cachorro' },
+    { seq: '002', name: 'Gato', displayName: 'Gato' },
+    { seq: '003', name: 'Pássaro', displayName: 'Pássaro' },
+    { seq: '004', name: 'Peixe', displayName: 'Peixe' },
+  ];
+
+  try {
+    const especieRecords = await Promise.all(
+      especies.map((especie) => {
+        console.log('Criando Espécie:', especie);
+        return prisma.thingFields.create({
+          data: {
+            seq: especie.seq,
+            name: especie.name,
+            displayName: especie.displayName,
+            dataType: 'combobox',
+            isRequired: true,
+            ThingId: thing.id,
+          },
+        });
+      })
+    );
+
+    console.log('Espécies criadas:', especieRecords);
+
+    // Map Espécie names to their IDs
+    const especieIdMap = Object.fromEntries(
+      especieRecords.map((record, index) => [especies[index].name, record.id])
+    );
+
+    console.log('Mapa de IDs das Espécies:', especieIdMap);
+
+    // Create Raça records linked to Espécie IDs
+    const racas = [
+      { seq: '001', name: 'Labrador', displayName: 'Labrador', parentEspecie: 'Cachorro' },
+      { seq: '002', name: 'Golden Retriever', displayName: 'Golden Retriever', parentEspecie: 'Cachorro' },
+      { seq: '003', name: 'Bulldog', displayName: 'Bulldog', parentEspecie: 'Cachorro' },
+      { seq: '004', name: 'Persa', displayName: 'Persa', parentEspecie: 'Gato' },
+      { seq: '005', name: 'Siamês', displayName: 'Siamês', parentEspecie: 'Gato' },
+      { seq: '006', name: 'Maine Coon', displayName: 'Maine Coon', parentEspecie: 'Gato' },
+      { seq: '007', name: 'Calopsita', displayName: 'Calopsita', parentEspecie: 'Pássaro' },
+      { seq: '008', name: 'Canário', displayName: 'Canário', parentEspecie: 'Pássaro' },
+      { seq: '009', name: 'Papagaio', displayName: 'Papagaio', parentEspecie: 'Pássaro' },
+      { seq: '010', name: 'Betta', displayName: 'Betta', parentEspecie: 'Peixe' },
+      { seq: '011', name: 'Carpa', displayName: 'Carpa', parentEspecie: 'Peixe' },
+      { seq: '012', name: 'Tetra', displayName: 'Tetra', parentEspecie: 'Peixe' },
+    ];
+
+    const racaRecords = await Promise.all(
+      racas.map((raca) => {
+        console.log('Criando Raça:', raca);
+        return prisma.thingFields.create({
+          data: {
+            seq: raca.seq,
+            name: raca.name,
+            displayName: raca.displayName,
+            dataType: 'combobox',
+            isRequired: false,
+            ThingId: thing.id,
+            parentFieldId: especieIdMap[raca.parentEspecie],
+          },
+        });
+      })
+    );
+
+    console.log('Raças criadas:', racaRecords);
+  } catch (error) {
+    console.error('Erro ao criar Espécies ou Raças:', error);
+  }
+
+  console.log('Seed concluído para PetShop.');
 }
 
 seedThingsPetShop()
-  .catch((e) => console.error(e))
+  .catch((e) => console.error('Erro ao executar o seed:', e))
   .finally(async () => {
     await prisma.$disconnect();
   });
