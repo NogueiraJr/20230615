@@ -31,6 +31,12 @@ const seedCommands = [
   'tagsSeed.ts',
 
   'userOperationsSeed.ts',
+
+  'thingsSeedLocacaoCarros.ts',
+  'thingsSeedLocacaoRoupas.ts',
+  'thingsSeedOficinaCarros.ts',
+  'thingsSeedPetShop.ts',
+
 ];
 
 const runSeeds = async () => {
