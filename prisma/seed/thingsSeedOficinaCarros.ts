@@ -26,69 +26,82 @@ async function seedThingsOficinaCarros() {
 
   console.log('Registro criado na tabela Things:', thing);
 
-  // Create Marca records and store their IDs
+  // Create Marca ThingField
+  const marcaField = await prisma.thingFields.create({
+    data: {
+      seq: '001',
+      name: 'Marca',
+      displayName: 'Marca',
+      dataType: 'combobox',
+      isRequired: true,
+      ThingId: thing.id,
+    },
+  });
+
+  console.log('Marca ThingField criado:', marcaField);
+
+  // Create Marca options
   const marcas = [
-    { seq: '001', name: 'Toyota', displayName: 'Toyota' },
-    { seq: '002', name: 'Ford', displayName: 'Ford' },
-    { seq: '003', name: 'Chevrolet', displayName: 'Chevrolet' },
-    { seq: '004', name: 'Honda', displayName: 'Honda' },
+    { seq: '001', value: 'Toyota', label: 'Toyota' },
+    { seq: '002', value: 'Ford', label: 'Ford' },
+    { seq: '003', value: 'Chevrolet', label: 'Chevrolet' },
+    { seq: '004', value: 'Honda', label: 'Honda' },
   ];
 
-  try {
-    const marcaRecords = await Promise.all(
-      marcas.map((marca) => {
-        console.log('Criando Marca:', marca);
-        return prisma.thingFields.create({
-          data: {
-            seq: marca.seq,
-            name: marca.name,
-            displayName: marca.displayName,
-            dataType: 'combobox',
-            isRequired: true,
-            ThingId: thing.id,
-          },
-        });
-      })
-    );
+  const marcaOptions = await Promise.all(
+    marcas.map((marca) => {
+      return prisma.thingFieldOptions.create({
+        data: {
+          seq: marca.seq,
+          value: marca.value,
+          label: marca.label,
+          thingFieldId: marcaField.id,
+        },
+      });
+    })
+  );
 
-    console.log('Marcas criadas:', marcaRecords);
+  console.log('Marca options criadas:', marcaOptions);
 
-    // Map Marca names to their IDs
-    const marcaIdMap = Object.fromEntries(
-      marcaRecords.map((record, index) => [marcas[index].name, record.id])
-    );
+  // Create Modelo ThingField
+  const modeloField = await prisma.thingFields.create({
+    data: {
+      seq: '002',
+      name: 'Modelo',
+      displayName: 'Modelo',
+      dataType: 'combobox',
+      isRequired: true,
+      ThingId: thing.id,
+      parentFieldId: marcaField.id,
+    },
+  });
 
-    console.log('Mapa de IDs das Marcas:', marcaIdMap);
+  console.log('Modelo ThingField criado:', modeloField);
 
-    // Create Modelo records linked to Marca IDs
-    const modelos = [
-      { seq: '001', name: 'Corolla', displayName: 'Corolla', parentMarca: 'Toyota' },
-      { seq: '002', name: 'Camry', displayName: 'Camry', parentMarca: 'Toyota' },
-      { seq: '003', name: 'F-150', displayName: 'F-150', parentMarca: 'Ford' },
-      { seq: '004', name: 'Civic', displayName: 'Civic', parentMarca: 'Honda' },
-    ];
+  // Create Modelo options
+  const modelos = [
+    { seq: '001', value: 'Corolla', label: 'Corolla', parentValue: 'Toyota' },
+    { seq: '002', value: 'Camry', label: 'Camry', parentValue: 'Toyota' },
+    { seq: '003', value: 'F-150', label: 'F-150', parentValue: 'Ford' },
+    { seq: '004', value: 'Civic', label: 'Civic', parentValue: 'Honda' },
+  ];
 
-    const modeloRecords = await Promise.all(
-      modelos.map((modelo) => {
-        console.log('Criando Modelo:', modelo);
-        return prisma.thingFields.create({
-          data: {
-            seq: modelo.seq,
-            name: modelo.name,
-            displayName: modelo.displayName,
-            dataType: 'combobox',
-            isRequired: true,
-            ThingId: thing.id,
-            parentFieldId: marcaIdMap[modelo.parentMarca],
-          },
-        });
-      })
-    );
+  const modeloOptions = await Promise.all(
+    modelos.map((modelo) => {
+      const parentOption = marcaOptions.find((marca) => marca.value === modelo.parentValue);
+      return prisma.thingFieldOptions.create({
+        data: {
+          seq: modelo.seq,
+          value: modelo.value,
+          label: modelo.label,
+          thingFieldId: modeloField.id,
+          parentFieldId: parentOption?.id,
+        },
+      });
+    })
+  );
 
-    console.log('Modelos criados:', modeloRecords);
-  } catch (error) {
-    console.error('Erro ao criar Marcas ou Modelos:', error);
-  }
+  console.log('Modelo options criadas:', modeloOptions);
 
   console.log('Seed concluído para Oficina de Carros.');
 }
