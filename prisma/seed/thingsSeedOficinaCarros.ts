@@ -103,6 +103,50 @@ async function seedThingsOficinaCarros() {
 
   console.log('Modelo options criadas:', modeloOptions);
 
+  // Create Placa ThingField
+  const placaField = await prisma.thingFields.create({
+    data: {
+      seq: '003',
+      name: 'Placa',
+      displayName: 'Placa',
+      dataType: 'string',
+      isRequired: true,
+      validationRules: '{"regex":"^[A-Z]{3}-\\d{4}$"}',
+      ThingId: thing.id,
+    },
+  });
+
+  console.log('Placa ThingField criado:', placaField);
+
+  // Create Chassi ThingField
+  const chassiField = await prisma.thingFields.create({
+    data: {
+      seq: '004',
+      name: 'Chassi',
+      displayName: 'Chassi',
+      dataType: 'string',
+      isRequired: true,
+      validationRules: '{"regex":"^[A-HJ-NPR-Z0-9]{17}$"}',
+      ThingId: thing.id,
+    },
+  });
+
+  console.log('Chassi ThingField criado:', chassiField);
+
+  // Create Cor ThingField
+  const corField = await prisma.thingFields.create({
+    data: {
+      seq: '005',
+      name: 'Cor',
+      displayName: 'Cor',
+      dataType: 'string',
+      isRequired: true,
+      ThingId: thing.id,
+    },
+  });
+
+  console.log('Cor ThingField criado:', corField);
+
   console.log('Seed concluído para Oficina de Carros.');
 }
 
