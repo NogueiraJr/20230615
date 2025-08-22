@@ -1,0 +1,6063 @@
+{
+"swagger": "2.0",
+"info": {
+"title": "OCST API",
+"description": "API documentation for OCST",
+"termsOfService": "https://www.google.com/policies/terms/",
+"contact": {
+"email": "contact@ocst.local"
+},
+"license": {
+"name": "BSD License"
+},
+"version": "v1"
+},
+"host": "127.0.0.1:8000",
+"schemes": [
+"http"
+],
+"basePath": "/",
+"consumes": [
+"application/json"
+],
+"produces": [
+"application/json"
+],
+"securityDefinitions": {
+"Basic": {
+"type": "basic"
+}
+},
+"security": [
+{
+"Basic": [ ]
+}
+],
+"paths": {
+"/actions-flow-points/": {
+"get": {
+"operationId": "actions-flow-points_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/ActionsFlowPoints"
+}
+}
+}
+},
+"tags": [
+"actions-flow-points"
+]
+},
+"post": {
+"operationId": "actions-flow-points_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ActionsFlowPoints"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ActionsFlowPoints"
+}
+}
+},
+"tags": [
+"actions-flow-points"
+]
+},
+"parameters": [ ]
+},
+"/actions-flow-points/{id}/": {
+"get": {
+"operationId": "actions-flow-points_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ActionsFlowPoints"
+}
+}
+},
+"tags": [
+"actions-flow-points"
+]
+},
+"put": {
+"operationId": "actions-flow-points_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ActionsFlowPoints"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ActionsFlowPoints"
+}
+}
+},
+"tags": [
+"actions-flow-points"
+]
+},
+"patch": {
+"operationId": "actions-flow-points_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ActionsFlowPoints"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ActionsFlowPoints"
+}
+}
+},
+"tags": [
+"actions-flow-points"
+]
+},
+"delete": {
+"operationId": "actions-flow-points_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"actions-flow-points"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this actions flow points.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/actions/": {
+"get": {
+"operationId": "actions_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Actions"
+}
+}
+}
+},
+"tags": [
+"actions"
+]
+},
+"post": {
+"operationId": "actions_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Actions"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Actions"
+}
+}
+},
+"tags": [
+"actions"
+]
+},
+"parameters": [ ]
+},
+"/actions/{id}/": {
+"get": {
+"operationId": "actions_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Actions"
+}
+}
+},
+"tags": [
+"actions"
+]
+},
+"put": {
+"operationId": "actions_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Actions"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Actions"
+}
+}
+},
+"tags": [
+"actions"
+]
+},
+"patch": {
+"operationId": "actions_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Actions"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Actions"
+}
+}
+},
+"tags": [
+"actions"
+]
+},
+"delete": {
+"operationId": "actions_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"actions"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this actions.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/api/operation/": {
+"post": {
+"operationId": "api_operation_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Operation"
+}
+}
+],
+"responses": {
+"201": {
+"description": "Operação criada com sucesso"
+},
+"400": {
+"description": "Erro de validação"
+}
+},
+"tags": [
+"api"
+]
+},
+"parameters": [ ]
+},
+"/api/user-action-items/": {
+"get": {
+"operationId": "api_user-action-items_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": ""
+}
+},
+"tags": [
+"api"
+]
+},
+"parameters": [ ]
+},
+"/clients/": {
+"get": {
+"operationId": "clients_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Clients"
+}
+}
+}
+},
+"tags": [
+"clients"
+]
+},
+"post": {
+"operationId": "clients_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Clients"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Clients"
+}
+}
+},
+"tags": [
+"clients"
+]
+},
+"parameters": [ ]
+},
+"/clients/{id}/": {
+"get": {
+"operationId": "clients_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Clients"
+}
+}
+},
+"tags": [
+"clients"
+]
+},
+"put": {
+"operationId": "clients_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Clients"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Clients"
+}
+}
+},
+"tags": [
+"clients"
+]
+},
+"patch": {
+"operationId": "clients_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Clients"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Clients"
+}
+}
+},
+"tags": [
+"clients"
+]
+},
+"delete": {
+"operationId": "clients_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"clients"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this clients.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/item-types/": {
+"get": {
+"operationId": "item-types_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/ItemTypes"
+}
+}
+}
+},
+"tags": [
+"item-types"
+]
+},
+"post": {
+"operationId": "item-types_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ItemTypes"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ItemTypes"
+}
+}
+},
+"tags": [
+"item-types"
+]
+},
+"parameters": [ ]
+},
+"/item-types/{id}/": {
+"get": {
+"operationId": "item-types_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ItemTypes"
+}
+}
+},
+"tags": [
+"item-types"
+]
+},
+"put": {
+"operationId": "item-types_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ItemTypes"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ItemTypes"
+}
+}
+},
+"tags": [
+"item-types"
+]
+},
+"patch": {
+"operationId": "item-types_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ItemTypes"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ItemTypes"
+}
+}
+},
+"tags": [
+"item-types"
+]
+},
+"delete": {
+"operationId": "item-types_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"item-types"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this item types.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/items/": {
+"get": {
+"operationId": "items_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Items"
+}
+}
+}
+},
+"tags": [
+"items"
+]
+},
+"post": {
+"operationId": "items_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Items"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Items"
+}
+}
+},
+"tags": [
+"items"
+]
+},
+"parameters": [ ]
+},
+"/items/{id}/": {
+"get": {
+"operationId": "items_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Items"
+}
+}
+},
+"tags": [
+"items"
+]
+},
+"put": {
+"operationId": "items_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Items"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Items"
+}
+}
+},
+"tags": [
+"items"
+]
+},
+"patch": {
+"operationId": "items_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Items"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Items"
+}
+}
+},
+"tags": [
+"items"
+]
+},
+"delete": {
+"operationId": "items_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"items"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this items.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/menus/": {
+"get": {
+"operationId": "menus_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Menus"
+}
+}
+}
+},
+"tags": [
+"menus"
+]
+},
+"post": {
+"operationId": "menus_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Menus"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Menus"
+}
+}
+},
+"tags": [
+"menus"
+]
+},
+"parameters": [ ]
+},
+"/menus/{id}/": {
+"get": {
+"operationId": "menus_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Menus"
+}
+}
+},
+"tags": [
+"menus"
+]
+},
+"put": {
+"operationId": "menus_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Menus"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Menus"
+}
+}
+},
+"tags": [
+"menus"
+]
+},
+"patch": {
+"operationId": "menus_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Menus"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Menus"
+}
+}
+},
+"tags": [
+"menus"
+]
+},
+"delete": {
+"operationId": "menus_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"menus"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this menus.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/modules/": {
+"get": {
+"operationId": "modules_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Modules"
+}
+}
+}
+},
+"tags": [
+"modules"
+]
+},
+"post": {
+"operationId": "modules_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Modules"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Modules"
+}
+}
+},
+"tags": [
+"modules"
+]
+},
+"parameters": [ ]
+},
+"/modules/{id}/": {
+"get": {
+"operationId": "modules_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Modules"
+}
+}
+},
+"tags": [
+"modules"
+]
+},
+"put": {
+"operationId": "modules_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Modules"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Modules"
+}
+}
+},
+"tags": [
+"modules"
+]
+},
+"patch": {
+"operationId": "modules_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Modules"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Modules"
+}
+}
+},
+"tags": [
+"modules"
+]
+},
+"delete": {
+"operationId": "modules_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"modules"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this modules.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/partners/": {
+"get": {
+"operationId": "partners_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Partners"
+}
+}
+}
+},
+"tags": [
+"partners"
+]
+},
+"post": {
+"operationId": "partners_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Partners"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Partners"
+}
+}
+},
+"tags": [
+"partners"
+]
+},
+"parameters": [ ]
+},
+"/partners/{id}/": {
+"get": {
+"operationId": "partners_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Partners"
+}
+}
+},
+"tags": [
+"partners"
+]
+},
+"put": {
+"operationId": "partners_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Partners"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Partners"
+}
+}
+},
+"tags": [
+"partners"
+]
+},
+"patch": {
+"operationId": "partners_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Partners"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Partners"
+}
+}
+},
+"tags": [
+"partners"
+]
+},
+"delete": {
+"operationId": "partners_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"partners"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this partners.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/suppliers/": {
+"get": {
+"operationId": "suppliers_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Suppliers"
+}
+}
+}
+},
+"tags": [
+"suppliers"
+]
+},
+"post": {
+"operationId": "suppliers_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Suppliers"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Suppliers"
+}
+}
+},
+"tags": [
+"suppliers"
+]
+},
+"parameters": [ ]
+},
+"/suppliers/{id}/": {
+"get": {
+"operationId": "suppliers_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Suppliers"
+}
+}
+},
+"tags": [
+"suppliers"
+]
+},
+"put": {
+"operationId": "suppliers_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Suppliers"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Suppliers"
+}
+}
+},
+"tags": [
+"suppliers"
+]
+},
+"patch": {
+"operationId": "suppliers_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Suppliers"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Suppliers"
+}
+}
+},
+"tags": [
+"suppliers"
+]
+},
+"delete": {
+"operationId": "suppliers_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"suppliers"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this suppliers.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/system-menu-modules/": {
+"get": {
+"operationId": "system-menu-modules_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/SystemMenuModule"
+}
+}
+}
+},
+"tags": [
+"system-menu-modules"
+]
+},
+"post": {
+"operationId": "system-menu-modules_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/SystemMenuModule"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/SystemMenuModule"
+}
+}
+},
+"tags": [
+"system-menu-modules"
+]
+},
+"parameters": [ ]
+},
+"/system-menu-modules/{id}/": {
+"get": {
+"operationId": "system-menu-modules_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/SystemMenuModule"
+}
+}
+},
+"tags": [
+"system-menu-modules"
+]
+},
+"put": {
+"operationId": "system-menu-modules_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/SystemMenuModule"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/SystemMenuModule"
+}
+}
+},
+"tags": [
+"system-menu-modules"
+]
+},
+"patch": {
+"operationId": "system-menu-modules_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/SystemMenuModule"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/SystemMenuModule"
+}
+}
+},
+"tags": [
+"system-menu-modules"
+]
+},
+"delete": {
+"operationId": "system-menu-modules_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"system-menu-modules"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this system menu module.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/systems/": {
+"get": {
+"operationId": "systems_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Systems"
+}
+}
+}
+},
+"tags": [
+"systems"
+]
+},
+"post": {
+"operationId": "systems_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Systems"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Systems"
+}
+}
+},
+"tags": [
+"systems"
+]
+},
+"parameters": [ ]
+},
+"/systems/{id}/": {
+"get": {
+"operationId": "systems_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Systems"
+}
+}
+},
+"tags": [
+"systems"
+]
+},
+"put": {
+"operationId": "systems_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Systems"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Systems"
+}
+}
+},
+"tags": [
+"systems"
+]
+},
+"patch": {
+"operationId": "systems_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Systems"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Systems"
+}
+}
+},
+"tags": [
+"systems"
+]
+},
+"delete": {
+"operationId": "systems_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"systems"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this systems.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/thing-field-configs/": {
+"get": {
+"operationId": "thing-field-configs_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/ThingFieldConfig"
+}
+}
+}
+},
+"tags": [
+"thing-field-configs"
+]
+},
+"post": {
+"operationId": "thing-field-configs_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingFieldConfig"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFieldConfig"
+}
+}
+},
+"tags": [
+"thing-field-configs"
+]
+},
+"parameters": [ ]
+},
+"/thing-field-configs/{id}/": {
+"get": {
+"operationId": "thing-field-configs_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFieldConfig"
+}
+}
+},
+"tags": [
+"thing-field-configs"
+]
+},
+"put": {
+"operationId": "thing-field-configs_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingFieldConfig"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFieldConfig"
+}
+}
+},
+"tags": [
+"thing-field-configs"
+]
+},
+"patch": {
+"operationId": "thing-field-configs_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingFieldConfig"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFieldConfig"
+}
+}
+},
+"tags": [
+"thing-field-configs"
+]
+},
+"delete": {
+"operationId": "thing-field-configs_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"thing-field-configs"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this thing field config.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/thing-field-options/": {
+"get": {
+"operationId": "thing-field-options_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/ThingFieldOptions"
+}
+}
+}
+},
+"tags": [
+"thing-field-options"
+]
+},
+"post": {
+"operationId": "thing-field-options_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingFieldOptions"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFieldOptions"
+}
+}
+},
+"tags": [
+"thing-field-options"
+]
+},
+"parameters": [ ]
+},
+"/thing-field-options/{id}/": {
+"get": {
+"operationId": "thing-field-options_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFieldOptions"
+}
+}
+},
+"tags": [
+"thing-field-options"
+]
+},
+"put": {
+"operationId": "thing-field-options_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingFieldOptions"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFieldOptions"
+}
+}
+},
+"tags": [
+"thing-field-options"
+]
+},
+"patch": {
+"operationId": "thing-field-options_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingFieldOptions"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFieldOptions"
+}
+}
+},
+"tags": [
+"thing-field-options"
+]
+},
+"delete": {
+"operationId": "thing-field-options_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"thing-field-options"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this thing field options.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/thing-fields/": {
+"get": {
+"operationId": "thing-fields_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/ThingFields"
+}
+}
+}
+},
+"tags": [
+"thing-fields"
+]
+},
+"post": {
+"operationId": "thing-fields_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingFields"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFields"
+}
+}
+},
+"tags": [
+"thing-fields"
+]
+},
+"parameters": [ ]
+},
+"/thing-fields/{id}/": {
+"get": {
+"operationId": "thing-fields_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFields"
+}
+}
+},
+"tags": [
+"thing-fields"
+]
+},
+"put": {
+"operationId": "thing-fields_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingFields"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFields"
+}
+}
+},
+"tags": [
+"thing-fields"
+]
+},
+"patch": {
+"operationId": "thing-fields_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingFields"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingFields"
+}
+}
+},
+"tags": [
+"thing-fields"
+]
+},
+"delete": {
+"operationId": "thing-fields_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"thing-fields"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this thing fields.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/thing-values/": {
+"get": {
+"operationId": "thing-values_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/ThingValues"
+}
+}
+}
+},
+"tags": [
+"thing-values"
+]
+},
+"post": {
+"operationId": "thing-values_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingValues"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingValues"
+}
+}
+},
+"tags": [
+"thing-values"
+]
+},
+"parameters": [ ]
+},
+"/thing-values/{id}/": {
+"get": {
+"operationId": "thing-values_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingValues"
+}
+}
+},
+"tags": [
+"thing-values"
+]
+},
+"put": {
+"operationId": "thing-values_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingValues"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingValues"
+}
+}
+},
+"tags": [
+"thing-values"
+]
+},
+"patch": {
+"operationId": "thing-values_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ThingValues"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/ThingValues"
+}
+}
+},
+"tags": [
+"thing-values"
+]
+},
+"delete": {
+"operationId": "thing-values_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"thing-values"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this thing values.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/things/": {
+"get": {
+"operationId": "things_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Things"
+}
+}
+}
+},
+"tags": [
+"things"
+]
+},
+"post": {
+"operationId": "things_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Things"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Things"
+}
+}
+},
+"tags": [
+"things"
+]
+},
+"parameters": [ ]
+},
+"/things/{id}/": {
+"get": {
+"operationId": "things_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Things"
+}
+}
+},
+"tags": [
+"things"
+]
+},
+"put": {
+"operationId": "things_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Things"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Things"
+}
+}
+},
+"tags": [
+"things"
+]
+},
+"patch": {
+"operationId": "things_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Things"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Things"
+}
+}
+},
+"tags": [
+"things"
+]
+},
+"delete": {
+"operationId": "things_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"things"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this things.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-action-items/": {
+"get": {
+"operationId": "user-action-items_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserActionItems"
+}
+}
+}
+},
+"tags": [
+"user-action-items"
+]
+},
+"post": {
+"operationId": "user-action-items_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserActionItems"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActionItems"
+}
+}
+},
+"tags": [
+"user-action-items"
+]
+},
+"parameters": [ ]
+},
+"/user-action-items/{id}/": {
+"get": {
+"operationId": "user-action-items_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActionItems"
+}
+}
+},
+"tags": [
+"user-action-items"
+]
+},
+"put": {
+"operationId": "user-action-items_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserActionItems"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActionItems"
+}
+}
+},
+"tags": [
+"user-action-items"
+]
+},
+"patch": {
+"operationId": "user-action-items_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserActionItems"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActionItems"
+}
+}
+},
+"tags": [
+"user-action-items"
+]
+},
+"delete": {
+"operationId": "user-action-items_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-action-items"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user action items.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-actions-flow-points/": {
+"get": {
+"operationId": "user-actions-flow-points_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserActionsFlowPoint"
+}
+}
+}
+},
+"tags": [
+"user-actions-flow-points"
+]
+},
+"post": {
+"operationId": "user-actions-flow-points_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserActionsFlowPoint"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActionsFlowPoint"
+}
+}
+},
+"tags": [
+"user-actions-flow-points"
+]
+},
+"parameters": [ ]
+},
+"/user-actions-flow-points/{id}/": {
+"get": {
+"operationId": "user-actions-flow-points_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActionsFlowPoint"
+}
+}
+},
+"tags": [
+"user-actions-flow-points"
+]
+},
+"put": {
+"operationId": "user-actions-flow-points_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserActionsFlowPoint"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActionsFlowPoint"
+}
+}
+},
+"tags": [
+"user-actions-flow-points"
+]
+},
+"patch": {
+"operationId": "user-actions-flow-points_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserActionsFlowPoint"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActionsFlowPoint"
+}
+}
+},
+"tags": [
+"user-actions-flow-points"
+]
+},
+"delete": {
+"operationId": "user-actions-flow-points_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-actions-flow-points"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user actions flow point.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-actions/": {
+"get": {
+"operationId": "user-actions_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserActions"
+}
+}
+}
+},
+"tags": [
+"user-actions"
+]
+},
+"post": {
+"operationId": "user-actions_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserActions"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActions"
+}
+}
+},
+"tags": [
+"user-actions"
+]
+},
+"parameters": [ ]
+},
+"/user-actions/{id}/": {
+"get": {
+"operationId": "user-actions_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActions"
+}
+}
+},
+"tags": [
+"user-actions"
+]
+},
+"put": {
+"operationId": "user-actions_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserActions"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActions"
+}
+}
+},
+"tags": [
+"user-actions"
+]
+},
+"patch": {
+"operationId": "user-actions_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserActions"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserActions"
+}
+}
+},
+"tags": [
+"user-actions"
+]
+},
+"delete": {
+"operationId": "user-actions_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-actions"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user actions.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-clients/": {
+"get": {
+"operationId": "user-clients_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserClients"
+}
+}
+}
+},
+"tags": [
+"user-clients"
+]
+},
+"post": {
+"operationId": "user-clients_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserClients"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserClients"
+}
+}
+},
+"tags": [
+"user-clients"
+]
+},
+"parameters": [ ]
+},
+"/user-clients/{id}/": {
+"get": {
+"operationId": "user-clients_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserClients"
+}
+}
+},
+"tags": [
+"user-clients"
+]
+},
+"put": {
+"operationId": "user-clients_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserClients"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserClients"
+}
+}
+},
+"tags": [
+"user-clients"
+]
+},
+"patch": {
+"operationId": "user-clients_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserClients"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserClients"
+}
+}
+},
+"tags": [
+"user-clients"
+]
+},
+"delete": {
+"operationId": "user-clients_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-clients"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user clients.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-email-types/": {
+"get": {
+"operationId": "user-email-types_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserEmailTypes"
+}
+}
+}
+},
+"tags": [
+"user-email-types"
+]
+},
+"post": {
+"operationId": "user-email-types_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserEmailTypes"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserEmailTypes"
+}
+}
+},
+"tags": [
+"user-email-types"
+]
+},
+"parameters": [ ]
+},
+"/user-email-types/{id}/": {
+"get": {
+"operationId": "user-email-types_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserEmailTypes"
+}
+}
+},
+"tags": [
+"user-email-types"
+]
+},
+"put": {
+"operationId": "user-email-types_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserEmailTypes"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserEmailTypes"
+}
+}
+},
+"tags": [
+"user-email-types"
+]
+},
+"patch": {
+"operationId": "user-email-types_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserEmailTypes"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserEmailTypes"
+}
+}
+},
+"tags": [
+"user-email-types"
+]
+},
+"delete": {
+"operationId": "user-email-types_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-email-types"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user email types.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-emails/": {
+"get": {
+"operationId": "user-emails_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserEmails"
+}
+}
+}
+},
+"tags": [
+"user-emails"
+]
+},
+"post": {
+"operationId": "user-emails_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserEmails"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserEmails"
+}
+}
+},
+"tags": [
+"user-emails"
+]
+},
+"parameters": [ ]
+},
+"/user-emails/{id}/": {
+"get": {
+"operationId": "user-emails_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserEmails"
+}
+}
+},
+"tags": [
+"user-emails"
+]
+},
+"put": {
+"operationId": "user-emails_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserEmails"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserEmails"
+}
+}
+},
+"tags": [
+"user-emails"
+]
+},
+"patch": {
+"operationId": "user-emails_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserEmails"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserEmails"
+}
+}
+},
+"tags": [
+"user-emails"
+]
+},
+"delete": {
+"operationId": "user-emails_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-emails"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user emails.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-operations/": {
+"get": {
+"operationId": "user-operations_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserOperations"
+}
+}
+}
+},
+"tags": [
+"user-operations"
+]
+},
+"post": {
+"operationId": "user-operations_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserOperations"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserOperations"
+}
+}
+},
+"tags": [
+"user-operations"
+]
+},
+"parameters": [ ]
+},
+"/user-operations/{id}/": {
+"get": {
+"operationId": "user-operations_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserOperations"
+}
+}
+},
+"tags": [
+"user-operations"
+]
+},
+"put": {
+"operationId": "user-operations_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserOperations"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserOperations"
+}
+}
+},
+"tags": [
+"user-operations"
+]
+},
+"patch": {
+"operationId": "user-operations_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserOperations"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserOperations"
+}
+}
+},
+"tags": [
+"user-operations"
+]
+},
+"delete": {
+"operationId": "user-operations_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-operations"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user operations.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-partners/": {
+"get": {
+"operationId": "user-partners_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserPartners"
+}
+}
+}
+},
+"tags": [
+"user-partners"
+]
+},
+"post": {
+"operationId": "user-partners_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserPartners"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPartners"
+}
+}
+},
+"tags": [
+"user-partners"
+]
+},
+"parameters": [ ]
+},
+"/user-partners/{id}/": {
+"get": {
+"operationId": "user-partners_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPartners"
+}
+}
+},
+"tags": [
+"user-partners"
+]
+},
+"put": {
+"operationId": "user-partners_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserPartners"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPartners"
+}
+}
+},
+"tags": [
+"user-partners"
+]
+},
+"patch": {
+"operationId": "user-partners_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserPartners"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPartners"
+}
+}
+},
+"tags": [
+"user-partners"
+]
+},
+"delete": {
+"operationId": "user-partners_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-partners"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user partners.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-phone-types/": {
+"get": {
+"operationId": "user-phone-types_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserPhoneTypes"
+}
+}
+}
+},
+"tags": [
+"user-phone-types"
+]
+},
+"post": {
+"operationId": "user-phone-types_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserPhoneTypes"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPhoneTypes"
+}
+}
+},
+"tags": [
+"user-phone-types"
+]
+},
+"parameters": [ ]
+},
+"/user-phone-types/{id}/": {
+"get": {
+"operationId": "user-phone-types_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPhoneTypes"
+}
+}
+},
+"tags": [
+"user-phone-types"
+]
+},
+"put": {
+"operationId": "user-phone-types_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserPhoneTypes"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPhoneTypes"
+}
+}
+},
+"tags": [
+"user-phone-types"
+]
+},
+"patch": {
+"operationId": "user-phone-types_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserPhoneTypes"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPhoneTypes"
+}
+}
+},
+"tags": [
+"user-phone-types"
+]
+},
+"delete": {
+"operationId": "user-phone-types_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-phone-types"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user phone types.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-phones/": {
+"get": {
+"operationId": "user-phones_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserPhones"
+}
+}
+}
+},
+"tags": [
+"user-phones"
+]
+},
+"post": {
+"operationId": "user-phones_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserPhones"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPhones"
+}
+}
+},
+"tags": [
+"user-phones"
+]
+},
+"parameters": [ ]
+},
+"/user-phones/{id}/": {
+"get": {
+"operationId": "user-phones_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPhones"
+}
+}
+},
+"tags": [
+"user-phones"
+]
+},
+"put": {
+"operationId": "user-phones_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserPhones"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPhones"
+}
+}
+},
+"tags": [
+"user-phones"
+]
+},
+"patch": {
+"operationId": "user-phones_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserPhones"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserPhones"
+}
+}
+},
+"tags": [
+"user-phones"
+]
+},
+"delete": {
+"operationId": "user-phones_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-phones"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user phones.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-suppliers/": {
+"get": {
+"operationId": "user-suppliers_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserSuppliers"
+}
+}
+}
+},
+"tags": [
+"user-suppliers"
+]
+},
+"post": {
+"operationId": "user-suppliers_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserSuppliers"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserSuppliers"
+}
+}
+},
+"tags": [
+"user-suppliers"
+]
+},
+"parameters": [ ]
+},
+"/user-suppliers/{id}/": {
+"get": {
+"operationId": "user-suppliers_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserSuppliers"
+}
+}
+},
+"tags": [
+"user-suppliers"
+]
+},
+"put": {
+"operationId": "user-suppliers_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserSuppliers"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserSuppliers"
+}
+}
+},
+"tags": [
+"user-suppliers"
+]
+},
+"patch": {
+"operationId": "user-suppliers_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserSuppliers"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserSuppliers"
+}
+}
+},
+"tags": [
+"user-suppliers"
+]
+},
+"delete": {
+"operationId": "user-suppliers_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-suppliers"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user suppliers.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-system-menu-modules/": {
+"get": {
+"operationId": "user-system-menu-modules_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserSystemMenuModule"
+}
+}
+}
+},
+"tags": [
+"user-system-menu-modules"
+]
+},
+"post": {
+"operationId": "user-system-menu-modules_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserSystemMenuModule"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserSystemMenuModule"
+}
+}
+},
+"tags": [
+"user-system-menu-modules"
+]
+},
+"parameters": [ ]
+},
+"/user-system-menu-modules/{id}/": {
+"get": {
+"operationId": "user-system-menu-modules_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserSystemMenuModule"
+}
+}
+},
+"tags": [
+"user-system-menu-modules"
+]
+},
+"put": {
+"operationId": "user-system-menu-modules_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserSystemMenuModule"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserSystemMenuModule"
+}
+}
+},
+"tags": [
+"user-system-menu-modules"
+]
+},
+"patch": {
+"operationId": "user-system-menu-modules_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserSystemMenuModule"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserSystemMenuModule"
+}
+}
+},
+"tags": [
+"user-system-menu-modules"
+]
+},
+"delete": {
+"operationId": "user-system-menu-modules_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-system-menu-modules"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user system menu module.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-tags/": {
+"get": {
+"operationId": "user-tags_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserTags"
+}
+}
+}
+},
+"tags": [
+"user-tags"
+]
+},
+"post": {
+"operationId": "user-tags_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserTags"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserTags"
+}
+}
+},
+"tags": [
+"user-tags"
+]
+},
+"parameters": [ ]
+},
+"/user-tags/{id}/": {
+"get": {
+"operationId": "user-tags_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserTags"
+}
+}
+},
+"tags": [
+"user-tags"
+]
+},
+"put": {
+"operationId": "user-tags_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserTags"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserTags"
+}
+}
+},
+"tags": [
+"user-tags"
+]
+},
+"patch": {
+"operationId": "user-tags_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserTags"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserTags"
+}
+}
+},
+"tags": [
+"user-tags"
+]
+},
+"delete": {
+"operationId": "user-tags_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-tags"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user tags.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/user-types/": {
+"get": {
+"operationId": "user-types_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserTypes"
+}
+}
+}
+},
+"tags": [
+"user-types"
+]
+},
+"post": {
+"operationId": "user-types_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserTypes"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserTypes"
+}
+}
+},
+"tags": [
+"user-types"
+]
+},
+"parameters": [ ]
+},
+"/user-types/{id}/": {
+"get": {
+"operationId": "user-types_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserTypes"
+}
+}
+},
+"tags": [
+"user-types"
+]
+},
+"put": {
+"operationId": "user-types_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserTypes"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserTypes"
+}
+}
+},
+"tags": [
+"user-types"
+]
+},
+"patch": {
+"operationId": "user-types_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserTypes"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/UserTypes"
+}
+}
+},
+"tags": [
+"user-types"
+]
+},
+"delete": {
+"operationId": "user-types_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"user-types"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this user types.",
+"required": true,
+"type": "string"
+}
+]
+},
+"/users/": {
+"get": {
+"operationId": "users_list",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Users"
+}
+}
+}
+},
+"tags": [
+"users"
+]
+},
+"post": {
+"operationId": "users_create",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Users"
+}
+}
+],
+"responses": {
+"201": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Users"
+}
+}
+},
+"tags": [
+"users"
+]
+},
+"parameters": [ ]
+},
+"/users/{id}/": {
+"get": {
+"operationId": "users_read",
+"description": "",
+"parameters": [ ],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Users"
+}
+}
+},
+"tags": [
+"users"
+]
+},
+"put": {
+"operationId": "users_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Users"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Users"
+}
+}
+},
+"tags": [
+"users"
+]
+},
+"patch": {
+"operationId": "users_partial_update",
+"description": "",
+"parameters": [
+{
+"name": "data",
+"in": "body",
+"required": true,
+"schema": {
+"$ref": "#/definitions/Users"
+}
+}
+],
+"responses": {
+"200": {
+"description": "",
+"schema": {
+"$ref": "#/definitions/Users"
+}
+}
+},
+"tags": [
+"users"
+]
+},
+"delete": {
+"operationId": "users_delete",
+"description": "",
+"parameters": [ ],
+"responses": {
+"204": {
+"description": ""
+}
+},
+"tags": [
+"users"
+]
+},
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "A unique value identifying this users.",
+"required": true,
+"type": "string"
+}
+]
+}
+},
+"definitions": {
+"ActionsFlowPoints": {
+"required": [
+"moment",
+"seq",
+"name",
+"systemId",
+"userId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"moment": {
+"title": "Moment",
+"type": "string",
+"minLength": 1
+},
+"seq": {
+"title": "Seq",
+"type": "string",
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"systemId": {
+"title": "SystemId",
+"type": "string"
+},
+"userId": {
+"title": "UserId",
+"type": "string"
+}
+}
+},
+"Actions": {
+"required": [
+"action",
+"seq",
+"name",
+"systemId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"action": {
+"title": "Action",
+"type": "string",
+"minLength": 1
+},
+"seq": {
+"title": "Seq",
+"type": "string",
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"systemId": {
+"title": "SystemId",
+"type": "string"
+}
+}
+},
+"SelectedItem": {
+"required": [
+"id",
+"quantity"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"minLength": 1
+},
+"quantity": {
+"title": "Quantity",
+"type": "integer"
+}
+}
+},
+"Operation": {
+"required": [
+"idOperation",
+"system",
+"userId",
+"total",
+"totalEditado",
+"selectedItems",
+"cliente",
+"descricaoOperacao",
+"etiquetas",
+"dataProva",
+"dataRetirada",
+"dataDevolucao",
+"anotacoes"
+],
+"type": "object",
+"properties": {
+"idOperation": {
+"title": "Idoperation",
+"type": "string",
+"minLength": 1
+},
+"system": {
+"title": "System",
+"type": "string",
+"minLength": 1
+},
+"userId": {
+"title": "Userid",
+"type": "string",
+"minLength": 1
+},
+"total": {
+"title": "Total",
+"type": "string",
+"minLength": 1
+},
+"totalEditado": {
+"title": "Totaleditado",
+"type": "string",
+"minLength": 1
+},
+"selectedItems": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/SelectedItem"
+}
+},
+"cliente": {
+"title": "Cliente",
+"type": "string",
+"minLength": 1
+},
+"descricaoOperacao": {
+"title": "Descricaooperacao",
+"type": "string",
+"minLength": 1
+},
+"etiquetas": {
+"type": "array",
+"items": {
+"type": "string",
+"minLength": 1
+}
+},
+"dataProva": {
+"title": "Dataprova",
+"type": "string",
+"format": "date-time"
+},
+"dataRetirada": {
+"title": "Dataretirada",
+"type": "string",
+"format": "date-time"
+},
+"dataDevolucao": {
+"title": "Datadevolucao",
+"type": "string",
+"format": "date-time"
+},
+"anotacoes": {
+"title": "Anotacoes",
+"type": "string",
+"minLength": 1
+}
+}
+},
+"Clients": {
+"required": [
+"name"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"tags": {
+"title": "Tags",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+}
+}
+},
+"ItemTypes": {
+"required": [
+"name"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+}
+}
+},
+"Items": {
+"required": [
+"name",
+"itemTypeId",
+"userId",
+"systemId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"quantity": {
+"title": "Quantity",
+"type": "integer",
+"maximum": 2147483647,
+"minimum": -2147483648
+},
+"price": {
+"title": "Price",
+"type": "string",
+"format": "decimal"
+},
+"tags": {
+"title": "Tags",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"itemTypeId": {
+"title": "ItemTypeId",
+"type": "string"
+},
+"userId": {
+"title": "UserId",
+"type": "string"
+},
+"systemId": {
+"title": "SystemId",
+"type": "string"
+}
+}
+},
+"Menus": {
+"required": [
+"seq",
+"ref",
+"name"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"seq": {
+"title": "Seq",
+"type": "string",
+"minLength": 1
+},
+"ref": {
+"title": "Ref",
+"type": "string",
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+}
+}
+},
+"Modules": {
+"required": [
+"seq",
+"ref",
+"name"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"seq": {
+"title": "Seq",
+"type": "string",
+"minLength": 1
+},
+"ref": {
+"title": "Ref",
+"type": "string",
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+}
+}
+},
+"Partners": {
+"required": [
+"name"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"tags": {
+"title": "Tags",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+}
+}
+},
+"Suppliers": {
+"required": [
+"name"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"tags": {
+"title": "Tags",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+}
+}
+},
+"SystemMenuModule": {
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"systemId": {
+"title": "SystemId",
+"type": "string",
+"x-nullable": true
+},
+"menuId": {
+"title": "MenuId",
+"type": "string",
+"x-nullable": true
+},
+"moduleId": {
+"title": "ModuleId",
+"type": "string",
+"x-nullable": true
+}
+}
+},
+"Systems": {
+"required": [
+"seq",
+"name"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"seq": {
+"title": "Seq",
+"type": "string",
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+}
+}
+},
+"ThingFieldConfig": {
+"required": [
+"id",
+"thing_field"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"minLength": 1
+},
+"is_multi_select": {
+"title": "Is multi select",
+"type": "boolean"
+},
+"max_selections": {
+"title": "Max selections",
+"type": "integer",
+"maximum": 2147483647,
+"minimum": -2147483648,
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"create_at": {
+"title": "Create at",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updated_at": {
+"title": "Updated at",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deleted_at": {
+"title": "Deleted at",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"thing_field": {
+"title": "Thing field",
+"type": "string"
+}
+}
+},
+"ThingFieldOptions": {
+"required": [
+"id",
+"seq",
+"value",
+"label",
+"thing_field"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"minLength": 1
+},
+"seq": {
+"title": "Seq",
+"type": "string",
+"minLength": 1
+},
+"value": {
+"title": "Value",
+"type": "string",
+"minLength": 1
+},
+"label": {
+"title": "Label",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"create_at": {
+"title": "Create at",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updated_at": {
+"title": "Updated at",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deleted_at": {
+"title": "Deleted at",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"thing_field": {
+"title": "Thing field",
+"type": "string"
+},
+"parent_field": {
+"title": "Parent field",
+"type": "string",
+"x-nullable": true
+}
+}
+},
+"ThingFields": {
+"required": [
+"id",
+"seq",
+"name",
+"display_name",
+"data_type",
+"thing"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"minLength": 1
+},
+"seq": {
+"title": "Seq",
+"type": "string",
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"display_name": {
+"title": "Display name",
+"type": "string",
+"minLength": 1
+},
+"data_type": {
+"title": "Data type",
+"type": "string",
+"minLength": 1
+},
+"is_required": {
+"title": "Is required",
+"type": "boolean"
+},
+"validation_rules": {
+"title": "Validation rules",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"create_at": {
+"title": "Create at",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updated_at": {
+"title": "Updated at",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deleted_at": {
+"title": "Deleted at",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"thing": {
+"title": "Thing",
+"type": "string"
+},
+"parent_field": {
+"title": "Parent field",
+"type": "string",
+"x-nullable": true
+}
+}
+},
+"ThingValues": {
+"required": [
+"id",
+"thing_field"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"minLength": 1
+},
+"value_string": {
+"title": "Value string",
+"type": "string",
+"x-nullable": true
+},
+"value_number": {
+"title": "Value number",
+"type": "number",
+"x-nullable": true
+},
+"value_boolean": {
+"title": "Value boolean",
+"type": "boolean",
+"x-nullable": true
+},
+"value_date": {
+"title": "Value date",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"value_json": {
+"title": "Value json",
+"type": "object",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"create_at": {
+"title": "Create at",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updated_at": {
+"title": "Updated at",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deleted_at": {
+"title": "Deleted at",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"thing_field": {
+"title": "Thing field",
+"type": "string"
+},
+"user_client": {
+"title": "User client",
+"type": "string",
+"x-nullable": true
+},
+"user_operation": {
+"title": "User operation",
+"type": "string",
+"x-nullable": true
+},
+"user_action": {
+"title": "User action",
+"type": "string",
+"x-nullable": true
+}
+}
+},
+"Things": {
+"required": [
+"id",
+"name",
+"display_name",
+"system"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"display_name": {
+"title": "Display name",
+"type": "string",
+"minLength": 1
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"create_at": {
+"title": "Create at",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updated_at": {
+"title": "Updated at",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deleted_at": {
+"title": "Deleted at",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"system": {
+"title": "System",
+"type": "string"
+},
+"user": {
+"title": "User",
+"type": "string",
+"x-nullable": true
+}
+}
+},
+"UserActionItems": {
+"required": [
+"seq",
+"description",
+"itemId",
+"userActionId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"seq": {
+"title": "Seq",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"minLength": 1
+},
+"quantity": {
+"title": "Quantity",
+"type": "integer",
+"maximum": 2147483647,
+"minimum": -2147483648
+},
+"tags": {
+"title": "Tags",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"itemId": {
+"title": "ItemId",
+"type": "string"
+},
+"userActionId": {
+"title": "UserActionId",
+"type": "string"
+}
+}
+},
+"UserActionsFlowPoint": {
+"required": [
+"userOperationId",
+"userClientId",
+"actionId",
+"actionFlowPointId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"notes": {
+"title": "Notes",
+"type": "string",
+"x-nullable": true
+},
+"checkedAt": {
+"title": "CheckedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"userOperationId": {
+"title": "UserOperationId",
+"type": "string"
+},
+"userClientId": {
+"title": "UserClientId",
+"type": "string"
+},
+"actionId": {
+"title": "ActionId",
+"type": "string"
+},
+"actionFlowPointId": {
+"title": "ActionFlowPointId",
+"type": "string"
+},
+"checkedUserId": {
+"title": "CheckedUserId",
+"type": "string",
+"x-nullable": true
+}
+}
+},
+"UserActions": {
+"required": [
+"description",
+"userOperationId",
+"userClientId",
+"actionId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"minLength": 1
+},
+"notes": {
+"title": "Notes",
+"type": "string",
+"x-nullable": true
+},
+"scheduledAt": {
+"title": "ScheduledAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"executedAt": {
+"title": "ExecutedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"finishedAt": {
+"title": "FinishedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"priceItems": {
+"title": "PriceItems",
+"type": "string",
+"format": "decimal",
+"x-nullable": true
+},
+"tags": {
+"title": "Tags",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"userOperationId": {
+"title": "UserOperationId",
+"type": "string"
+},
+"userClientId": {
+"title": "UserClientId",
+"type": "string"
+},
+"actionId": {
+"title": "ActionId",
+"type": "string"
+},
+"userActionId": {
+"title": "UserActionId",
+"type": "string",
+"x-nullable": true
+}
+}
+},
+"UserClients": {
+"required": [
+"userId",
+"clientId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"userId": {
+"title": "UserId",
+"type": "string"
+},
+"clientId": {
+"title": "ClientId",
+"type": "string"
+}
+}
+},
+"UserEmailTypes": {
+"required": [
+"name"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+}
+}
+},
+"UserEmails": {
+"required": [
+"email",
+"userId",
+"userEmailTypeId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"email": {
+"title": "Email",
+"type": "string",
+"minLength": 1
+},
+"tags": {
+"title": "Tags",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"userId": {
+"title": "UserId",
+"type": "string"
+},
+"userEmailTypeId": {
+"title": "UserEmailTypeId",
+"type": "string"
+}
+}
+},
+"UserOperations": {
+"required": [
+"description",
+"userId",
+"systemId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"minLength": 1
+},
+"notes": {
+"title": "Notes",
+"type": "string",
+"x-nullable": true
+},
+"priceActions": {
+"title": "PriceActions",
+"type": "string",
+"format": "decimal",
+"x-nullable": true
+},
+"priceCharged": {
+"title": "PriceCharged",
+"type": "string",
+"format": "decimal",
+"x-nullable": true
+},
+"tags": {
+"title": "Tags",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"userId": {
+"title": "UserId",
+"type": "string"
+},
+"systemId": {
+"title": "SystemId",
+"type": "string"
+}
+}
+},
+"UserPartners": {
+"required": [
+"userId",
+"partnerId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"userId": {
+"title": "UserId",
+"type": "string"
+},
+"partnerId": {
+"title": "PartnerId",
+"type": "string"
+}
+}
+},
+"UserPhoneTypes": {
+"required": [
+"name"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+}
+}
+},
+"UserPhones": {
+"required": [
+"phone",
+"userId",
+"userPhoneTypeId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"phone": {
+"title": "Phone",
+"type": "string",
+"minLength": 1
+},
+"tags": {
+"title": "Tags",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"userId": {
+"title": "UserId",
+"type": "string"
+},
+"userPhoneTypeId": {
+"title": "UserPhoneTypeId",
+"type": "string"
+}
+}
+},
+"UserSuppliers": {
+"required": [
+"userId",
+"supplierId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"userId": {
+"title": "UserId",
+"type": "string"
+},
+"supplierId": {
+"title": "SupplierId",
+"type": "string"
+}
+}
+},
+"UserSystemMenuModule": {
+"required": [
+"userId",
+"systemMenuModuleId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"userId": {
+"title": "UserId",
+"type": "string"
+},
+"systemMenuModuleId": {
+"title": "SystemMenuModuleId",
+"type": "string"
+}
+}
+},
+"UserTags": {
+"required": [
+"tag",
+"description",
+"userId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"tag": {
+"title": "Tag",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"minLength": 1
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"userId": {
+"title": "UserId",
+"type": "string"
+}
+}
+},
+"UserTypes": {
+"required": [
+"name"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"description": {
+"title": "Description",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+}
+}
+},
+"Users": {
+"required": [
+"name",
+"usr",
+"psw",
+"userTypeId"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "string",
+"readOnly": true,
+"minLength": 1
+},
+"name": {
+"title": "Name",
+"type": "string",
+"minLength": 1
+},
+"usr": {
+"title": "Usr",
+"type": "string",
+"minLength": 1
+},
+"psw": {
+"title": "Psw",
+"type": "string",
+"minLength": 1
+},
+"tags": {
+"title": "Tags",
+"type": "string",
+"x-nullable": true
+},
+"active": {
+"title": "Active",
+"type": "boolean"
+},
+"createAt": {
+"title": "CreateAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"updatedAt": {
+"title": "UpdatedAt",
+"type": "string",
+"format": "date-time",
+"readOnly": true
+},
+"deletedAt": {
+"title": "DeletedAt",
+"type": "string",
+"format": "date-time",
+"x-nullable": true
+},
+"userTypeId": {
+"title": "UserTypeId",
+"type": "string"
+},
+"userId": {
+"title": "UserId",
+"type": "string",
+"x-nullable": true
+}
+}
+}
+}
+}
