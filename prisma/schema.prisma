@@ -506,8 +506,8 @@ datasource db {
     isRequired    Boolean  @default(false)
     validationRules String?
     
-    parentFieldId String?   @map("parentFieldId") // Campo opcional para vincular ao campo genérico pai
-    parentField   ThingFields? @relation("ParentChildField", fields: [parentFieldId], references: [id]) // Relacionamento com o campo genérico pai
+    thingFieldId String?   @map("thingFieldId") // Campo opcional para vincular ao campo genérico pai
+    parentField   ThingFields? @relation("ParentChildField", fields: [thingFieldId], references: [id]) // Relacionamento com o campo genérico pai
     childFields   ThingFields[] @relation("ParentChildField") // Relacionamento inverso para listar os campos filhos vinculados
     
     active        Boolean  @default(true)

@@ -72,7 +72,6 @@ async function seedThingsOficinaCarros() {
       dataType: 'combobox',
       isRequired: true,
       ThingId: thing.id,
-      parentFieldId: marcaField.id,
     },
   });
 
@@ -95,7 +94,6 @@ async function seedThingsOficinaCarros() {
           value: modelo.value,
           label: modelo.label,
           thingFieldId: modeloField.id,
-          parentFieldId: parentOption?.id,
         },
       });
     })

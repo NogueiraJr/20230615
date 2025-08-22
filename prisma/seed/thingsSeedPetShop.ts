@@ -72,7 +72,6 @@ async function seedThingsPetShop() {
       dataType: 'combobox',
       isRequired: false,
       ThingId: thing.id,
-      parentFieldId: especieField.id,
     },
   });
 
@@ -103,7 +102,6 @@ async function seedThingsPetShop() {
           value: raca.value,
           label: raca.label,
           thingFieldId: racaField.id,
-          parentFieldId: parentOption?.id,
         },
       });
     })
