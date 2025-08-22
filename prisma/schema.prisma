@@ -532,7 +532,7 @@ datasource db {
     label         String   // texto exibido (ex: "Pequeno", "Médio", "Grande")
     description   String?  // alguma descrição para aparecer como 'hint' ao passar o mouse, por exemplo.
 
-    parentFieldId String?  @map("parentFieldId") // Campo opcional para vincular ao campo genérico pai
+    thingFieldOptionId String?  @map("thingFieldOptionId") // Campo opcional para vincular ao campo genérico pai
 
     active        Boolean  @default(true)
     createAt      DateTime @default(now())
