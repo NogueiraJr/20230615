@@ -102,6 +102,7 @@ async function seedThingsPetShop() {
           value: raca.value,
           label: raca.label,
           thingFieldId: racaField.id,
+          thingFieldOptionId: parentOption?.id,
         },
       });
     })
