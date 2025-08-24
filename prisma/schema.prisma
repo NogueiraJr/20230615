@@ -24,7 +24,7 @@ datasource db {
     actions            Actions[]
     actionsFlowPoint   ActionsFlowPoints[]
     items           Items[]
-    Things Things[]
+    things SystemThing[]
   }
 
 // M E N U S 
@@ -475,7 +475,6 @@ datasource db {
 // M O D E L   O F   T H I N G S
   model Things {
     id          String   @id @default(cuid())
-    systemId    String   @map("systemId")
     userId      String?   @map("userId")
     name        String
     description String?
@@ -487,16 +486,29 @@ datasource db {
     deletedAt   DateTime?
     
     user           Users?        @relation(fields: [userId], references: [id])
-    system      Systems  @relation(fields: [systemId], references: [id])
-    ThingFields ThingFields[] 
+    systems     SystemThing[]
+    thingFields ThingFields[]
 
-    @@index([id, systemId])
-    @@unique([id, systemId])
+    @@index([id])
+    @@unique([id])
+  }
+
+  model SystemThing {
+    id        String @id @default(cuid())
+    systemId  String
+    thingId   String
+    system    Systems @relation(fields: [systemId], references: [id])
+    thing     Things  @relation(fields: [thingId], references: [id])
+
+    @@index([id, systemId, thingId])
+    @@unique([id, systemId, thingId])
   }
 
   model ThingFields {
     id            String   @id @default(cuid())
-    ThingId       String   @map("ThingId")
+    thingId       String   @map("ThingId")
+    thingFieldId String?   @map("thingFieldId") // Campo opcional para vincular ao campo genérico pai
+
     seq           String
     name          String
     description   String?
@@ -506,43 +518,44 @@ datasource db {
     isRequired    Boolean  @default(false)
     validationRules String?
     
-    thingFieldId String?   @map("thingFieldId") // Campo opcional para vincular ao campo genérico pai
-    parentField   ThingFields? @relation("ParentChildField", fields: [thingFieldId], references: [id]) // Relacionamento com o campo genérico pai
-    childFields   ThingFields[] @relation("ParentChildField") // Relacionamento inverso para listar os campos filhos vinculados
+    things     Things   @relation(fields: [thingId], references: [id])
+    parentField   ThingFields? @relation("parentField", fields: [thingFieldId], references: [id]) // Relacionamento com o campo genérico pai
+    childFields   ThingFields[] @relation("parentField") // Relacionamento inverso para listar os campos filhos vinculados
     
     active        Boolean  @default(true)
     createAt      DateTime @default(now())
     updatedAt     DateTime @updatedAt
     deletedAt     DateTime?
     
-    ThingType     Things   @relation(fields: [ThingId], references: [id])
-    ThingValues   ThingValues[]
+    thingValues   ThingValues[]
     options       ThingFieldOptions[] // para casos de dataType = dropdown ou combobox
     config        ThingFieldConfig?   // para casos de dataType = dropdown ou combobox
-    
-    @@index([id])
-    @@unique([id, ThingId])
+
+    @@index([id, thingId])
+    @@unique([id, thingId])
   }
 
   model ThingFieldOptions {
     id            String   @id @default(cuid())
     thingFieldId  String   @map("thingFieldId")
+    thingFieldOptionId String?  @map("thingFieldOptionId") // Campo opcional para vincular ao campo genérico pai
+
     seq           String
     value         String   // valor armazenado (ex: "small", "medium", "large")
     label         String   // texto exibido (ex: "Pequeno", "Médio", "Grande")
     description   String?  // alguma descrição para aparecer como 'hint' ao passar o mouse, por exemplo.
 
-    thingFieldOptionId String?  @map("thingFieldOptionId") // Campo opcional para vincular ao campo genérico pai
+    thingField    ThingFields @relation(fields: [thingFieldId], references: [id])
+    childOptions ThingFieldOptions[] @relation("ParentOption") // Relacionamento inverso para listar as opções filhas vinculadas
+    parentOption ThingFieldOptions? @relation("ParentOption", fields: [thingFieldOptionId], references: [id]) // Relacionamento com a opção genérica pai
 
     active        Boolean  @default(true)
     createAt      DateTime @default(now())
     updatedAt     DateTime @updatedAt
     deletedAt     DateTime?
-    
-    thingField    ThingFields @relation(fields: [thingFieldId], references: [id])
-    
-    @@unique([thingFieldId, seq])
-    @@index([thingFieldId])
+
+    @@index([id, thingFieldId])
+    @@unique([id, thingFieldId])
   }
 
   model ThingFieldConfig {
@@ -557,12 +570,15 @@ datasource db {
     deletedAt     DateTime?
     
     thingField    ThingFields @relation(fields: [thingFieldId], references: [id])
+    
+    @@index([id, thingFieldId])
+    @@unique([id, thingFieldId])
   }
 
   model ThingValues {
     id                       String   @id @default(cuid())
-    ThingFieldId             String   @map("ThingFieldId")
-    userClientId             String?  @map("UserClientId")
+    thingFieldId             String   @map("thingFieldId")
+    userClientId             String?  @map("userClientId")
 
     userOperationId          String?  @map("userOperationId")
     userActionId             String?  @map("userActionId")
@@ -582,8 +598,10 @@ datasource db {
     userActions              UserActions? @relation(fields: [userActionId], references: [id])
 
     userOperation            UserOperations? @relation(fields: [userOperationId], references: [id])
-    thingFeatureField        ThingFields @relation(fields: [ThingFieldId], references: [id])
+    thingFeatureField        ThingFields @relation(fields: [thingFieldId], references: [id])
 
+    @@index([id, thingFieldId])
     @@index([userOperationId])
     @@index([userActionId])
+    @@unique([id, thingFieldId])
   }
