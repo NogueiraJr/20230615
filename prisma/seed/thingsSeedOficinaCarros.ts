@@ -14,10 +14,9 @@ async function seedThingsOficinaCarros() {
 
   console.log('Sistema encontrado:', system);
 
-  // Create a Things record
+  // Cria o registro Things
   const thing = await prisma.things.create({
     data: {
-      systemId: system.id,
       name: 'DadosVeiculo',
       description: 'Informações sobre o veículo para reparo',
       displayName: 'Veículo',
@@ -26,7 +25,17 @@ async function seedThingsOficinaCarros() {
 
   console.log('Registro criado na tabela Things:', thing);
 
-  // Create Marca ThingField
+  // Associa o Things ao sistema via ThingSystems
+  await prisma.thingSystems.create({
+    data: {
+      thingId: thing.id,
+      systemId: system.id,
+    },
+  });
+
+  console.log('Associação criada entre Things e sistema: Oficina de Carros');
+
+  // Cria os campos e opções
   const marcaField = await prisma.thingFields.create({
     data: {
       seq: '001',
@@ -34,13 +43,12 @@ async function seedThingsOficinaCarros() {
       displayName: 'Marca',
       dataType: 'combobox',
       isRequired: true,
-      ThingId: thing.id,
+      thingId: thing.id,
     },
   });
 
   console.log('Marca ThingField criado:', marcaField);
 
-  // Create Marca options
   const marcas = [
     { seq: '001', value: 'Toyota', label: 'Toyota' },
     { seq: '002', value: 'Ford', label: 'Ford' },
@@ -63,7 +71,6 @@ async function seedThingsOficinaCarros() {
 
   console.log('Marca options criadas:', marcaOptions);
 
-  // Create Modelo ThingField
   const modeloField = await prisma.thingFields.create({
     data: {
       seq: '002',
@@ -71,14 +78,12 @@ async function seedThingsOficinaCarros() {
       displayName: 'Modelo',
       dataType: 'combobox',
       isRequired: true,
-      ThingId: thing.id,
-      thingFieldId: marcaField.id,
+      thingId: thing.id,
     },
   });
 
   console.log('Modelo ThingField criado:', modeloField);
 
-  // Create Modelo options
   const modelos = [
     { seq: '001', value: 'Corolla', label: 'Corolla', parentValue: 'Toyota' },
     { seq: '002', value: 'Camry', label: 'Camry', parentValue: 'Toyota' },
@@ -86,7 +91,7 @@ async function seedThingsOficinaCarros() {
     { seq: '004', value: 'Civic', label: 'Civic', parentValue: 'Honda' },
   ];
 
-  const modeloOptions = await Promise.all(
+  await Promise.all(
     modelos.map((modelo) => {
       const parentOption = marcaOptions.find((marca) => marca.value === modelo.parentValue);
       return prisma.thingFieldOptions.create({
@@ -101,57 +106,21 @@ async function seedThingsOficinaCarros() {
     })
   );
 
-  console.log('Modelo options criadas:', modeloOptions);
+  console.log('Modelo options criadas.');
 
-  // Create Placa ThingField
-  const placaField = await prisma.thingFields.create({
-    data: {
-      seq: '003',
-      name: 'Placa',
-      displayName: 'Placa',
-      dataType: 'string',
-      isRequired: true,
-      validationRules: '{"regex":"^[A-Z]{3}-\\d{4}$"}',
-      ThingId: thing.id,
-    },
+  await prisma.thingFields.createMany({
+    data: [
+      { seq: '003', name: 'Placa', displayName: 'Placa', dataType: 'string', isRequired: true, validationRules: '{"regex":"^[A-Z]{3}-\\d{4}$"}', thingId: thing.id },
+      { seq: '004', name: 'Chassi', displayName: 'Chassi', dataType: 'string', isRequired: true, validationRules: '{"regex":"^[A-HJ-NPR-Z0-9]{17}$"}', thingId: thing.id },
+      { seq: '005', name: 'Cor', displayName: 'Cor', dataType: 'string', isRequired: true, thingId: thing.id },
+    ],
   });
 
-  console.log('Placa ThingField criado:', placaField);
-
-  // Create Chassi ThingField
-  const chassiField = await prisma.thingFields.create({
-    data: {
-      seq: '004',
-      name: 'Chassi',
-      displayName: 'Chassi',
-      dataType: 'string',
-      isRequired: true,
-      validationRules: '{"regex":"^[A-HJ-NPR-Z0-9]{17}$"}',
-      ThingId: thing.id,
-    },
-  });
-
-  console.log('Chassi ThingField criado:', chassiField);
-
-  // Create Cor ThingField
-  const corField = await prisma.thingFields.create({
-    data: {
-      seq: '005',
-      name: 'Cor',
-      displayName: 'Cor',
-      dataType: 'string',
-      isRequired: true,
-      ThingId: thing.id,
-    },
-  });
-
-  console.log('Cor ThingField criado:', corField);
-
-  console.log('Seed concluído para Oficina de Carros.');
+  console.log('Campos adicionais criados para Oficina de Carros.');
 }
 
 seedThingsOficinaCarros()
-  .catch((e) => console.error('Erro ao executar o seed:', e))
+  .catch((e) => console.error(e))
   .finally(async () => {
     await prisma.$disconnect();
   });

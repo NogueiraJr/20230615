@@ -3,6 +3,8 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function seedThingsLocacaoCarros() {
+  console.log('Iniciando o seed para Locação de Carros...');
+
   const system = await prisma.systems.findFirst({ where: { name: { contains: 'Locação de Carros' } } });
 
   if (!system) {
@@ -10,26 +12,42 @@ async function seedThingsLocacaoCarros() {
     return;
   }
 
-  const things = await prisma.things.create({
+  console.log('Sistema encontrado:', system);
+
+  // Cria o registro Things
+  const thing = await prisma.things.create({
     data: {
-      systemId: system.id,
       name: 'DocCNH',
       description: 'Dados de CNH e preferências para locação de carros',
       displayName: 'CNH e Preferências',
-      ThingFields: {
-        create: [
-          { seq: '001', name: 'NumeroCNH', displayName: 'Número da CNH', dataType: 'string', isRequired: true },
-          { seq: '002', name: 'ValidadeCNH', displayName: 'Validade da CNH', dataType: 'date', isRequired: true },
-          { seq: '003', name: 'CategoriaCNH', displayName: 'Categoria da CNH', dataType: 'string', isRequired: true },
-          { seq: '004', name: 'TipoCarro', displayName: 'Tipo de Carro', dataType: 'string', isRequired: false },
-          { seq: '005', name: 'GPS', displayName: 'GPS', dataType: 'boolean', isRequired: false },
-          { seq: '006', name: 'Cadeirinha', displayName: 'Cadeirinha', dataType: 'boolean', isRequired: false },
-        ],
-      },
     },
   });
 
-  console.log('Seed concluído para Locação de Carros:', things);
+  console.log('Registro criado na tabela Things:', thing);
+
+  // Associa o Things ao sistema via ThingSystems
+  await prisma.thingSystems.create({
+    data: {
+      thingId: thing.id,
+      systemId: system.id,
+    },
+  });
+
+  console.log('Associação criada entre Things e sistema: Locação de Carros');
+
+  // Cria os campos e opções
+  await prisma.thingFields.createMany({
+    data: [
+      { seq: '001', name: 'NumeroCNH', displayName: 'Número da CNH', dataType: 'string', isRequired: true, thingId: thing.id },
+      { seq: '002', name: 'ValidadeCNH', displayName: 'Validade da CNH', dataType: 'date', isRequired: true, thingId: thing.id },
+      { seq: '003', name: 'CategoriaCNH', displayName: 'Categoria da CNH', dataType: 'string', isRequired: true, thingId: thing.id },
+      { seq: '004', name: 'TipoCarro', displayName: 'Tipo de Carro', dataType: 'string', isRequired: false, thingId: thing.id },
+      { seq: '005', name: 'GPS', displayName: 'GPS', dataType: 'boolean', isRequired: false, thingId: thing.id },
+      { seq: '006', name: 'Cadeirinha', displayName: 'Cadeirinha', dataType: 'boolean', isRequired: false, thingId: thing.id },
+    ],
+  });
+
+  console.log('Campos criados para Locação de Carros.');
 }
 
 seedThingsLocacaoCarros()
