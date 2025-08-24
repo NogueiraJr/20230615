@@ -24,7 +24,7 @@ datasource db {
     actions            Actions[]
     actionsFlowPoint   ActionsFlowPoints[]
     items           Items[]
-    things SystemThing[]
+    things ThingSystems[]
   }
 
 // M E N U S 
@@ -90,9 +90,10 @@ datasource db {
 // T A G S
   model UserTags {
     id          String      @id @default(cuid())
+    userId      String      @map("userId")
+    
     tag         String
     description String
-    userId     String      @map("userId")
     
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
@@ -106,6 +107,7 @@ datasource db {
 // U S E R S 
   model Users {
     id          String      @id @default(cuid())
+    userId      String?
     userTypeId  String
     name        String
     usr         String
@@ -114,6 +116,7 @@ datasource db {
     phones      UserPhones[]
 
     tags        String?
+
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
@@ -121,7 +124,6 @@ datasource db {
 
     userType    UserTypes   @relation(fields: [userTypeId], references: [id])
     user        Users?      @relation("user", fields: [userId], references: [id])
-    userId      String?
     users       Users[]     @relation("user")
     userTags    UserTags[]
 
@@ -159,6 +161,7 @@ datasource db {
     userEmailTypeId String
 
     tags            String?
+
     active          Boolean        @default(true)
     createAt        DateTime       @default(now())
     updatedAt       DateTime       @updatedAt
@@ -186,6 +189,7 @@ datasource db {
     userPhoneTypeId String 
 
     tags            String?
+
     active          Boolean        @default(true)
     createAt        DateTime       @default(now())
     updatedAt       DateTime       @updatedAt
@@ -211,6 +215,7 @@ datasource db {
     name        String
 
     tags        String?
+
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
@@ -225,6 +230,8 @@ datasource db {
     userId      String      @map("userId")
     clientId    String      @map("clientId")
     
+    active      Boolean     @default(true)
+
     user        Users       @relation(fields: [userId], references: [id])
     client      Clients     @relation(fields: [clientId], references: [id])
 
@@ -242,6 +249,7 @@ datasource db {
     name        String
 
     tags        String?
+
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
@@ -267,6 +275,7 @@ datasource db {
     name        String
 
     tags        String?
+
     active      Boolean     @default(true)
     createAt    DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
@@ -291,26 +300,27 @@ datasource db {
     id                  String       @id @default(cuid())
     name                String
     description         String?
-    itemTypeId       String
+    itemTypeId          String
 
     quantity            Int          @default(1)
     price               Decimal      @default(0.00)
 
     tags                String?
+
+    userId              String       @map("userId")
+    systemId            String       @map("systemId")
+
     active              Boolean      @default(true)
     createAt            DateTime     @default(now())
     updatedAt           DateTime     @updatedAt
     deletedAt           DateTime?
     
-    userId              String       @map("userId")
-    systemId            String       @map("systemId")
-
     user                Users        @relation(fields: [userId], references: [id])
     system              Systems      @relation(fields: [systemId], references: [id])
 
-    itemType         ItemTypes @relation(fields: [itemTypeId], references: [id])
+    itemType            ItemTypes @relation(fields: [itemTypeId], references: [id])
 
-    UserActionItems  UserActionItems[]
+    UserActionItems     UserActionItems[]
   }
 
   model ItemTypes {
@@ -338,6 +348,7 @@ datasource db {
     system       Systems     @relation(fields: [systemId], references: [id])
 
     tags         String?
+
     active       Boolean     @default(true)
     createAt     DateTime    @default(now())
     updatedAt    DateTime    @updatedAt
@@ -486,19 +497,21 @@ datasource db {
     deletedAt   DateTime?
     
     user           Users?        @relation(fields: [userId], references: [id])
-    systems     SystemThing[]
+    systems     ThingSystems[]
     thingFields ThingFields[]
 
     @@index([id])
     @@unique([id])
   }
 
-  model SystemThing {
+  model ThingSystems {
     id        String @id @default(cuid())
-    systemId  String
     thingId   String
+    systemId  String
     system    Systems @relation(fields: [systemId], references: [id])
     thing     Things  @relation(fields: [thingId], references: [id])
+
+    active      Boolean  @default(true)
 
     @@index([id, systemId, thingId])
     @@unique([id, systemId, thingId])
