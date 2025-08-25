@@ -78,6 +78,7 @@ async function seedEspecieRaca() {
       dataType: 'combobox',
       isRequired: false,
       thingId: thing.id,
+      thingFieldId: especieField.id,
     },
   });
 

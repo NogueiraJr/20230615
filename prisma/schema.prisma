@@ -141,6 +141,8 @@ datasource db {
     userActionsFlowPoint UserActionsFlowPoint[]
     actionsFlowPoints ActionsFlowPoints[]
 
+    thingFields ThingFields[]
+
   }
 
   model UserTypes {
@@ -522,6 +524,8 @@ datasource db {
     thingId       String   @map("thingId")
     thingFieldId String?   @map("thingFieldId") // Campo opcional para vincular ao campo genérico pai
 
+    userId       String?   @map("userId") // FK opcional para Users
+
     seq           String
     name          String
     description   String?
@@ -532,6 +536,7 @@ datasource db {
     validationRules String?
     
     things     Things   @relation(fields: [thingId], references: [id])
+    users      Users?   @relation(fields: [userId], references: [id])
     parentField   ThingFields? @relation("parentField", fields: [thingFieldId], references: [id]) // Relacionamento com o campo genérico pai
     childFields   ThingFields[] @relation("parentField") // Relacionamento inverso para listar os campos filhos vinculados
     
