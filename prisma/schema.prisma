@@ -519,7 +519,7 @@ datasource db {
 
   model ThingFields {
     id            String   @id @default(cuid())
-    thingId       String   @map("ThingId")
+    thingId       String   @map("thingId")
     thingFieldId String?   @map("thingFieldId") // Campo opcional para vincular ao campo genérico pai
 
     seq           String
@@ -567,8 +567,10 @@ datasource db {
     updatedAt     DateTime @updatedAt
     deletedAt     DateTime?
 
+    @@index([thingFieldId])
     @@index([id, thingFieldId])
     @@unique([id, thingFieldId])
+    @@index([thingFieldOptionId])
   }
 
   model ThingFieldConfig {
@@ -617,4 +619,8 @@ datasource db {
     @@index([userOperationId])
     @@index([userActionId])
     @@unique([id, thingFieldId])
+    @@index([thingFieldId])
+    @@index([userClientId])
+    @@index([thingFieldId, userOperationId])
+    @@index([thingFieldId, userActionId])
   }
