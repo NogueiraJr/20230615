@@ -5,14 +5,21 @@ const prisma = new PrismaClient();
 async function seedThingsOficinaCarros() {
   console.log('Iniciando o seed para Oficina de Carros...');
 
-  const system = await prisma.systems.findFirst({ where: { name: { contains: 'Oficina de Carros' } } });
+  const systems = await prisma.systems.findMany({ 
+    where: {
+      OR: [
+        { name: { contains: 'Oficina de Carros', mode: 'insensitive' } },
+        { name: { contains: 'Locação de Carros', mode: 'insensitive' } }
+      ]
+    },
+  });
 
-  if (!system) {
-    console.error('Sistema "Oficina de Carros" não encontrado.');
+  if (!systems) {
+    console.error('Nenhum Sistema encontrado.');
     return;
   }
 
-  console.log('Sistema encontrado:', system);
+  console.log('Sistemas encontrados:', systems);
 
   // Cria o registro Things
   const thing = await prisma.things.create({
@@ -25,13 +32,15 @@ async function seedThingsOficinaCarros() {
 
   console.log('Registro criado na tabela Things:', thing);
 
-  // Associa o Things ao sistema via ThingSystems
-  await prisma.thingSystems.create({
-    data: {
-      thingId: thing.id,
-      systemId: system.id,
-    },
-  });
+  for (const sistema of systems) {
+    await prisma.thingSystems.create({
+      data: {
+        thingId: thing.id,
+        systemId: sistema.id,
+      },
+    });
+    console.log(`Associação criada entre Things e sistema: ${sistema.name}`);
+  }
 
   console.log('Associação criada entre Things e sistema: Oficina de Carros');
 
@@ -79,6 +88,7 @@ async function seedThingsOficinaCarros() {
       dataType: 'combobox',
       isRequired: true,
       thingId: thing.id,
+      thingFieldId: marcaField.id,
     },
   });
 
