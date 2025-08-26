@@ -50,6 +50,16 @@ async function seedEspecieRaca() {
     },
   });
 
+  const especieFieldConfig = await prisma.thingFieldConfig.create({
+    data: {
+      thingFieldId: especieField.id,
+      isMultiSelect: true,
+      maxSelections: 3,
+    },
+  });
+
+  console.log('Configuração adicionada para o campo Espécie:', especieFieldConfig);
+
   const especies = [
     { seq: '001', value: 'Passaro', label: 'Pássaro' },
     { seq: '002', value: 'Gato', label: 'Gato' },
